@@ -1,5 +1,5 @@
 <?php
-class fincaDAO {
+class usuarioDAO {
     private $con;
     private $objCon;
 

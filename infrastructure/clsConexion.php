@@ -12,7 +12,7 @@ class clsConexion {
     public function conectar() {
         $this->userbd = "root";
         $this->passworddb = "";
-        $this->database = "registroFinca";
+        $this->database = "farmacia";
         $this->host = "localhost";
 
         try {

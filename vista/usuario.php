@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Fincas</title>
+    <title>CRUD Usuario</title>
 
     <!-- Theme CSS - Includes Bootstrap -->
     <link href="../resource/styles/creative.min.css" rel="stylesheet">
@@ -31,7 +31,17 @@
                         </tr>
                         <tr>
                             <td>
-                                <h1>Gestionar Finca</h1>
+                                <h1>Gestionar Usuario</h1>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Cedula:</label>
+                            </td>
+                            <td colspan="2">
+                                <input type="text" id="txtIdUsuario" style="display: none" value="">
+                                <input class="form-control" type="number" placeholder="C.C" id="txtCedula" required>
+                                <br>
                             </td>
                         </tr>
                         <tr>
@@ -39,71 +49,48 @@
                                 <label>Nombre:</label>
                             </td>
                             <td colspan="2">
-                                <input type="text" id="txtIdFinca" style="display: none" value="">
+                                <!-- <input type="text" id="txtIdUsuario" style="display: none" value=""> -->
                                 <input class="form-control" type="text" placeholder="Nombre" id="txtNombre" required>
                                 <br>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <label>Tamaño en Hectareas:</label>
+                                <label>Apellido:</label>
                             </td>
                             <td colspan="2">
-                                <input class="form-control" type="number" placeholder="Numero de Hectareas" id="txtTamanio" required>
+                                <!-- <input type="text" id="txtIdUsuario" style="display: none" value=""> -->
+                                <input class="form-control" type="text" placeholder="Apellido" id="txtApellido" required>
                                 <br>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <label>Departamento:</label>
+                                <label>Correo:</label>
                             </td>
                             <td colspan="2">
-                                <div class="form-group">
-                                    <select class="form-control" id="txtDepto" name="depto" onchange="listMunicipios()"></select>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label>Municipio:</label>
-                            </td>
-                            <td colspan="2">
-                                <div class="form-group">
-                                    <select class="form-control" id="txtMunicipio">
-                                        <option value="0">---SELECCIONE---</option>
-                                    </select>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label>N° de Cabañas:</label>
-                            </td>
-                            <td colspan="2">
-                                <input class="form-control" type="number" placeholder="Numero de cabañas" id="txtCantidad" required>
+                                <!-- <input type="text" id="txtIdUsuario" style="display: none" value=""> -->
+                                <input class="form-control" type="text" placeholder="Correo" id="txtCorreo" required>
                                 <br>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <label>Piscina:</label>
+                                <label>Usuario:</label>
                             </td>
                             <td colspan="2">
-                                <div class="form-group">
-                                    <select class="form-control" id="txtPiscina">
-                                        <option value="0">si / no</option>
-                                        <option value="1">Si</option>
-                                        <option value="2">No</option>
-                                    </select>
-                                </div>
+                                <!-- <input type="text" id="txtIdUsuario" style="display: none" value=""> -->
+                                <input class="form-control" type="text" placeholder="Usuario" id="txtUsuario" required>
+                                <br>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <label>Descripción:</label>
+                                <label>Password:</label>
                             </td>
                             <td colspan="2">
-                                <textarea class="form-control" rows="3" id="txtDescripcion" required></textarea>
+                                <!-- <input type="text" id="txtIdUsuario" style="display: none" value=""> -->
+                                <input class="form-control" type="password" placeholder="Calve" id="txtPassword" required>
                                 <br>
                             </td>
                         </tr>
@@ -145,16 +132,15 @@
                                 <table border="1">
                                     <thead>
                                         <tr>
+                                            <th>Cedula</th>
                                             <th>Nombre</th>
-                                            <th>Tamaño en Hectareas</th>
-                                            <th>Departamento</th>
-                                            <th>Municipio</th>
-                                            <th>Num. de cabañas</th>
-                                            <th>Pisicina</th>
-                                            <th>Descripción</th>
+                                            <th>Apellido</th>
+                                            <th>Correo</th>
+                                            <th>Usuario</th>
+                                            <th>Password</th>
                                         </tr>
                                     </thead>
-                                    <tbody id="listaFincas">
+                                    <tbody id="listaUsuarios">
 
                                     </tbody>
                                 </table>

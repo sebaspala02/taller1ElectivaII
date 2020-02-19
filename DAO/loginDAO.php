@@ -11,8 +11,8 @@ class loginDAO {
     }
 
     public function logear(clsLogin $obj) {
-        $sql = "SELECT nickname,password from usuario where "
-        . "nickname='" . $obj->getUsuario() . "' and "
+        $sql = "SELECT usuario,password from usuario where "
+        . "usuario='" . $obj->getUsuario() . "' and "
         . "password='" . $obj->getPassword() . "'";
 
         $resultado = $this->objCon->getConnect()->prepare($sql);
@@ -24,7 +24,7 @@ class loginDAO {
 
         if(isset($vec)) {
             session_start();
-            $_SESSION["user"] = $vec[0]['nickname'];
+            $_SESSION["user"] = $vec[0]['usuario'];
             header('location:../index.php');
         } else {
             $mensaje = "El usuario ingresado no existe";
