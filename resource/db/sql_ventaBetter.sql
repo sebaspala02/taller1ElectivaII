@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS `farmacia`.`usuario` (
   `apellido` VARCHAR(45) NULL,
   `correo` VARCHAR(45) NULL,
   `usuario` VARCHAR(45) NULL,
-  `paswword` INT NULL,
+  `password` INT NULL,
   PRIMARY KEY (`idusuario`))
 ENGINE = InnoDB;
 
@@ -136,3 +136,10 @@ ENGINE = InnoDB;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNmedicamento_ibfk_2IQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+INSERT INTO `farmacia`.`usuario` (`cedula`, `nombre`, `apellido`, `correo`, `usuario`, `password`) VALUES ('1094', 'sebas', 'pala', 'sebas@pala.com', 'admin', '123');
+
+INSERT INTO `farmacia`.`laboratorio` (`nombre`, `descrip`) VALUES ('genfar', 'jajajajajajaja');
+
+INSERT INTO `farmacia`.`medicamento` (`nombre`, `descrip`, `fecha_venc`, `cant`, `fecha_creado`, `precio`, `usuario_idusuario`, `laboratorio_idlaboratorio`) VALUES ('acetaminofem', 'no se', '2032-02-02', '1', '2020-02-02', '1', '0', '0');
+
