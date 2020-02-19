@@ -31,26 +31,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <h1>Gestionar Vacas</h1>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label>Peso:</label>
-                            </td>
-                            <td colspan="2">
-                                <input type="text" id="txtIdVaca" style="display: none" value="">
-                                <input class="form-control" type="number" placeholder="Peso/kg" id="txtPeso" required>
-                                <br>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label>Edad:</label>
-                            </td>
-                            <td colspan="2">
-                                <input class="form-control" type="number" placeholder="Edad de la vaca" id="txtEdad" required>
-                                <br>
+                                <h1>Gestionar Medicamentos</h1>
                             </td>
                         </tr>
                         <tr>
@@ -58,42 +39,77 @@
                                 <label>Nombre:</label>
                             </td>
                             <td colspan="2">
+                                <input type="text" id="txtIdMedicamento" style="display: none" value="">
+                                <input class="form-control" type="text" placeholder="Nombre" id="txtNombre" required>
+                                <br>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Descripción:</label>
+                            </td>
+                            <td colspan="2">
+                                <textarea class="form-control" rows="3" id="txtDescripcion" required></textarea>
+                                <br>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Fecha de Vencimiento:</label>
+                            </td>
+                            <td colspan="2">
                                 <div class="form-group">
-                                    <input class="form-control" type="text" placeholder="Nombre de la vaca" id="txtNombre" required>
+                                    <input class="form-control" type="date" id="txtFecha_venci" required>
                                     <!-- <input class="form-control" type="text" placeholder="Nombre" id="txtNombre" required> -->
                                 </div>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <label>¿Crias?:</label>
+                                <label>Cantidad:</label>
                             </td>
                             <td colspan="2">
-                                <div class="form-group">
-                                    <select class="form-control" id="txtCrias">
-                                        <option value="0">si / no</option>
-                                        <option value="1">Si</option>
-                                        <option value="2">No</option>
-                                    </select>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label>N° ordeñada:</label>
-                            </td>
-                            <td colspan="2">
-                                <input class="form-control" type="number" placeholder="Num. de ordeñadas" id="txtNum_ordenada" required>
+                                <input class="form-control" type="number" placeholder="Cant." id="txtCant" required>
                                 <br>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <label>Finca:</label>
+                                <label>Fecha de Creación:</label>
                             </td>
                             <td colspan="2">
                                 <div class="form-group">
-                                    <select class="form-control" id="txtFinca" name="finca" ></select>
+                                    <input class="form-control" type="date" id="txtFecha_crea" required>
+                                    <!-- <input class="form-control" type="text" placeholder="Nombre" id="txtNombre" required> -->
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Precio:</label>
+                            </td>
+                            <td colspan="2">
+                                <input class="form-control" type="number" placeholder="Precio" id="txtPrecio" required>
+                                <br>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Usuario:</label>
+                            </td>
+                            <td colspan="2">
+                                <div class="form-group">
+                                    <select class="form-control" id="txtIdUsuario" name="usuario"></select>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Laboratorio:</label>
+                            </td>
+                            <td colspan="2">
+                                <div class="form-group">
+                                    <select class="form-control" id="txtIdLaboratorio" name="laboratorio"></select>
                                 </div>
                             </td>
                         </tr>
@@ -118,14 +134,6 @@
                 </div>
             </div>
         </div>
-
-
-
-
-
-
-
-
         <div class="col-sm-6">
             <div class="card">
                 <div class="card-body">
@@ -135,12 +143,14 @@
                                 <table border="1">
                                     <thead>
                                         <tr>
-                                            <th>Peso</th>
-                                            <th>Edad</th>
                                             <th>Nombre</th>
-                                            <th>¿Crias?</th>
-                                            <th>N° Ordeñadas</th>
-                                            <th>Finca</th>
+                                            <th>Descripción</th>
+                                            <th>Fecha de Vencimiento</th>
+                                            <th>Cantidad</th>
+                                            <th>Fecha de Creación</th>
+                                            <th>Precio</th>
+                                            <th>Usuario</th>
+                                            <th>Laboratorio</th>
                                             <!-- <th>Descripción</th> -->
                                         </tr>
                                     </thead>
