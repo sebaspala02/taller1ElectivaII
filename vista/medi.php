@@ -154,7 +154,7 @@
                                             <!-- <th>Descripción</th> -->
                                         </tr>
                                     </thead>
-                                    <tbody id="listaVacas">
+                                    <tbody id="listaMedi">
 
                                     </tbody>
                                 </table>

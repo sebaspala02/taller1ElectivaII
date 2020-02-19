@@ -14,7 +14,7 @@
                     <a class="nav-link js-scroll-trigger" href="masterpage.php?page=medi">CRUD Medicamentos</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="masterpage.php?page=depto">Ventas-Medicamento</a>
+                    <a class="nav-link js-scroll-trigger" href="masterpage.php?page=venta">Ventas-Medicamento</a>
                 </li>
                 <!-- <li class="nav-item">
                     <a class="nav-link js-scroll-trigger" href="masterpage.php?page=muni">CRUD Municipio</a>
