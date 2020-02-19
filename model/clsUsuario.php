@@ -54,27 +54,14 @@ class clsUsuario
     {
         $this->nombreUsuario = $nombreUsuario;
     }
-    public function setTamanio($tamanio)
+    public function setApellidoUsuario($apellidoUsuario)
     {
-        $this->tamanio = $tamanio;
+        $this->apellidoUsuario = $apellidoUsuario;
     }
-    public function setIdMunicipio($idMunicipio)
+    public function setCorreo($correo)
     {
-        $this->idMunicipio = $idMunicipio;
+        $this->correo = $correo;
     }
-    public function setCantidad($cantidad)
-    {
-        $this->cantidad = $cantidad;
-    }
-    public function setPiscina($piscina)
-    {
-        $this->piscina = $piscina;
-    }
-    public function setDescripcion($descripcion)
-    {
-        $this->descripcion = $descripcion;
-    }
-
     public function setPassword($password)
     {
         $this->password = $password;
