@@ -10,39 +10,35 @@ class usuarioDAO {
     }
 
     public function guardar(clsUsuario $obj){
-        $sql = "INSERT INTO Finca(nombreFinca,tamanio,Municipio_idMunicipio,cantidad,piscina,descripcion) "
-        . "VALUES ('" . $obj->getNombreFinca() . "'," . $obj->getTamanio() . ","  . 
-        $obj->getIdMunicipio(). ","  . $obj->getCantidad() . ","  . $obj->getPiscina() . ",'"  . 
-        $obj->getDescripcion() . "')";
+        $sql = "INSERT INTO usuario(idusuario,cedula,nombre,apellido,correo,usuario,password) "
+        . "VALUES (" . $obj->getCedula() . ",'" . $obj->getNombreUsuario() . "','"  . 
+        $obj->getApellidoUsuario(). "','"  . $obj->getCorreo() . "','"  . $obj->getUsuario() . "',"  . 
+        $obj->getPassword() . ")";
         $this->objCon->ExecuteTransaction($sql);
     }
 
     public function buscar(clsUsuario $obj){
-        $sql = "SELECT nombreFinca,tamanio,Municipio_idMunicipio,Departamento_idDepartamento,cantidad,piscina,descripcion from Finca F 
-        join Municipio M on F.Municipio_idMunicipio = M.idMunicipio 
-        join Departamento D on M.Departamento_idDepartamento = D.idDepartamento
-        where idFinca = " . $obj->getIdFinca() . "";
+        $sql = "SELECT cedula,nombre,apellido,correo,usuario,password from usuario 
+        where idusuario = " . $obj->getIdUsuario() . "";
         $this->objCon->Execute($sql);
     }
 
     public function eliminar(clsUsuario $obj)
     {
-        $sql = "DELETE from Finca where idFinca=" . $obj->getIdFinca() . "";
+        $sql = "DELETE from usuario where idusuario=" . $obj->getIdUsuario() . "";
         $this->objCon->ExecuteTransaction($sql);
     }
 
     public function modificar(clsUsuario $obj){
-        $sql = "UPDATE Finca SET nombreFinca='" . $obj->getNombreFinca() . "',tamanio=" . 
-            $obj->getTamanio() . ",Municipio_idMunicipio="  . $obj->getIdMunicipio() . 
-            ",cantidad="  . $obj->getCantidad() . ",piscina="  . $obj->getPiscina() . 
-            ",descripcion='"  . $obj->getDescripcion() . "' where idFinca=" . $obj->getIdFinca() ."";
+        $sql = "UPDATE usuario SET cedula=" . $obj->getCedula() . ",nombre='" . 
+            $obj->getNombreUsuario() . "',apellido='"  . $obj->getApellidoUsuario() . 
+            "',correo='"  . $obj->getCorreo() . "',usuario='"  . $obj->getUsuario() . 
+            ",password="  . $obj->getPassword() . " where idusuario=" . $obj->getIdUsuario() ."";
         $this->objCon->ExecuteTransaction($sql);
     }
     
     public function listar(){
-        $sql = "SELECT idFinca,nombreFinca,tamanio,nombreMpio,nombreDepto,cantidad,piscina,descripcion from Finca F 
-        join Municipio M on F.Municipio_idMunicipio = M.idMunicipio 
-        join Departamento D on M.Departamento_idDepartamento = D.idDepartamento";
+        $sql = "SELECT idusuario,cedula,nombre,apellido,correo,usuario,password from usuario";
         $this->objCon->Execute($sql);
     }
 }
