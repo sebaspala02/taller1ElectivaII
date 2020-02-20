@@ -6,6 +6,7 @@ include '../DAO/usuarioDAO.php';
 
     $idUsuario = isset($_POST['idUsuario']) ? $_POST['idUsuario'] : "";
     $nombreUsuario = isset($_POST['nombreUsuario']) ? $_POST['nombreUsuario'] : "";
+    $cedula = isset($_POST['cedula']) ? $_POST['cedula'] : "";
     $apellidoUsuario = isset($_POST['apellidoUsuario']) ? $_POST['apellidoUsuario'] : "";
     $correo = isset($_POST['correo']) ? $_POST['correo'] : "";
     $usuario = isset($_POST['usuario']) ? $_POST['usuario'] : "";
@@ -13,7 +14,7 @@ include '../DAO/usuarioDAO.php';
     $type = isset($_POST['type']) ? $_POST['type'] : "";
     //$valor = isset($_POST['valor']) ? $_POST['valor'] : "";
 
-    $usuario = new clsUsuario($idUsuario, $nombreUsuario, $apellidoUsuario, $correo, $usuario, $password);
+    $usuario = new clsUsuario($idUsuario, $cedula, $nombreUsuario, $apellidoUsuario, $correo, $usuario, $password);
     $conex = new usuarioDAO();
 
 switch ($type) {

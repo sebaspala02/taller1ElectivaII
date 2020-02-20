@@ -1,10 +1,10 @@
 $(document).ready(function() {
     listarUsuarios();
-    listDeptos();
-    listMunicipios();
+    // listDeptos();
+    // listMunicipios();
     $("#btnGuardar").click(guardarUsuario);
     $("#btnModificar").click(guardarUsuario);
-    $("#btnEliminar").click(eliminarFinca);
+    $("#btnEliminar").click(eliminarUsuario);
 });
 
 function guardarUsuario() {
@@ -19,7 +19,6 @@ function guardarUsuario() {
         type: ""
     };
     if (
-        objUsuario.idusuario !== "" &&
         objUsuario.cedula !== "" &&
         objUsuario.nombre !== "" &&
         objUsuario.apellido !== "" &&
@@ -126,13 +125,12 @@ function buscarUsuario(codigo) {
                 data = JSON.parse(info.data);
             }
             if (info.msj === "Success") {
-                $("#txtNombre").val(data[0].nombreFinca);
-                $("#txtTamanio").val(data[0].tamanio);
-                $("#txtDepto").val(data[0].Departamento_idDepartamento);
-                $("#txtMunicipio").val(data[0].Municipio_idMunicipio);
-                $("#txtCantidad").val(data[0].cantidad);
-                $("#txtPiscina").val(data[0].piscina);
-                $("#txtDescripcion").val(data[0].descripcion);
+                $("#txtCedula").val(data[0].cedula);
+                $("#txtNombre").val(data[0].nombre);
+                $("#txtApellido").val(data[0].apellido);
+                $("#txtCorreo").val(data[0].correo);
+                $("#txtUsuario").val(data[0].usuario);
+                $("#txtPassword").val(data[0].password);
             } else {
                 alert("No se encuentra");
                 limpiar();
@@ -141,34 +139,34 @@ function buscarUsuario(codigo) {
     });
 }
 
-function listMunicipios() {
-    console.log($('#txtDepto').val())
-    $.ajax({
-        type: 'post',
-        url: "controller/ctlList.php",
-        data: { type: 'loadListMuni', depto: $('#txtDepto').val()},
-        success: function (response) {
-            var aux= JSON.parse(response)
-            var municipios = JSON.parse(aux.data);
-            console.log(municipios)
-            var combo = "<option value='0'>---SELECCIONAR MUNICIPIO---</option>";
-            if (municipios.length > 0) {
-                for (k = 0; k < municipios.length; k++) {
-                    combo = combo + "<option value='" + municipios[k].idMunicipio + "'>" + municipios[k].nombreMpio + "</option>";
-                }
-                $("#txtMunicipio").html(combo);
-            } else {
+// function listMunicipios() {
+//     console.log($('#txtDepto').val())
+//     $.ajax({
+//         type: 'post',
+//         url: "controller/ctlList.php",
+//         data: { type: 'loadListMuni', depto: $('#txtDepto').val()},
+//         success: function (response) {
+//             var aux= JSON.parse(response)
+//             var municipios = JSON.parse(aux.data);
+//             console.log(municipios)
+//             var combo = "<option value='0'>---SELECCIONAR MUNICIPIO---</option>";
+//             if (municipios.length > 0) {
+//                 for (k = 0; k < municipios.length; k++) {
+//                     combo = combo + "<option value='" + municipios[k].idMunicipio + "'>" + municipios[k].nombreMpio + "</option>";
+//                 }
+//                 $("#txtMunicipio").html(combo);
+//             } else {
 
-            }
-        },
-        error: (jqXHR, textStatus, errorThrown) => {
-            alert("Error detectado: " + textStatus + "\nException: " + errorThrown);
-            alert("verifique la ruta de archivo!");
-        }
-    });
-}
+//             }
+//         },
+//         error: (jqXHR, textStatus, errorThrown) => {
+//             alert("Error detectado: " + textStatus + "\nException: " + errorThrown);
+//             alert("verifique la ruta de archivo!");
+//         }
+//     });
+// }
 
-function eliminarFinca() {
+function eliminarUsuario() {
     var dato = $("#txtIdUsuario").val();
     if (dato == "") {
         alert("Debe cargar los datos a eliminar");
@@ -180,7 +178,7 @@ function eliminarFinca() {
 
         $.ajax({
             type: 'post',
-            url: "controller/ctlFinca.php",
+            url: "controller/ctlUsuario.php",
             beforeSend: function() {
 
             },
@@ -207,40 +205,39 @@ function eliminarFinca() {
 
 function limpiar() {
     $("#txtIdUsuario").val("");
+    $("#txtCedula").val("");
     $("#txtNombre").val("");
-    $("#txtTamanio").val("");
-    $("#txtDepto").val(0);
-    $("#txtMunicipio").val(0);
-    $("#txtCantidad").val("");
-    $("#txtPiscina").val("");
-    $("#txtDescripcion").val("");
+    $("#txtApellido").val(0);
+    $("#txtCorreo").val(0);
+    $("#txtUsuario").val("");
+    $("#txtPassword").val("");
 }
 
-function listDeptos() {
-    $.ajax({
-        type: 'post',
-        url: "controller/ctlList.php",
-        beforeSend: function() {
+// function listDeptos() {
+//     $.ajax({
+//         type: 'post',
+//         url: "controller/ctlList.php",
+//         beforeSend: function() {
 
-        },
-        data: { type: 'loadListDepto' },
-        success: function(respuesta) {
-            const res = JSON.parse(respuesta);
-            const info = JSON.parse(res.data);
-            var lista = "<option value='0'>---SELECCIONE DEPTO---</option>";
+//         },
+//         data: { type: 'loadListDepto' },
+//         success: function(respuesta) {
+//             const res = JSON.parse(respuesta);
+//             const info = JSON.parse(res.data);
+//             var lista = "<option value='0'>---SELECCIONE DEPTO---</option>";
 
-            if (info.length > 0) {
-                for (k = 0; k < info.length; k++) {
-                    lista = lista + "<option value='" + info[k].idDepartamento + "'>" + info[k].nombreDepto + "</option>";
-                }
-                $("#txtDepto").html(lista);
-            } else {
+//             if (info.length > 0) {
+//                 for (k = 0; k < info.length; k++) {
+//                     lista = lista + "<option value='" + info[k].idDepartamento + "'>" + info[k].nombreDepto + "</option>";
+//                 }
+//                 $("#txtDepto").html(lista);
+//             } else {
 
-            }
-        },
-        error: (jqXHR, textStatus, errorThrown) => {
-            alert("Error detectado: " + textStatus + "\nException: " + errorThrown);
-            alert("verifique la ruta de archivo!");
-        }
-    });
-}
+//             }
+//         },
+//         error: (jqXHR, textStatus, errorThrown) => {
+//             alert("Error detectado: " + textStatus + "\nException: " + errorThrown);
+//             alert("verifique la ruta de archivo!");
+//         }
+//     });
+// }

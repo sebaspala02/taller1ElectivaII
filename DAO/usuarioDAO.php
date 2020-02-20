@@ -10,7 +10,7 @@ class usuarioDAO {
     }
 
     public function guardar(clsUsuario $obj){
-        $sql = "INSERT INTO usuario(idusuario,cedula,nombre,apellido,correo,usuario,password) "
+        $sql = "INSERT INTO usuario(cedula,nombre,apellido,correo,usuario,password) "
         . "VALUES (" . $obj->getCedula() . ",'" . $obj->getNombreUsuario() . "','"  . 
         $obj->getApellidoUsuario(). "','"  . $obj->getCorreo() . "','"  . $obj->getUsuario() . "',"  . 
         $obj->getPassword() . ")";
@@ -33,7 +33,7 @@ class usuarioDAO {
         $sql = "UPDATE usuario SET cedula=" . $obj->getCedula() . ",nombre='" . 
             $obj->getNombreUsuario() . "',apellido='"  . $obj->getApellidoUsuario() . 
             "',correo='"  . $obj->getCorreo() . "',usuario='"  . $obj->getUsuario() . 
-            ",password="  . $obj->getPassword() . " where idusuario=" . $obj->getIdUsuario() ."";
+            "',password="  . $obj->getPassword() . " where idusuario=" . $obj->getIdUsuario() ."";
         $this->objCon->ExecuteTransaction($sql);
     }
     
