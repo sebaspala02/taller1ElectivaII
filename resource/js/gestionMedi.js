@@ -1,40 +1,45 @@
 $(document).ready(function() {
-  listarVaca();
-  $("#btnGuardarV").click(guardarVaca);
-  $("#btnModificarV").click(guardarVaca);
-  $("#btnEliminarV").click(eliminarVaca);
-  $("#btnLimpiarV").click(limpiar);
+  listarMedi();
+  $("#btnGuardarM").click(guardarMedi);
+  $("#btnModificarM").click(guardarMedi);
+  $("#btnEliminarM").click(eliminarMedi);
+  $("#btnLimpiarM").click(limpiar);
 });
 
-function guardarVaca() {
-  let objVaca = {
-    idVaca: $("#txtIdVaca").val(),
-    peso: $("#txtPeso").val(),
-    edad: $("#txtEdad").val(),
-    nombreVaca: $("#txtNombre").val().toUpperCase(),
-    crias: $("#txtCrias").val(),
-    num_ordenada: $("#txtNum_ordenada").val(),
-    idFinca: $("#txtFinca").val(),
+function guardarMedi() {
+  let objMedi = {
+    id: $("#txtIdMedicamento").val(),
+    nombre: $("#txtNombreMedicamento").val().toUpperCase(),
+    descripcion: $("#txtDescripcion").val(),
+    vencimiento: $("#txtFecha_venci").val(),
+    cantidad: $("#txtCant").val(),
+    fecha: $("#txtFecha_crea").val(),
+    precio: $("#txtPrecio").val(),
+    usuario: $("#txtIdUsuario").val(),
+    laboratorio : $('#txtIdLaboratorio').val(),
     type: ""
   };
   if (
-    objVaca.peso !== "" &&
-    objVaca.edad !== "" &&
-    objVaca.nombreVaca !== "" &&
-    objVaca.crias !== "" &&
-    objVaca.num_ordenada !== "" &&
-    objVaca.idFinca !== ""
+    objMedi.id !== "" &&
+    objMedi.nombre !== "" &&
+    objMedi.descripcion !== "" &&
+    objMedi.vencimiento !== "" &&
+    objMedi.cantidad !== "" &&
+    objMedi.fecha !== "" &&
+    objMedi.precio !== "" &&
+    objMedi.usuario !== "" &&
+    objMedi.laboratorio !== ""
   ) {
-    if (objVaca.idVaca !== "") {
-      objVaca.type = "update";
+    if (objMedi.idMedi !== "") {
+      objMedi.type = "update";
     } else {
-      objVaca.type = "save";
+      objMedi.type = "save";
     }
     $.ajax({
       type: "post",
-      url: "controller/ctlVaca.php",
+      url: "controller/ctlMedi.php",
       beforeSend: function() {},
-      data: objVaca,
+      data: objMedi,
       success: function(data) {
         console.log(data);
         var info = JSON.parse(data);
@@ -42,7 +47,7 @@ function guardarVaca() {
         if (info.res === "Success") {
           limpiar();
           alert("Operacion exitosa");
-          listarVaca();
+          listarMedi();
         } else {
           alert("No se pudo almacenar");
         }
@@ -57,10 +62,10 @@ function guardarVaca() {
   }
 }
 
-function listarVaca() {
+function listarMedi() {
   $.ajax({
     type: 'post',
-    url: "controller/ctlVaca.php",
+    url: "controller/ctlMedi.php",
     beforeSend: function() {
 
     },
@@ -75,11 +80,11 @@ function listarVaca() {
 
       if (info.length > 0) {
         for (k = 0; k < info.length; k++) {
-          lista = lista + '<tr id="codigo" onclick="buscarVaca(' + info[k].idVaca + ')">';
-          lista = lista + '<td style="display: none">' + info[k].idVaca + "</td>";
+          lista = lista + '<tr id="codigo" onclick="buscarMedi(' + info[k].idMedi + ')">';
+          lista = lista + '<td style="display: none">' + info[k].idMedi + "</td>";
           lista = lista + '<td>' + info[k].peso + '</td>';
           lista = lista + '<td>' + info[k].edad + '</td>';
-          lista = lista + '<td>' + info[k].nombreVaca + '</td>';
+          lista = lista + '<td>' + info[k].nombreMedi + '</td>';
           if (info[k].crias === '1') {
             lista = lista + '<td>SI</td>';
           } else {
@@ -91,9 +96,9 @@ function listarVaca() {
           //   lista = lista + "<td>" + info[k].descripcion + "</td>";
           lista = lista + '</tr>';
         }
-        $("#listaVacas").html(lista);
+        $("#listaMedis").html(lista);
       } else {
-        $("#listaVacas").html("<tr><td>No se encuentra informacion</td>></tr>");
+        $("#listaMedis").html("<tr><td>No se encuentra informacion</td>></tr>");
       }
     },
     error: (jqXHR, textStatus, errorThrown) => {
@@ -103,19 +108,19 @@ function listarVaca() {
   });
 }
 
-function buscarVaca(codigo) {
-  $("#txtIdVaca").val(codigo);
-  const objVaca = {
-    idVaca: $("#txtIdVaca").val(),
+function buscarMedi(codigo) {
+  $("#txtIdMedi").val(codigo);
+  const objMedi = {
+    idMedi: $("#txtIdMedi").val(),
     type: "search"
   };
 
   $.ajax({
     type: "post",
-    url: "controller/ctlVaca.php",
+    url: "controller/ctlMedi.php",
     async: false,
     beforeSend: function() {},
-    data: objVaca,
+    data: objMedi,
     success: function(res) {
       const info = JSON.parse(res);
       let data;
@@ -125,7 +130,7 @@ function buscarVaca(codigo) {
       if (info.msj === "Success") {
         $("#txtPeso").val(data[0].peso);
         $("#txtEdad").val(data[0].edad);
-        $("#txtNombre").val(data[0].nombreVaca);
+        $("#txtNombre").val(data[0].nombreMedi);
         $("#txtCrias").val(data[0].crias);
         $("#txtNum_ordenada").val(data[0].num_ordenada);
         $("#txtFinca").val(data[0].Finca_idFinca);
@@ -138,27 +143,27 @@ function buscarVaca(codigo) {
   });
 }
 
-function eliminarVaca() {
-  var dato = $("#txtIdVaca").val();
+function eliminarMedi() {
+  var dato = $("#txtIdMedi").val();
   if (dato == "") {
     alert("Debe cargar los datos a eliminar");
   } else {
-    const objVaca = {
-      idVaca: dato,
+    const objMedi = {
+      idMedi: dato,
       type: "delete"
     };
 
     $.ajax({
       type: "post",
-      url: "controller/ctlVaca.php",
+      url: "controller/ctlMedi.php",
       beforeSend: function() {},
-      data: objVaca,
+      data: objMedi,
       success: function(res) {
         var info = JSON.parse(res);
         if (info.res == "Success") {
           limpiar();
           alert("Eliminado con exito");
-          listarVaca();
+          listarMedi();
           limpiar();
         } else {
           alert("No se pudo eliminar");
