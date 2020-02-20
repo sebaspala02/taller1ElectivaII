@@ -117,8 +117,8 @@
                             <td>
                             </td>
                             <td>
-                                <input class="btn btn-success" type="button" value="Guardar" id="btnGuardarV">
-                                <input class="btn btn-outline-dark" type="button" value="Limpiar" id="btnLimpiarV">
+                                <input class="btn btn-success" type="button" value="Guardar" id="btnGuardarM">
+                                <input class="btn btn-outline-dark" type="button" value="Limpiar" id="btnLimpiarM">
                                 <!-- <input type="button" value="Buscar" id="btnBuscar"> -->
                             </td>
                         </tr>
@@ -126,8 +126,8 @@
                             <td>
                             </td>
                             <td>
-                                <input class="btn btn-warning" type="button" value="Modificar" id="btnModificarV">
-                                <input class="btn btn-danger" type="button" value="Eliminar" id="btnEliminarV">
+                                <input class="btn btn-warning" type="button" value="Modificar" id="btnModificarM">
+                                <input class="btn btn-danger" type="button" value="Eliminar" id="btnEliminarM">
                             </td>
                         </tr>
                     </table>
