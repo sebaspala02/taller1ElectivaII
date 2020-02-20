@@ -1,41 +1,42 @@
 $(document).ready(function() {
-    listarFincas();
+    listarUsuarios();
     listDeptos();
     listMunicipios();
-    $("#btnGuardar").click(guardarFinca);
-    $("#btnModificar").click(guardarFinca);
+    $("#btnGuardar").click(guardarUsuario);
+    $("#btnModificar").click(guardarUsuario);
     $("#btnEliminar").click(eliminarFinca);
 });
 
-function guardarFinca() {
-    let objFinca = {
-        idFinca: $("#txtIdFinca").val(),
-        nombreFinca: ($("#txtNombre").val()).toUpperCase(),
-        tamanio: $("#txtTamanio").val(),
-        idMunicipio: $("#txtMunicipio").val(),
-        cantidad: $("#txtCantidad").val(),
-        piscina: $("#txtPiscina").val(),
-        descripcion: ($("#txtDescripcion").val()).toUpperCase(),
+function guardarUsuario() {
+    let objUsuario = {
+        idusuario: $("#txtIdUsuario").val(),
+        cedula: $("#txtCedula").val(),
+        nombre: ($("#txtNombre").val()).toUpperCase(),
+        apellido: ($("#txtApellido").val()).toUpperCase(),
+        correo: ($("#txtCorreo").val()).toUpperCase(),
+        usuario: ($("#txtUsuario").val()).toUpperCase(),
+        password: ($("#txtPassword").val()).toUpperCase(),
         type: ""
     };
     if (
-        objFinca.nombreFinca !== "" &&
-        objFinca.tamanio !== "" &&
-        objFinca.idMunicipio !== "" &&
-        objFinca.cantidad !== "" &&
-        objFinca.piscina !== "" &&
-        objFinca.descripcion !== ""
+        objUsuario.idusuario !== "" &&
+        objUsuario.cedula !== "" &&
+        objUsuario.nombre !== "" &&
+        objUsuario.apellido !== "" &&
+        objUsuario.correo !== "" &&
+        objUsuario.usuario !== "" &&
+        objUsuario.password !== ""
     ) {
-        if (objFinca.idFinca !== "") {
-            objFinca.type = 'update';
+        if (objUsuario.idusuario !== "") {
+            objUsuario.type = 'update';
         } else {
-            objFinca.type = 'save';
+            objUsuario.type = 'save';
         }
         $.ajax({
             type: 'post',
-            url: "controller/ctlFinca.php",
+            url: "controller/ctlUsuario.php",
             beforeSend: function() {},
-            data: objFinca,
+            data: objUsuario,
             success: function(data) {
                 console.log(data);
                 var info = JSON.parse(data);
@@ -43,7 +44,7 @@ function guardarFinca() {
                 if (info.res === "Success") {
                     limpiar();
                     alert("Operacion exitosa");
-                    listarFincas();
+                    listarUsuarios();
                 } else {
                     alert("No se pudo almacenar");
                 }
@@ -58,10 +59,10 @@ function guardarFinca() {
     }
 }
 
-function listarFincas() {
+function listarUsuarios() {
     $.ajax({
         type: 'post',
-        url: "controller/ctlFinca.php",
+        url: "controller/ctlUsuario.php",
         beforeSend: function() {
 
         },
@@ -76,24 +77,24 @@ function listarFincas() {
 
             if (info.length > 0) {
                 for (k = 0; k < info.length; k++) {
-                    lista = lista + '<tr id="codigo" onclick="buscarFinca(' + info[k].idFinca + ')">';
-                    lista = lista + '<td style="display: none">' + info[k].idFinca + '</td>';
-                    lista = lista + '<td>' + info[k].nombreFinca + '</td>';
-                    lista = lista + '<td>' + info[k].tamanio + '</td>';
-                    lista = lista + '<td>' + info[k].nombreMpio + '</td>';
-                    lista = lista + '<td>' + info[k].nombreDepto + '</td>';
-                    lista = lista + '<td>' + info[k].cantidad + '</td>';
-                    if (info[k].piscina === '1') {
-                        lista = lista + '<td>SI</td>';
-                    } else {
-                        lista = lista + '<td>NO</td>';
-                    }
-                    lista = lista + '<td>' + info[k].descripcion + '</td>';
+                    lista = lista + '<tr id="codigo" onclick="buscarUsuario(' + info[k].idusuario + ')">';
+                    lista = lista + '<td style="display: none">' + info[k].idusuario + '</td>';
+                    lista = lista + '<td>' + info[k].cedula + '</td>';
+                    lista = lista + '<td>' + info[k].nombre + '</td>';
+                    lista = lista + '<td>' + info[k].apellido + '</td>';
+                    lista = lista + '<td>' + info[k].correo + '</td>';
+                    lista = lista + '<td>' + info[k].usuario + '</td>';
+                    lista = lista + '<td>' + info[k].password + '</td>';
+                    // if (info[k].piscina === '1') {
+                    //     lista = lista + '<td>SI</td>';
+                    // } else {
+                    //     lista = lista + '<td>NO</td>';
+                    // }
                     lista = lista + '</tr>';
                 }
-                $("#listaFincas").html(lista);
+                $("#listaUsuarios").html(lista);
             } else {
-                $("#listaFincas").html("<tr><td>No se encuentra informacion</td>></tr>");
+                $("#listaUsuarios").html("<tr><td>No se encuentra informacion</td>></tr>");
             }
         },
         error: (jqXHR, textStatus, errorThrown) => {
@@ -103,21 +104,21 @@ function listarFincas() {
     });
 }
 
-function buscarFinca(codigo) {
-    $("#txtIdFinca").val(codigo);
-    const objFinca = {
-        idFinca: $("#txtIdFinca").val(),
+function buscarUsuario(codigo) {
+    $("#txtIdUsuario").val(codigo);
+    const objUsuario = {
+        idusuario: $("#txtIdUsuario").val(),
         type: 'search'
     };
     
     $.ajax({
         type: 'post',
-        url: "controller/ctlFinca.php",
+        url: "controller/ctlUsuario.php",
         async: false,
         beforeSend: function() {
 
         },
-        data: objFinca,
+        data: objUsuario,
         success: function(res) {
             const info = JSON.parse(res);
             let data;
@@ -168,12 +169,12 @@ function listMunicipios() {
 }
 
 function eliminarFinca() {
-    var dato = $("#txtIdFinca").val();
+    var dato = $("#txtIdUsuario").val();
     if (dato == "") {
         alert("Debe cargar los datos a eliminar");
     } else {
-        const objFinca = {
-            idFinca: dato,
+        const objUsuario = {
+            idusuario: dato,
             type: 'delete'
         };
 
@@ -183,13 +184,13 @@ function eliminarFinca() {
             beforeSend: function() {
 
             },
-            data: objFinca,
+            data: objUsuario,
             success: function(res) {
                 var info = JSON.parse(res);
                 if (info.res == "Success") {
                     limpiar();
                     alert("Eliminado con exito");
-                    listarFincas();
+                    listarUsuarios();
                 } else {
                     alert("No se pudo eliminar");
                     limpiar();
@@ -205,7 +206,7 @@ function eliminarFinca() {
 
 
 function limpiar() {
-    $("#txtIdFinca").val("");
+    $("#txtIdUsuario").val("");
     $("#txtNombre").val("");
     $("#txtTamanio").val("");
     $("#txtDepto").val(0);
