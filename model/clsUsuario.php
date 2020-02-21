@@ -2,7 +2,7 @@
 
 class clsUsuario
 {
-    private $idUsuario;
+    private $idusuario;
     private $cedula;
     private $nombreUsuario;
     private $apellidoUsuario;
@@ -11,9 +11,9 @@ class clsUsuario
     private $password;
 
 
-    public function __construct($idUsuario, $cedula, $nombreUsuario, $apellidoUsuario, $correo, $usuario, $password)
+    public function __construct($idusuario, $cedula, $nombreUsuario, $apellidoUsuario, $correo, $usuario, $password)
     {
-        $this->idUsuario = $idUsuario;
+        $this->idusuario = $idusuario;
         $this->cedula = $cedula;
         $this->nombreUsuario = $nombreUsuario;
         $this->apellidoUsuario = $apellidoUsuario;
@@ -24,7 +24,7 @@ class clsUsuario
 
     public function getIdUsuario()
     {
-        return $this->idUsuario;
+        return $this->idusuario;
     }
     public function getCedula()
     {
@@ -52,9 +52,9 @@ class clsUsuario
     }
 
     // Setter
-    public function setIdUsuario($idUsuario)
+    public function setIdUsuario($idusuario)
     {
-        $this->idUsuario = $idUsuario;
+        $this->idusuario = $idusuario;
     }
     public function setCedula($cedula)
     {

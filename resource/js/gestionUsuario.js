@@ -11,11 +11,11 @@ function guardarUsuario() {
     let objUsuario = {
         idusuario: $("#txtIdUsuario").val(),
         cedula: $("#txtCedula").val(),
-        nombre: ($("#txtNombre").val()).toUpperCase(),
-        apellido: ($("#txtApellido").val()).toUpperCase(),
-        correo: ($("#txtCorreo").val()).toUpperCase(),
-        usuario: ($("#txtUsuario").val()).toUpperCase(),
-        password: ($("#txtPassword").val()).toUpperCase(),
+        nombre: ($("#txtNombre").val()).toLowerCase(),
+        apellido: ($("#txtApellido").val()).toLowerCase(),
+        correo: ($("#txtCorreo").val()).toLowerCase(),
+        usuario: $("#txtUsuario").val().toLowerCase(),
+        password: $("#txtPassword").val(),
         type: ""
     };
     if (
@@ -119,6 +119,7 @@ function buscarUsuario(codigo) {
         },
         data: objUsuario,
         success: function(res) {
+            // console.log(data);
             const info = JSON.parse(res);
             let data;
             if (info.res !== "NotInfo") {
