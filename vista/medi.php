@@ -143,7 +143,7 @@
             </div>
         </div>
         <div class="col-sm-6">
-            <div class="card">
+            <div class="card" style="margin-right: -27px;left: -27px;" >
                 <div class="card-body">
                     <table>
                         <tr>

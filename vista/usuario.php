@@ -124,7 +124,7 @@
 
 
         <div class="col-sm-6">
-            <div class="card">
+            <div class="card" style="margin-right: 91px;">
                 <div class="card-body">
                     <table>
                         <tr>
