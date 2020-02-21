@@ -1,6 +1,6 @@
 $(document).ready(function() {
-    listDeptos();
-    listFinca();
+    // listDeptos();
+    // listFinca();
 });
 
 function listDeptos() {

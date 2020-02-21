@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    listarDepto();
+    // listarDepto();
     $("#btnGuardarD").click(guardarDepto);
     $("#btnModificarD").click(guardarDepto);
     $("#btnEliminarD").click(eliminarDepto);

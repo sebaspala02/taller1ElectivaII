@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function () {
   listarMedi();
   $("#btnGuardarM").click(guardarMedi);
   $("#btnModificarM").click(guardarMedi);
@@ -8,29 +8,30 @@ $(document).ready(function() {
 
 function guardarMedi() {
   let objMedi = {
-    id: $("#txtIdMedicamento").val(),
-    nombre: $("#txtNombreMedicamento").val().toUpperCase(),
-    descripcion: $("#txtDescripcion").val(),
-    vencimiento: $("#txtFecha_venci").val(),
-    cantidad: $("#txtCant").val(),
-    fecha: $("#txtFecha_crea").val(),
-    precio: $("#txtPrecio").val(),
-    usuario: $("#txtIdUsuario").val(),
-    laboratorio : $('#txtIdLaboratorio').val(),
+    idmedicamento: $("#txtIdMedicamento").val(),
+    nombre: $("#txtNombre").val().toUpperCase(),
+    descrip: $("#txtDescripcion").val(),
+
+    fecha_venc: $("#txtFecha_venci").val(),
+    cant: parseFloat($("#txtCant").val()),
+    fecha_creado: $("#txtFecha_crea").val(),
+    precio: parseFloat($("#txtPrecio").val()),
+    idusuario: parseInt($("#txtIdUsuario").val()),
+    idlaboratorio: parseInt($('#txtIdLaboratorio').val()),
     type: ""
   };
+  console.log(objMedi)
   if (
-    objMedi.id !== "" &&
     objMedi.nombre !== "" &&
-    objMedi.descripcion !== "" &&
-    objMedi.vencimiento !== "" &&
-    objMedi.cantidad !== "" &&
-    objMedi.fecha !== "" &&
+    objMedi.descrip !== "" &&
+    objMedi.fecha_venc !== "" &&
+    objMedi.cant !== "" &&
+    objMedi.fecha_creado !== "" &&
     objMedi.precio !== "" &&
-    objMedi.usuario !== "" &&
-    objMedi.laboratorio !== ""
+    objMedi.idusuario !== "" &&
+    objMedi.idlaboratorio !== ""
   ) {
-    if (objMedi.idMedi !== "") {
+    if (objMedi.idmedicamento !== "") {
       objMedi.type = "update";
     } else {
       objMedi.type = "save";
@@ -38,9 +39,8 @@ function guardarMedi() {
     $.ajax({
       type: "post",
       url: "controller/ctlMedi.php",
-      beforeSend: function() {},
       data: objMedi,
-      success: function(data) {
+      success: function (data) {
         console.log(data);
         var info = JSON.parse(data);
         console.log(info);
@@ -66,13 +66,13 @@ function listarMedi() {
   $.ajax({
     type: 'post',
     url: "controller/ctlMedi.php",
-    beforeSend: function() {
+    beforeSend: function () {
 
     },
     data: { type: 'list' },
 
-    success: function(respuesta) {
-      //console.log(data);
+    success: function (respuesta) {
+      console.log(respuesta);
       const res = JSON.parse(respuesta);
       const info = JSON.parse(res.data);
 
@@ -80,25 +80,23 @@ function listarMedi() {
 
       if (info.length > 0) {
         for (k = 0; k < info.length; k++) {
-          lista = lista + '<tr id="codigo" onclick="buscarMedi(' + info[k].idMedi + ')">';
-          lista = lista + '<td style="display: none">' + info[k].idMedi + "</td>";
-          lista = lista + '<td>' + info[k].peso + '</td>';
-          lista = lista + '<td>' + info[k].edad + '</td>';
-          lista = lista + '<td>' + info[k].nombreMedi + '</td>';
-          if (info[k].crias === '1') {
-            lista = lista + '<td>SI</td>';
-          } else {
-            lista = lista + '<td>NO</td>';
-          }
-          // lista = lista + '<td>' + info[k].crias + '</td>';
-          lista = lista + '<td>' + info[k].num_ordenada + '</td>';
-          lista = lista + '<td>' + info[k].nombreFinca + '</td>';
-          //   lista = lista + "<td>" + info[k].descripcion + "</td>";
+          lista = lista + '<tr id="codigo" onclick="buscarMedi(' + info[k].idmedicamento + ')">';
+          lista = lista + '<th style="display: none">' + info[k].idmedicamento + "</th>";
+          lista = lista + '<th>' + info[k].nombre + '</th>';
+          lista = lista + '<th>' + info[k].descrip + '</th>';
+          lista = lista + '<th>' + info[k].fecha_venc + '</th>';
+          lista = lista + '<th>' + info[k].cant + '</th>';
+          lista = lista + '<th>' + info[k].fecha_creado + '</th>';
+          lista = lista + '<th>' + info[k].precio + '</th>';
+          lista = lista + '<th>' + info[k].usuario_idusuario + '</th>';
+          lista = lista + '<th>' + info[k].laboratorio_idlaboratorio + '</th>';
+          //   lista = lista + "<th>" + info[k].descripcion + "</th>";
           lista = lista + '</tr>';
         }
-        $("#listaMedis").html(lista);
+        $("#listaMedi").html(lista);
+        $("#listaMedi").DataTable();
       } else {
-        $("#listaMedis").html("<tr><td>No se encuentra informacion</td>></tr>");
+        $("#listaMedi").html("<tr><th>No se encuentra informacion</th>></tr>");
       }
     },
     error: (jqXHR, textStatus, errorThrown) => {
@@ -109,9 +107,9 @@ function listarMedi() {
 }
 
 function buscarMedi(codigo) {
-  $("#txtIdMedi").val(codigo);
+  $("#txtIdMedicamento").val(codigo);
   const objMedi = {
-    idMedi: $("#txtIdMedi").val(),
+    idmedicamento: codigo,
     type: "search"
   };
 
@@ -119,22 +117,25 @@ function buscarMedi(codigo) {
     type: "post",
     url: "controller/ctlMedi.php",
     async: false,
-    beforeSend: function() {},
+    beforeSend: function () { },
     data: objMedi,
-    success: function(res) {
+    success: function (res) {
+      console.log(res)
       const info = JSON.parse(res);
       let data;
       if (info.res !== "NotInfo") {
         data = JSON.parse(info.data);
       }
       if (info.msj === "Success") {
-        $("#txtPeso").val(data[0].peso);
-        $("#txtEdad").val(data[0].edad);
-        $("#txtNombre").val(data[0].nombreMedi);
-        $("#txtCrias").val(data[0].crias);
-        $("#txtNum_ordenada").val(data[0].num_ordenada);
-        $("#txtFinca").val(data[0].Finca_idFinca);
-        // $("#txtDescripcion").val(data[0].descripcion);
+        $("#txtNombre").val(data[0].nombre);
+        $("#txtDescripcion").val(data[0].descrip);
+        $("#txtFecha_venci").val(data[0].fecha_venc);
+        $("#txtCant").val(data[0].cant);
+        $("#txtFecha_crea").val(data[0].fecha_creado);
+        $("#txtPrecio").val(data[0].precio);
+        $('#txtIdUsuario').val(data[0].usuario_idusuario);
+        $('#txtIdLaboratorio').val(data[0].laboratorio_idlaboratorio);
+        // $("#txthescripcion").val(data[0].descripcion);
       } else {
         alert("No se encuentra");
         limpiar();
@@ -144,21 +145,21 @@ function buscarMedi(codigo) {
 }
 
 function eliminarMedi() {
-  var dato = $("#txtIdMedi").val();
+  var dato = $("#txtIdMedicamento").val();
   if (dato == "") {
     alert("Debe cargar los datos a eliminar");
   } else {
     const objMedi = {
-      idMedi: dato,
+      idmedicamento: dato,
       type: "delete"
     };
 
     $.ajax({
       type: "post",
       url: "controller/ctlMedi.php",
-      beforeSend: function() {},
+      beforeSend: function () { },
       data: objMedi,
-      success: function(res) {
+      success: function (res) {
         var info = JSON.parse(res);
         if (info.res == "Success") {
           limpiar();
@@ -179,10 +180,13 @@ function eliminarMedi() {
 }
 
 function limpiar() {
-  $("#txtPeso").val("");
-  $("#txtEdad").val("");
-  $("#txtnombre").val("");
-  $("#txtNum_ordenada").val("");
-  $("#txtCrias").val(0);
-  $("#txtFinca").val("");
+  $("#txtIdMedicamento").val("")
+  $("#txtNombre").val("")
+  $("#txtDescripcion").val("")
+  $("#txtFecha_venci").val("")
+  $("#txtCant").val(0)
+  $("#txtFecha_crea").val("")
+  $("#txtPrecio").val(0)
+  $("#txtIdUsuario").val("")
+  $('#txtIdLaboratorio').val("")
 }

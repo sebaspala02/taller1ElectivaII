@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    listarMuni();
+    // listarMuni();
     $("#btnGuardarM").click(guardarMuni);
     $("#btnModificarM").click(guardarMuni);
     $("#btnEliminarM").click(eliminarMuni);
