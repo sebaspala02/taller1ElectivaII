@@ -1,41 +1,39 @@
 $(document).ready(function() {
-    listarUsuarios();
+    listarClientes();
     // listDeptos();
     // listMunicipios();
-    $("#btnGuardar").click(guardarUsuario);
-    $("#btnModificar").click(guardarUsuario);
-    $("#btnEliminar").click(eliminarUsuario);
+    $("#btnGuardarC").click(guardarCliente);
+    $("#btnModificarC").click(guardarCliente);
+    $("#btnEliminarC").click(eliminarCliente);
 });
 
-function guardarUsuario() {
-    let objUsuario = {
-        idusuario: $("#txtIdUsuario").val(),
-        cedula: $("#txtCedula").val(),
-        nombre: ($("#txtNombre").val()).toLowerCase(),
-        apellido: ($("#txtApellido").val()).toLowerCase(),
-        correo: ($("#txtCorreo").val()).toLowerCase(),
-        usuario: $("#txtUsuario").val().toLowerCase(),
-        password: $("#txtPassword").val(),
+function guardarCliente() {
+    let objCliente = {
+        idcliente: $("#txtIdCliente").val(),
+        nombre: $("#txtNombreCliente").val().toLowerCase(),
+        apellido: $("#txtApellidoCliente").val().toLowerCase(),
+        cedula: $("#txtCedulaCliente").val(),
+        genero: $("#txtGenero").val(),
+        fecha_naci: $("#txtFecha_naci").val(),
         type: ""
     };
     if (
-        objUsuario.cedula !== "" &&
-        objUsuario.nombre !== "" &&
-        objUsuario.apellido !== "" &&
-        objUsuario.correo !== "" &&
-        objUsuario.usuario !== "" &&
-        objUsuario.password !== ""
+        objCliente.nombre !== "" &&
+        objCliente.apellido !== "" &&
+        objCliente.cedula !== "" &&
+        objCliente.genero !== "" &&
+        objCliente.fecha_naci !== ""
     ) {
-        if (objUsuario.idusuario !== "") {
-            objUsuario.type = 'update';
+        if (objCliente.idcliente !== "") {
+            objCliente.type = "update";
         } else {
-            objUsuario.type = 'save';
+            objCliente.type = "save";
         }
         $.ajax({
-            type: 'post',
-            url: "controller/ctlUsuario.php",
+            type: "post",
+            url: "controller/ctlCliente.php",
             beforeSend: function() {},
-            data: objUsuario,
+            data: objCliente,
             success: function(data) {
                 console.log(data);
                 var info = JSON.parse(data);
@@ -43,7 +41,7 @@ function guardarUsuario() {
                 if (info.res === "Success") {
                     limpiar();
                     alert("Operacion exitosa");
-                    listarUsuarios();
+                    listarClientes();
                 } else {
                     alert("No se pudo almacenar");
                 }
@@ -58,14 +56,12 @@ function guardarUsuario() {
     }
 }
 
-function listarUsuarios() {
+function listarClientes() {
     $.ajax({
-        type: 'post',
-        url: "controller/ctlUsuario.php",
-        beforeSend: function() {
-
-        },
-        data: { type: 'list' },
+        type: "post",
+        url: "controller/ctlCliente.php",
+        beforeSend: function() {},
+        data: { type: "list" },
 
         success: function(respuesta) {
             //console.log(data);
@@ -76,24 +72,25 @@ function listarUsuarios() {
 
             if (info.length > 0) {
                 for (k = 0; k < info.length; k++) {
-                    lista = lista + '<tr id="codigo" onclick="buscarUsuario(' + info[k].idusuario + ')">';
-                    lista = lista + '<td style="display: none">' + info[k].idusuario + '</td>';
-                    lista = lista + '<td>' + info[k].cedula + '</td>';
-                    lista = lista + '<td>' + info[k].nombre + '</td>';
-                    lista = lista + '<td>' + info[k].apellido + '</td>';
-                    lista = lista + '<td>' + info[k].correo + '</td>';
-                    lista = lista + '<td>' + info[k].usuario + '</td>';
-                    lista = lista + '<td>' + info[k].password + '</td>';
+                    lista = lista + '<tr id="codigo" onclick="buscarCliente(' + info[k].idcliente + ')">';
+                    lista = lista + '<td style="display: none">' + info[k].idcliente + "</td>";
+                    lista = lista + "<td>" + info[k].nombre + "</td>";
+                    lista = lista + "<td>" + info[k].apellido + "</td>";
+                    lista = lista + "<td>" + info[k].cedula + "</td>";
+                    lista = lista + "<td>" + info[k].genero + "</td>";
+                    lista = lista + "<td>" + info[k].fecha_naci + "</td>";
                     // if (info[k].piscina === '1') {
                     //     lista = lista + '<td>SI</td>';
                     // } else {
                     //     lista = lista + '<td>NO</td>';
                     // }
-                    lista = lista + '</tr>';
+                    lista = lista + "</tr>";
                 }
-                $("#listaUsuarios").html(lista);
+                $("#listaCliente").html(lista);
             } else {
-                $("#listaUsuarios").html("<tr><td>No se encuentra informacion</td>></tr>");
+                $("#listaCliente").html(
+                    "<tr><td>No se encuentra informacion</td>></tr>"
+                );
             }
         },
         error: (jqXHR, textStatus, errorThrown) => {
@@ -103,21 +100,19 @@ function listarUsuarios() {
     });
 }
 
-function buscarUsuario(codigo) {
-    $("#txtIdUsuario").val(codigo);
-    const objUsuario = {
-        idusuario: $("#txtIdUsuario").val(),
-        type: 'search'
+function buscarCliente(codigo) {
+    $("#txtIdCliente").val(codigo);
+    const objCliente = {
+        idcliente: $("#txtIdCliente").val(),
+        type: "search"
     };
-    
-    $.ajax({
-        type: 'post',
-        url: "controller/ctlUsuario.php",
-        async: false,
-        beforeSend: function() {
 
-        },
-        data: objUsuario,
+    $.ajax({
+        type: "post",
+        url: "controller/ctlCliente.php",
+        async: false,
+        beforeSend: function() {},
+        data: objCliente,
         success: function(res) {
             // console.log(data);
             const info = JSON.parse(res);
@@ -126,12 +121,11 @@ function buscarUsuario(codigo) {
                 data = JSON.parse(info.data);
             }
             if (info.msj === "Success") {
-                $("#txtCedula").val(data[0].cedula);
-                $("#txtNombre").val(data[0].nombre);
-                $("#txtApellido").val(data[0].apellido);
-                $("#txtCorreo").val(data[0].correo);
-                $("#txtUsuario").val(data[0].usuario);
-                $("#txtPassword").val(data[0].password);
+                $("#txtNombreCliente").val(data[0].nombre);
+                $("#txtApellidoCliente").val(data[0].apellido);
+                $("#txtCedulaCliente").val(data[0].cedula);
+                $("#txtGenero").val(data[0].genero);
+                $("#txtFecha_naci").val(data[0].fecha_naci);
             } else {
                 alert("No se encuentra");
                 limpiar();
@@ -167,29 +161,27 @@ function buscarUsuario(codigo) {
 //     });
 // }
 
-function eliminarUsuario() {
-    var dato = $("#txtIdUsuario").val();
+function eliminarCliente() {
+    var dato = $("#txtIdCliente").val();
     if (dato == "") {
         alert("Debe cargar los datos a eliminar");
     } else {
-        const objUsuario = {
-            idusuario: dato,
-            type: 'delete'
+        const objCliente = {
+            idcliente: dato,
+            type: "delete"
         };
 
         $.ajax({
-            type: 'post',
-            url: "controller/ctlUsuario.php",
-            beforeSend: function() {
-
-            },
-            data: objUsuario,
+            type: "post",
+            url: "controller/ctlCliente.php",
+            beforeSend: function() {},
+            data: objCliente,
             success: function(res) {
                 var info = JSON.parse(res);
                 if (info.res == "Success") {
                     limpiar();
                     alert("Eliminado con exito");
-                    listarUsuarios();
+                    listarClientes();
                 } else {
                     alert("No se pudo eliminar");
                     limpiar();
@@ -203,15 +195,13 @@ function eliminarUsuario() {
     }
 }
 
-
 function limpiar() {
-    $("#txtIdUsuario").val("");
-    $("#txtCedula").val("");
-    $("#txtNombre").val("");
-    $("#txtApellido").val("");
-    $("#txtCorreo").val("");
-    $("#txtUsuario").val("");
-    $("#txtPassword").val("");
+    $("#txtIdCliente").val("");
+    $("#txtNombreCliente").val("");
+    $("#txtApellidoCliente").val("");
+    $("#txtCedulaCliente").val("");
+    $("#txtGenero").val("");
+    $("#txtFecha_naci").val("");
 }
 
 // function listDeptos() {
@@ -241,4 +231,5 @@ function limpiar() {
 //             alert("verifique la ruta de archivo!");
 //         }
 //     });
+// }   });
 // }

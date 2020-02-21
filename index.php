@@ -14,6 +14,7 @@
     <script type="text/javascript" src="resource/js/gestionLogin.js"></script>
     <script type="text/javascript" src="resource/js/gestionMuni.js"></script>
     <script type="text/javascript" src="resource/js/gestionMedi.js"></script>
+    <script type="text/javascript" src="../resource/js/gestionCliente.js"></script>
 </head>
 
 <body>

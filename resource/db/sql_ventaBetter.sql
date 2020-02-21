@@ -143,3 +143,5 @@ INSERT INTO `farmacia`.`laboratorio` (`nombre`, `descrip`) VALUES ('genfar', 'ja
 
 INSERT INTO `farmacia`.`medicamento` (`nombre`, `descrip`, `fecha_venc`, `cant`, `fecha_creado`, `precio`, `usuario_idusuario`, `laboratorio_idlaboratorio`) VALUES ('acetaminofem', 'no se', '2032-02-02', '1', '2020-02-02', '1', '1', '1');
 
+INSERT INTO `farmacia`.`cliente` (`nombre`, `apellido`, `cedula`, `genero`, `fecha_naci`) VALUES ('Jairo', 'Salazar', '12345', 'Masculino', '2032-02-02');
+
