@@ -161,6 +161,7 @@
                             $("#txtCedulaCliente").val(data[0].cedula);
                             $("#txtGenero").val(data[0].genero);
                             $("#txtFecha_naci").val(data[0].fecha_naci);
+                            $('#txtCedulaClienteVenta').val(codigo)
                         } else {
                             alert("No se encuentra");
                             limpiar();
@@ -341,8 +342,8 @@
                                         <div class="form-group">
                                             <select class="form-control" id="txtGenero" name="genero">
                                                 <option value="0">Seleccionar</option>
-                                                <option value="1">Masculino</option>
-                                                <option value="2">Femenino</option>
+                                                <option value="Masculino">Masculino</option>
+                                                <option value="Femenino">Femenino</option>
                                             </select>
                                         </div>
                                     </td>
@@ -433,14 +434,28 @@
                     <table>
                         <tr>
                             <td>
+                                <h1>Realizar Venta</h1>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Cedula Cliente.:</label>
+                            </td>
+                            <td colspan="2">
+                                <input class="form-control" type="number" placeholder="C.C" id="txtCedulaClienteVenta" required >
                                 <br>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <h1>Realizar Venta</h1>
+                                <label>Medicamento:</label>
+                            </td>
+                            <td colspan="2">
+                                <input class="form-control" type="text" placeholder="Nombre" id="txtMedicamentoVenta" required readonly>
+                                <br>
                             </td>
                         </tr>
+
                         <!-- ------------------------------
                         
                         venta

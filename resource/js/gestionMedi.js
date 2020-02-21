@@ -72,7 +72,6 @@ function listarMedi() {
     data: { type: 'list' },
 
     success: function (respuesta) {
-      console.log(respuesta);
       const res = JSON.parse(respuesta);
       const info = JSON.parse(res.data);
 
@@ -94,7 +93,7 @@ function listarMedi() {
           lista = lista + '</tr>';
         }
         $("#listaMedi").html(lista);
-        $("#listaMedi").DataTable();
+        $("#tableMedis").dataTable();
       } else {
         $("#listaMedi").html("<tr><th>No se encuentra informacion</th>></tr>");
       }
@@ -120,7 +119,6 @@ function buscarMedi(codigo) {
     beforeSend: function () { },
     data: objMedi,
     success: function (res) {
-      console.log(res)
       const info = JSON.parse(res);
       let data;
       if (info.res !== "NotInfo") {

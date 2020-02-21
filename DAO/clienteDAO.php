@@ -10,7 +10,7 @@ class clienteDAO {
     }
 
     public function guardar(clsCliente $obj){
-        $sql = "INSERT INTO cliente(idcliente,nombre,apellido,cedula,genero,fecha_naci) " . 
+        $sql = "INSERT INTO cliente(nombre,apellido,cedula,genero,fecha_naci) " . 
         "VALUES ('". $obj->getNombre() . "','" . $obj->getApellido()."'," . $obj->getCedula().",
         '" . $obj->getGenero()."','" . $obj->getFecha_naci()."')";
         $this->objCon->ExecuteTransaction($sql);

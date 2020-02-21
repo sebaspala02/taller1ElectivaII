@@ -1,28 +1,26 @@
 $(document).ready(function() {
-    listarClientes();
+    listarVentas();
     // listDeptos();
     // listMunicipios();
-    $("#btnGuardarC").click(guardarCliente);
-    $("#btnModificarC").click(guardarCliente);
-    $("#btnEliminarC").click(eliminarCliente);
+    $("#btnGuardarV").click(guardarVenta);
+    $("#btnModificarV").click(guardarVenta);
+    $("#btnEliminarV").click(eliminarVenta);
 });
 
-function guardarCliente() {
+function guardarVenta() {
     let objCliente = {
         idcliente: $("#txtIdCliente").val(),
-        nombre: $("#txtNombreCliente").val().toLowerCase(),
-        apellido: $("#txtApellidoCliente").val().toLowerCase(),
-        cedula: $("#txtCedulaCliente").val(),
-        genero: $("#txtGenero").val(),
-        fecha_naci: $("#txtFecha_naci").val(),
+        fecha_venta: $("#txtfecha_ventaCliente").val().toLowerCase(),
+        valor_total: $("#txtvalor_totalCliente").val().toLowerCase(),
+        cliente_idcliente: $("#txtcliente_idclienteCliente").val(),
+        usuario_idusuario: $("#txtusuario_idusuario").val(),
         type: ""
     };
     if (
-        objCliente.nombre !== "" &&
-        objCliente.apellido !== "" &&
-        objCliente.cedula !== "" &&
-        objCliente.genero !== "" &&
-        objCliente.fecha_naci !== ""
+        objCliente.fecha_venta !== "" &&
+        objCliente.valor_total !== "" &&
+        objCliente.cliente_idcliente !== "" &&
+        objCliente.usuario_idusuario !== ""
     ) {
         if (objCliente.idcliente !== "") {
             objCliente.type = "update";
@@ -41,7 +39,7 @@ function guardarCliente() {
                 if (info.res === "Success") {
                     limpiar();
                     alert("Operacion exitosa");
-                    listarClientes();
+                    listarVentas();
                 } else {
                     alert("No se pudo almacenar");
                 }
@@ -56,7 +54,7 @@ function guardarCliente() {
     }
 }
 
-function listarClientes() {
+function listarVentas() {
     $.ajax({
         type: "post",
         url: "controller/ctlCliente.php",
@@ -72,13 +70,12 @@ function listarClientes() {
 
             if (info.length > 0) {
                 for (k = 0; k < info.length; k++) {
-                    lista = lista + '<tr id="codigo" onclick="buscarCliente(' + info[k].idcliente + ')">';
+                    lista = lista + '<tr id="codigo" onclick="listarVenta(' + info[k].idcliente + ')">';
                     lista = lista + '<td style="display: none">' + info[k].idcliente + "</td>";
-                    lista = lista + "<td>" + info[k].nombre + "</td>";
-                    lista = lista + "<td>" + info[k].apellido + "</td>";
-                    lista = lista + "<td>" + info[k].cedula + "</td>";
-                    lista = lista + "<td>" + info[k].genero + "</td>";
-                    lista = lista + "<td>" + info[k].fecha_naci + "</td>";
+                    lista = lista + "<td>" + info[k].fecha_venta + "</td>";
+                    lista = lista + "<td>" + info[k].valor_total + "</td>";
+                    lista = lista + "<td>" + info[k].cliente_idcliente + "</td>";
+                    lista = lista + "<td>" + info[k].usuario_idusuario + "</td>";
                     // if (info[k].piscina === '1') {
                     //     lista = lista + '<td>SI</td>';
                     // } else {
@@ -100,7 +97,7 @@ function listarClientes() {
     });
 }
 
-function buscarCliente(codigo) {
+function listarVenta(codigo) {
     $("#txtIdCliente").val(codigo);
     const objCliente = {
         idcliente: $("#txtIdCliente").val(),
@@ -121,12 +118,10 @@ function buscarCliente(codigo) {
                 data = JSON.parse(info.data);
             }
             if (info.msj === "Success") {
-                $("#txtNombreCliente").val(data[0].nombre);
-                $("#txtApellidoCliente").val(data[0].apellido);
-                $("#txtCedulaCliente").val(data[0].cedula);
-                $("#txtGenero").val(data[0].genero);
-                $("#txtFecha_naci").val(data[0].fecha_naci);
-                $('#txtCedulaClienteVenta').val(codigo)
+                $("#txtfecha_ventaCliente").val(data[0].fecha_venta);
+                $("#txtvalor_totalCliente").val(data[0].valor_total);
+                $("#txtcliente_idclienteCliente").val(data[0].cliente_idcliente);
+                $("#txtusuario_idusuario").val(data[0].usuario_idusuario);
             } else {
                 alert("No se encuentra");
                 limpiar();
@@ -148,7 +143,7 @@ function buscarCliente(codigo) {
 //             var combo = "<option value='0'>---SELECCIONAR MUNICIPIO---</option>";
 //             if (municipios.length > 0) {
 //                 for (k = 0; k < municipios.length; k++) {
-//                     combo = combo + "<option value='" + municipios[k].idMunicipio + "'>" + municipios[k].nombreMpio + "</option>";
+//                     combo = combo + "<option value='" + municipios[k].idMunicipio + "'>" + municipios[k].fecha_ventaMpio + "</option>";
 //                 }
 //                 $("#txtMunicipio").html(combo);
 //             } else {
@@ -162,8 +157,8 @@ function buscarCliente(codigo) {
 //     });
 // }
 
-function eliminarCliente() {
-    var dato = $("#txtIdCliente").val();
+function eliminarVenta() {
+    var dato = $("#txtIdClienteVenta").val();
     if (dato == "") {
         alert("Debe cargar los datos a eliminar");
     } else {
@@ -182,7 +177,7 @@ function eliminarCliente() {
                 if (info.res == "Success") {
                     limpiar();
                     alert("Eliminado con exito");
-                    listarClientes();
+                    listarVentas();
                 } else {
                     alert("No se pudo eliminar");
                     limpiar();
@@ -198,11 +193,10 @@ function eliminarCliente() {
 
 function limpiar() {
     $("#txtIdCliente").val("");
-    $("#txtNombreCliente").val("");
-    $("#txtApellidoCliente").val("");
-    $("#txtCedulaCliente").val("");
-    $("#txtGenero").val("");
-    $("#txtFecha_naci").val("");
+    $("#txtfecha_ventaCliente").val("");
+    $("#txtvalor_totalCliente").val("");
+    $("#txtcliente_idclienteCliente").val("");
+    $("#txtusuario_idusuario").val("");
 }
 
 // function listDeptos() {
@@ -220,7 +214,7 @@ function limpiar() {
 
 //             if (info.length > 0) {
 //                 for (k = 0; k < info.length; k++) {
-//                     lista = lista + "<option value='" + info[k].idDepartamento + "'>" + info[k].nombreDepto + "</option>";
+//                     lista = lista + "<option value='" + info[k].idDepartamento + "'>" + info[k].fecha_ventaDepto + "</option>";
 //                 }
 //                 $("#txtDepto").html(lista);
 //             } else {

@@ -148,9 +148,10 @@
                     <table>
                         <tr>
                             <td rowspan="10">
-                                <table border="1">
+                                <table border="1" id="tableMedis">
                                     <thead>
                                         <tr>
+                                            <th style="display: none">id</th>
                                             <th>Nombre</th>
                                             <th>Descripción</th>
                                             <th>Fecha de Vencimiento</th>
