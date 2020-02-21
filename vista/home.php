@@ -10,7 +10,7 @@
                 <p class="text-white-75 font-weight-light mb-5">Sebastian Palacio Cañar</p>
                 <p class="text-white-75 font-weight-light mb-5">Alejandro Hoyos Garcia</p>
                 <hr class="divider my-4">
-                <a class="btn btn-primary btn-xl js-scroll-trigger" href="index.php?page=about">Gracias !!</a>
+                <a class="btn btn-primary btn-xl js-scroll-trigger" href="#">Gracias !!</a>
             </div>
         </div>
     </div>

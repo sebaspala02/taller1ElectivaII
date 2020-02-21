@@ -1,41 +1,41 @@
 $(document).ready(function() {
-    listarFincas();
-    listDeptos();
-    listMunicipios();
-    $("#btnGuardar").click(guardarFinca);
-    $("#btnModificar").click(guardarFinca);
-    $("#btnEliminar").click(eliminarFinca);
+    listarUsuarios();
+    // listDeptos();
+    // listMunicipios();
+    $("#btnGuardar").click(guardarUsuario);
+    $("#btnModificar").click(guardarUsuario);
+    $("#btnEliminar").click(eliminarUsuario);
 });
 
-function guardarFinca() {
-    let objFinca = {
-        idFinca: $("#txtIdFinca").val(),
-        nombreFinca: ($("#txtNombre").val()).toUpperCase(),
-        tamanio: $("#txtTamanio").val(),
-        idMunicipio: $("#txtMunicipio").val(),
-        cantidad: $("#txtCantidad").val(),
-        piscina: $("#txtPiscina").val(),
-        descripcion: ($("#txtDescripcion").val()).toUpperCase(),
+function guardarUsuario() {
+    let objUsuario = {
+        idusuario: $("#txtIdUsuario").val(),
+        cedula: $("#txtCedula").val(),
+        nombre: ($("#txtNombre").val()).toLowerCase(),
+        apellido: ($("#txtApellido").val()).toLowerCase(),
+        correo: ($("#txtCorreo").val()).toLowerCase(),
+        usuario: $("#txtUsuario").val().toLowerCase(),
+        password: $("#txtPassword").val(),
         type: ""
     };
     if (
-        objFinca.nombreFinca !== "" &&
-        objFinca.tamanio !== "" &&
-        objFinca.idMunicipio !== "" &&
-        objFinca.cantidad !== "" &&
-        objFinca.piscina !== "" &&
-        objFinca.descripcion !== ""
+        objUsuario.cedula !== "" &&
+        objUsuario.nombre !== "" &&
+        objUsuario.apellido !== "" &&
+        objUsuario.correo !== "" &&
+        objUsuario.usuario !== "" &&
+        objUsuario.password !== ""
     ) {
-        if (objFinca.idFinca !== "") {
-            objFinca.type = 'update';
+        if (objUsuario.idusuario !== "") {
+            objUsuario.type = 'update';
         } else {
-            objFinca.type = 'save';
+            objUsuario.type = 'save';
         }
         $.ajax({
             type: 'post',
-            url: "controller/ctlFinca.php",
+            url: "controller/ctlUsuario.php",
             beforeSend: function() {},
-            data: objFinca,
+            data: objUsuario,
             success: function(data) {
                 console.log(data);
                 var info = JSON.parse(data);
@@ -43,7 +43,7 @@ function guardarFinca() {
                 if (info.res === "Success") {
                     limpiar();
                     alert("Operacion exitosa");
-                    listarFincas();
+                    listarUsuarios();
                 } else {
                     alert("No se pudo almacenar");
                 }
@@ -58,10 +58,10 @@ function guardarFinca() {
     }
 }
 
-function listarFincas() {
+function listarUsuarios() {
     $.ajax({
         type: 'post',
-        url: "controller/ctlFinca.php",
+        url: "controller/ctlUsuario.php",
         beforeSend: function() {
 
         },
@@ -76,24 +76,24 @@ function listarFincas() {
 
             if (info.length > 0) {
                 for (k = 0; k < info.length; k++) {
-                    lista = lista + '<tr id="codigo" onclick="buscarFinca(' + info[k].idFinca + ')">';
-                    lista = lista + '<td style="display: none">' + info[k].idFinca + '</td>';
-                    lista = lista + '<td>' + info[k].nombreFinca + '</td>';
-                    lista = lista + '<td>' + info[k].tamanio + '</td>';
-                    lista = lista + '<td>' + info[k].nombreMpio + '</td>';
-                    lista = lista + '<td>' + info[k].nombreDepto + '</td>';
-                    lista = lista + '<td>' + info[k].cantidad + '</td>';
-                    if (info[k].piscina === '1') {
-                        lista = lista + '<td>SI</td>';
-                    } else {
-                        lista = lista + '<td>NO</td>';
-                    }
-                    lista = lista + '<td>' + info[k].descripcion + '</td>';
+                    lista = lista + '<tr id="codigo" onclick="buscarUsuario(' + info[k].idusuario + ')">';
+                    lista = lista + '<td style="display: none">' + info[k].idusuario + '</td>';
+                    lista = lista + '<td>' + info[k].cedula + '</td>';
+                    lista = lista + '<td>' + info[k].nombre + '</td>';
+                    lista = lista + '<td>' + info[k].apellido + '</td>';
+                    lista = lista + '<td>' + info[k].correo + '</td>';
+                    lista = lista + '<td>' + info[k].usuario + '</td>';
+                    lista = lista + '<td>' + info[k].password + '</td>';
+                    // if (info[k].piscina === '1') {
+                    //     lista = lista + '<td>SI</td>';
+                    // } else {
+                    //     lista = lista + '<td>NO</td>';
+                    // }
                     lista = lista + '</tr>';
                 }
-                $("#listaFincas").html(lista);
+                $("#listaUsuarios").html(lista);
             } else {
-                $("#listaFincas").html("<tr><td>No se encuentra informacion</td>></tr>");
+                $("#listaUsuarios").html("<tr><td>No se encuentra informacion</td>></tr>");
             }
         },
         error: (jqXHR, textStatus, errorThrown) => {
@@ -103,35 +103,35 @@ function listarFincas() {
     });
 }
 
-function buscarFinca(codigo) {
-    $("#txtIdFinca").val(codigo);
-    const objFinca = {
-        idFinca: $("#txtIdFinca").val(),
+function buscarUsuario(codigo) {
+    $("#txtIdUsuario").val(codigo);
+    const objUsuario = {
+        idusuario: $("#txtIdUsuario").val(),
         type: 'search'
     };
     
     $.ajax({
         type: 'post',
-        url: "controller/ctlFinca.php",
+        url: "controller/ctlUsuario.php",
         async: false,
         beforeSend: function() {
 
         },
-        data: objFinca,
+        data: objUsuario,
         success: function(res) {
+            // console.log(data);
             const info = JSON.parse(res);
             let data;
             if (info.res !== "NotInfo") {
                 data = JSON.parse(info.data);
             }
             if (info.msj === "Success") {
-                $("#txtNombre").val(data[0].nombreFinca);
-                $("#txtTamanio").val(data[0].tamanio);
-                $("#txtDepto").val(data[0].Departamento_idDepartamento);
-                $("#txtMunicipio").val(data[0].Municipio_idMunicipio);
-                $("#txtCantidad").val(data[0].cantidad);
-                $("#txtPiscina").val(data[0].piscina);
-                $("#txtDescripcion").val(data[0].descripcion);
+                $("#txtCedula").val(data[0].cedula);
+                $("#txtNombre").val(data[0].nombre);
+                $("#txtApellido").val(data[0].apellido);
+                $("#txtCorreo").val(data[0].correo);
+                $("#txtUsuario").val(data[0].usuario);
+                $("#txtPassword").val(data[0].password);
             } else {
                 alert("No se encuentra");
                 limpiar();
@@ -140,56 +140,56 @@ function buscarFinca(codigo) {
     });
 }
 
-function listMunicipios() {
-    console.log($('#txtDepto').val())
-    $.ajax({
-        type: 'post',
-        url: "controller/ctlList.php",
-        data: { type: 'loadListMuni', depto: $('#txtDepto').val()},
-        success: function (response) {
-            var aux= JSON.parse(response)
-            var municipios = JSON.parse(aux.data);
-            console.log(municipios)
-            var combo = "<option value='0'>---SELECCIONAR MUNICIPIO---</option>";
-            if (municipios.length > 0) {
-                for (k = 0; k < municipios.length; k++) {
-                    combo = combo + "<option value='" + municipios[k].idMunicipio + "'>" + municipios[k].nombreMpio + "</option>";
-                }
-                $("#txtMunicipio").html(combo);
-            } else {
+// function listMunicipios() {
+//     console.log($('#txtDepto').val())
+//     $.ajax({
+//         type: 'post',
+//         url: "controller/ctlList.php",
+//         data: { type: 'loadListMuni', depto: $('#txtDepto').val()},
+//         success: function (response) {
+//             var aux= JSON.parse(response)
+//             var municipios = JSON.parse(aux.data);
+//             console.log(municipios)
+//             var combo = "<option value='0'>---SELECCIONAR MUNICIPIO---</option>";
+//             if (municipios.length > 0) {
+//                 for (k = 0; k < municipios.length; k++) {
+//                     combo = combo + "<option value='" + municipios[k].idMunicipio + "'>" + municipios[k].nombreMpio + "</option>";
+//                 }
+//                 $("#txtMunicipio").html(combo);
+//             } else {
 
-            }
-        },
-        error: (jqXHR, textStatus, errorThrown) => {
-            alert("Error detectado: " + textStatus + "\nException: " + errorThrown);
-            alert("verifique la ruta de archivo!");
-        }
-    });
-}
+//             }
+//         },
+//         error: (jqXHR, textStatus, errorThrown) => {
+//             alert("Error detectado: " + textStatus + "\nException: " + errorThrown);
+//             alert("verifique la ruta de archivo!");
+//         }
+//     });
+// }
 
-function eliminarFinca() {
-    var dato = $("#txtIdFinca").val();
+function eliminarUsuario() {
+    var dato = $("#txtIdUsuario").val();
     if (dato == "") {
         alert("Debe cargar los datos a eliminar");
     } else {
-        const objFinca = {
-            idFinca: dato,
+        const objUsuario = {
+            idusuario: dato,
             type: 'delete'
         };
 
         $.ajax({
             type: 'post',
-            url: "controller/ctlFinca.php",
+            url: "controller/ctlUsuario.php",
             beforeSend: function() {
 
             },
-            data: objFinca,
+            data: objUsuario,
             success: function(res) {
                 var info = JSON.parse(res);
                 if (info.res == "Success") {
                     limpiar();
                     alert("Eliminado con exito");
-                    listarFincas();
+                    listarUsuarios();
                 } else {
                     alert("No se pudo eliminar");
                     limpiar();
@@ -205,41 +205,40 @@ function eliminarFinca() {
 
 
 function limpiar() {
-    $("#txtIdFinca").val("");
+    $("#txtIdUsuario").val("");
+    $("#txtCedula").val("");
     $("#txtNombre").val("");
-    $("#txtTamanio").val("");
-    $("#txtDepto").val(0);
-    $("#txtMunicipio").val(0);
-    $("#txtCantidad").val("");
-    $("#txtPiscina").val("");
-    $("#txtDescripcion").val("");
+    $("#txtApellido").val(0);
+    $("#txtCorreo").val(0);
+    $("#txtUsuario").val("");
+    $("#txtPassword").val("");
 }
 
-function listDeptos() {
-    $.ajax({
-        type: 'post',
-        url: "controller/ctlList.php",
-        beforeSend: function() {
+// function listDeptos() {
+//     $.ajax({
+//         type: 'post',
+//         url: "controller/ctlList.php",
+//         beforeSend: function() {
 
-        },
-        data: { type: 'loadListDepto' },
-        success: function(respuesta) {
-            const res = JSON.parse(respuesta);
-            const info = JSON.parse(res.data);
-            var lista = "<option value='0'>---SELECCIONE DEPTO---</option>";
+//         },
+//         data: { type: 'loadListDepto' },
+//         success: function(respuesta) {
+//             const res = JSON.parse(respuesta);
+//             const info = JSON.parse(res.data);
+//             var lista = "<option value='0'>---SELECCIONE DEPTO---</option>";
 
-            if (info.length > 0) {
-                for (k = 0; k < info.length; k++) {
-                    lista = lista + "<option value='" + info[k].idDepartamento + "'>" + info[k].nombreDepto + "</option>";
-                }
-                $("#txtDepto").html(lista);
-            } else {
+//             if (info.length > 0) {
+//                 for (k = 0; k < info.length; k++) {
+//                     lista = lista + "<option value='" + info[k].idDepartamento + "'>" + info[k].nombreDepto + "</option>";
+//                 }
+//                 $("#txtDepto").html(lista);
+//             } else {
 
-            }
-        },
-        error: (jqXHR, textStatus, errorThrown) => {
-            alert("Error detectado: " + textStatus + "\nException: " + errorThrown);
-            alert("verifique la ruta de archivo!");
-        }
-    });
-}
+//             }
+//         },
+//         error: (jqXHR, textStatus, errorThrown) => {
+//             alert("Error detectado: " + textStatus + "\nException: " + errorThrown);
+//             alert("verifique la ruta de archivo!");
+//         }
+//     });
+// }

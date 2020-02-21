@@ -21,7 +21,7 @@ USE `farmacia` ;
 -- Table `farmacia`.`usuario`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `farmacia`.`usuario` (
-  `idusuario` INT NOT NULL,
+  `idusuario` INT NOT NULL auto_increment,
   `cedula` INT NULL,
   `nombre` VARCHAR(45) NULL,
   `apellido` VARCHAR(45) NULL,
@@ -36,7 +36,7 @@ ENGINE = InnoDB;
 -- Table `farmacia`.`laboratorio`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `farmacia`.`laboratorio` (
-  `idlaboratorio` INT NOT NULL,
+  `idlaboratorio` INT NOT NULL auto_increment,
   `nombre` VARCHAR(45) NULL,
   `descrip` VARCHAR(45) NULL,
   PRIMARY KEY (`idlaboratorio`))
@@ -47,7 +47,7 @@ ENGINE = InnoDB;
 -- Table `farmacia`.`medicamento`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `farmacia`.`medicamento` (
-  `idmedicamento` INT NOT NULL,
+  `idmedicamento` INT NOT NULL auto_increment,
   `nombre` VARCHAR(45) NULL,
   `descrip` VARCHAR(45) NULL,
   `fecha_venc` DATE NULL,
@@ -74,7 +74,7 @@ ENGINE = InnoDB;
 -- Table `farmacia`.`cliente`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `farmacia`.`cliente` (
-  `idcliente` INT NOT NULL,
+  `idcliente` INT NOT NULL auto_increment,
   `nombre` VARCHAR(45) NULL,
   `apellido` VARCHAR(45) NULL,
   `cedula` VARCHAR(45) NULL,
@@ -88,7 +88,7 @@ ENGINE = InnoDB;
 -- Table `farmacia`.`venta`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `farmacia`.`venta` (
-  `idventa` INT NOT NULL,
+  `idventa` INT NOT NULL auto_increment,
   `fecha_venta` DATETIME NULL,
   `valor_total` INT NULL,
   `cliente_idcliente` INT NOT NULL,
@@ -113,7 +113,7 @@ ENGINE = InnoDB;
 -- Table `farmacia`.`detalle_venta`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `farmacia`.`detalle_venta` (
-  `iddetalle_venta` INT NOT NULL,
+  `iddetalle_venta` INT NOT NULL auto_increment,
   `cant` INT NULL,
   `medicamento_idmedicamento` INT NOT NULL,
   `venta_idventa` INT NOT NULL,
@@ -135,11 +135,11 @@ ENGINE = InnoDB;
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
-SET UNmedicamento_ibfk_2IQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+-- SET UNmedicamento_ibfk_2IQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 INSERT INTO `farmacia`.`usuario` (`cedula`, `nombre`, `apellido`, `correo`, `usuario`, `password`) VALUES ('1094', 'sebas', 'pala', 'sebas@pala.com', 'admin', '123');
 
 INSERT INTO `farmacia`.`laboratorio` (`nombre`, `descrip`) VALUES ('genfar', 'jajajajajajaja');
 
-INSERT INTO `farmacia`.`medicamento` (`nombre`, `descrip`, `fecha_venc`, `cant`, `fecha_creado`, `precio`, `usuario_idusuario`, `laboratorio_idlaboratorio`) VALUES ('acetaminofem', 'no se', '2032-02-02', '1', '2020-02-02', '1', '0', '0');
+INSERT INTO `farmacia`.`medicamento` (`nombre`, `descrip`, `fecha_venc`, `cant`, `fecha_creado`, `precio`, `usuario_idusuario`, `laboratorio_idlaboratorio`) VALUES ('acetaminofem', 'no se', '2032-02-02', '1', '2020-02-02', '1', '1', '1');
 

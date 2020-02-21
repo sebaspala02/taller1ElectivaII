@@ -14,10 +14,10 @@
 
     <script type="text/javascript" src="resource/jquery/jquery.js"></script>
     <!-- <script type="text/javascript" src="resource/js/cargarList.js"></script> -->
-    <!-- <script type="text/javascript" src="resource/js/gestionFinca.js"></script> -->
-    <!-- <script type="text/javascript" src="resource/js/gestionVaca.js"></script> -->
-    <!-- <script type="text/javascript" src="resource/js/gestionDepto.js"></script> -->
+    <script type="text/javascript" src="resource/js/gestionUsuario.js"></script>
     <script type="text/javascript" src="resource/js/gestionMedi.js"></script>
+    <script type="text/javascript" src="resource/js/gestionDepto.js"></script>
+    <script type="text/javascript" src="resource/js/gestionMuni.js"></script>
 </head>
 
 <body>
