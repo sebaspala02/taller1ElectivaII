@@ -145,3 +145,27 @@ INSERT INTO `farmacia`.`medicamento` (`nombre`, `descrip`, `fecha_venc`, `cant`,
 
 INSERT INTO `farmacia`.`cliente` (`nombre`, `apellido`, `cedula`, `genero`, `fecha_naci`) VALUES ('Jairo', 'Salazar', '12345', 'Masculino', '2032-02-02');
 
+DELIMITER //
+CREATE FUNCTION guardarUsuario ( `vcedula` INT,
+  `vnombre` VARCHAR(45),
+  `vapellido` VARCHAR(45),
+  `vcorreo` VARCHAR(45),
+  `vusuario` VARCHAR(45),
+  `vpassword` INT) RETURNS INT(1)
+  
+  READS SQL DATA
+  DETERMINISTIC
+  COMMENT"no se que estoy haciendo"
+  BEGIN
+	DECLARE res INT DEFAULT 0;
+IF NOT EXISTS(select cedula from usuario where cedula=vcedula)
+	THEN
+		insert into usuario(cedula,nombre,apellido,correo,usuario,password)
+        values(vcedula,vnombre,vapellido,vcorreo,vusuario,vpassword);
+        set res = 1;
+	END IF;
+RETURN res;
+END//
+-- DELIMITER;
+
+select guardarUsuario (4444,'alejo','hoyos','alejo@hoyos.com','hpta',0000);
