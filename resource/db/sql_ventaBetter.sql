@@ -169,3 +169,83 @@ END//
 -- DELIMITER;
 
 select guardarUsuario (4444,'alejo','hoyos','alejo@hoyos.com','hpta',0000);
+
+DELIMITER //
+CREATE FUNCTION guardarMedicamento (
+  `vnombre` VARCHAR(45),
+  `vdescrip` VARCHAR(45),
+  `vfecha_venc` DATE,
+  `vcant` INT,
+  `vfecha_creado` DATE,
+  `vprecio` INT,
+  `vusuario_idusuario` INT,
+  `vlaboratorio_idlaboratorio` INT
+  ) RETURNS INT(1)
+  
+  READS SQL DATA
+  DETERMINISTIC
+  COMMENT"no se que estoy haciendo"
+  BEGIN
+	DECLARE res INT DEFAULT 0;
+	IF NOT EXISTS(select idmedicamento from medicamento 
+		where nombre=vnombre and laboratorio_idlaboratorio = vlaboratorio_idlaboratorio)
+	THEN
+		insert into medicamento(nombre, descrip, fecha_venc, cant, fecha_creado, precio, usuario_idusuario, laboratorio_idlaboratorio)
+        values(vnombre,vdescrip,vfecha_venc,vcant,vfecha_creado,vprecio,vusuario_idusuario,vlaboratorio_idlaboratorio);
+        set res = 1;
+	END IF;
+RETURN res;
+END//
+-- DELIMITER;
+
+DELIMITER //
+CREATE FUNCTION editarMedicamento (
+  `vidmedicamento` INT,
+  `vnombre` VARCHAR(45),
+  `vdescrip` VARCHAR(45),
+  `vfecha_venc` DATE,
+  `vcant` INT,
+  `vfecha_creado` DATE,
+  `vprecio` INT,
+  `vusuario_idusuario` INT,
+  `vlaboratorio_idlaboratorio` INT
+  ) RETURNS INT(1)
+  
+  READS SQL DATA
+  DETERMINISTIC
+  COMMENT"no se que estoy haciendo"
+  BEGIN
+	DECLARE res INT DEFAULT 0;
+	IF EXISTS(select idmedicamento from medicamento 
+		where idmedicamento=vidmedicamento)
+	THEN
+		update medicamento set nombre=vnombre,descrip=vdescrip,fecha_venc=vfecha_venc,cant=vcant,
+        fecha_creado=vfecha_creado,precio=vprecio,usuario_idusuario=vusuario_idusuario,
+        laboratorio_idlaboratorio=vlaboratorio_idlaboratorio where idmedicamento = vidmedicamento;
+        
+        set res = 1;
+	END IF;
+RETURN res;
+END//
+-- DELIMITER;
+
+DELIMITER //
+CREATE FUNCTION eliminarMedicamento (
+  `vidmedicamento` INT
+  ) RETURNS INT(1)
+  
+  READS SQL DATA
+  DETERMINISTIC
+  COMMENT"no se que estoy haciendo"
+  BEGIN
+	DECLARE res INT DEFAULT 0;
+	IF EXISTS(select idmedicamento from medicamento 
+		where idmedicamento=vidmedicamento)
+	THEN
+		delete from medicamento where idmedicamento = vidmedicamento;
+        
+        set res = 1;
+	END IF;
+RETURN res;
+END//
+-- DELIMITER;

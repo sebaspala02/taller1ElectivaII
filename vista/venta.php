@@ -47,7 +47,6 @@
                     apellido: $("#txtApellidoCliente").val().toLowerCase(),
                     cedula: $("#txtCedulaCliente").val(),
                     genero: $("#txtGenero").val(),
-                    fecha_naci: $("#txtFecha_naci").val(),
                     type: ""
                 };
                 if (
@@ -160,7 +159,6 @@
                             $("#txtApellidoCliente").val(data[0].apellido);
                             $("#txtCedulaCliente").val(data[0].cedula);
                             $("#txtGenero").val(data[0].genero);
-                            $("#txtFecha_naci").val(data[0].fecha_naci);
                             $('#txtCedulaClienteVenta').val(codigo)
                         } else {
                             alert("No se encuentra");

@@ -8,7 +8,6 @@ include '../DAO/ventaDAO.php';
     $fecha_venta = isset($_POST['fecha_venta']) ? $_POST['fecha_venta'] : "";
     $valor_total = isset($_POST['valor_total']) ? $_POST['valor_total'] : "";
     $venta_idcliente = isset($_POST['cliente_idcliente']) ? $_POST['cliente_idcliente'] : "";
-    $fecha_naci = isset($_POST['fecha_naci']) ? $_POST['fecha_naci'] : "";
     $type = isset($_POST['type']) ? $_POST['type'] : "";
     //$valor = isset($_POST['valor']) ? $_POST['valor'] : "";
 

@@ -13,7 +13,7 @@ class ventaDAO
 
     public function guardar(clsVenta $obj)
     {
-        $sql = "INSERT INTO venta(fecha_venta,valor_total,cliente_idcliente,usuario_idusuario,fecha_naci) " .
+        $sql = "INSERT INTO venta(fecha_venta,valor_total,cliente_idcliente,usuario_idusuario) " .
             "VALUES ('" . $obj->getfecha_venta() . "'," . $obj->getvalor_total() . "," . $obj->getcliente_idcliente() . ",
         " . $obj->getusuario_idusuario() . ")";
         $this->objCon->ExecuteTransaction($sql);
@@ -36,14 +36,13 @@ class ventaDAO
     {
         $sql = "UPDATE venta SET fecha_venta='" . $obj->getfecha_venta() . "',valor_total=" .
             $obj->getvalor_total() . ",cliente_idcliente="  . $obj->getcliente_idcliente() .
-            ",usuario_idusuario="  . $obj->getusuario_idusuario() . ",fecha_naci='"  . $obj->getfecha_venta() .
-            "' where idcliente=" . $obj->getidventa() . "";
+            ",usuario_idusuario="  . $obj->getusuario_idusuario() . " where idventa=" . $obj->getidventa() . "";
         $this->objCon->ExecuteTransaction($sql);
     }
 
     public function listar()
     {
-        $sql = "SELECT idventa,fecha_venta,valor_total,cliente_idcliente,usuario_idusuario,fecha_naci from venta";
+        $sql = "SELECT idventa,fecha_venta,valor_total,cliente_idcliente,usuario_idusuario from venta";
         $this->objCon->Execute($sql);
     }
 }

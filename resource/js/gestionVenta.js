@@ -9,10 +9,9 @@ $(document).ready(function() {
 
 function guardarVenta() {
     let objCliente = {
-        idcliente: $("#txtIdCliente").val(),
-        fecha_venta: $("#txtfecha_ventaCliente").val().toLowerCase(),
-        valor_total: $("#txtvalor_totalCliente").val().toLowerCase(),
-        cliente_idcliente: $("#txtcliente_idclienteCliente").val(),
+        fecha_venta: new Date(),
+        valor_total: $("#txtvalor_totalCliente").val(),
+        cliente_idcliente: $("#txtCedulaClienteVenta").val(),
         usuario_idusuario: $("#txtusuario_idusuario").val(),
         type: ""
     };
