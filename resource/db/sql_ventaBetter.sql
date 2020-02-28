@@ -145,6 +145,8 @@ INSERT INTO `farmacia`.`medicamento` (`nombre`, `descrip`, `fecha_venc`, `cant`,
 
 INSERT INTO `farmacia`.`cliente` (`nombre`, `apellido`, `cedula`, `genero`, `fecha_naci`) VALUES ('Jairo', 'Salazar', '12345', 'Masculino', '2032-02-02');
 
+-- GUARDAR USUARIO
+
 DELIMITER //
 CREATE FUNCTION guardarUsuario ( `vcedula` INT,
   `vnombre` VARCHAR(45),
@@ -170,58 +172,59 @@ END//
 
 select guardarUsuario (4444,'alejo','hoyos','alejo@hoyos.com','hpta',0000);
 
+-- ELIMINAR USUARIO
+
 DELIMITER //
-CREATE FUNCTION guardarMedicamento (
-  `vnombre` VARCHAR(45),
-  `vdescrip` VARCHAR(45),
-  `vfecha_venc` DATE,
-  `vcant` INT,
-  `vfecha_creado` DATE,
-  `vprecio` INT,
-  `vusuario_idusuario` INT,
-  `vlaboratorio_idlaboratorio` INT
-  ) RETURNS INT(1)
+CREATE FUNCTION eliminarUsuario ( `vidusuario` INT) RETURNS INT(1)
   
   READS SQL DATA
   DETERMINISTIC
   COMMENT"no se que estoy haciendo"
   BEGIN
 	DECLARE res INT DEFAULT 0;
-	IF NOT EXISTS(select idmedicamento from medicamento 
-		where nombre=vnombre and laboratorio_idlaboratorio = vlaboratorio_idlaboratorio)
+IF EXISTS(select idusuario from usuario where idusuario=vidusuario)
 	THEN
-		insert into medicamento(nombre, descrip, fecha_venc, cant, fecha_creado, precio, usuario_idusuario, laboratorio_idlaboratorio)
-        values(vnombre,vdescrip,vfecha_venc,vcant,vfecha_creado,vprecio,vusuario_idusuario,vlaboratorio_idlaboratorio);
+		DELETE FROM usuario WHERE (`idusuario` = `vidusuario`);
         set res = 1;
 	END IF;
 RETURN res;
 END//
 -- DELIMITER;
 
+select eliminarUsuario (5);
+
+-- LISTAR
+
+DELIMITER//
+CREATE PROCEDURE listarUsuario(idusuario int)
+	COMMENT'listar'
+BEGIN
+	select cedula,nombre,apellido,correo,usuario,password from usuario order by idusuario;
+END//
+
+call listarUsuario(1);
+
+-- MODIFICAR USUARIO
+
 DELIMITER //
-CREATE FUNCTION editarMedicamento (
-  `vidmedicamento` INT,
+CREATE FUNCTION modificarUsuario ( `vidusuario` INT,
+  `vcedula` INT,
   `vnombre` VARCHAR(45),
-  `vdescrip` VARCHAR(45),
-  `vfecha_venc` DATE,
-  `vcant` INT,
-  `vfecha_creado` DATE,
-  `vprecio` INT,
-  `vusuario_idusuario` INT,
-  `vlaboratorio_idlaboratorio` INT
-  ) RETURNS INT(1)
+  `vapellido` VARCHAR(45),
+  `vcorreo` VARCHAR(45),
+  `vusuario` VARCHAR(45),
+  `vpassword` INT) RETURNS INT(1)
   
   READS SQL DATA
   DETERMINISTIC
   COMMENT"no se que estoy haciendo"
   BEGIN
 	DECLARE res INT DEFAULT 0;
-	IF EXISTS(select idmedicamento from medicamento 
-		where idmedicamento=vidmedicamento)
+IF NOT EXISTS(select cedula from usuario where cedula=vcedula and idusuario<>vidusuario)
 	THEN
-		update medicamento set nombre=vnombre,descrip=vdescrip,fecha_venc=vfecha_venc,cant=vcant,
-        fecha_creado=vfecha_creado,precio=vprecio,usuario_idusuario=vusuario_idusuario,
-        laboratorio_idlaboratorio=vlaboratorio_idlaboratorio where idmedicamento = vidmedicamento;
+		update usuario
+        set cedula=vcedula, nombre=vnombre, apellido=vapellido, correo=vcorreo, usuario=vusuario, password=vpassword
+        where idusuario=vidusuario;
         
         set res = 1;
 	END IF;
@@ -229,23 +232,117 @@ RETURN res;
 END//
 -- DELIMITER;
 
+select modificarUsuario (3,3333,'hell','bad','hell@bad.com','jeje',123);
+
+
+-- BUSCAR
+
+DELIMITER//
+CREATE PROCEDURE buscarUsuario(vidusuario int)
+	COMMENT'buscar'
+BEGIN
+	select cedula,nombre,apellido,correo,usuario,password from usuario where idusuario=vidusuario;
+END//
+
+call buscarUsuario(3);
+
+-- _______________________________________CLIENTE_______________________________________________________________
+
+-- GUARDAR Cliente
+
 DELIMITER //
-CREATE FUNCTION eliminarMedicamento (
-  `vidmedicamento` INT
-  ) RETURNS INT(1)
+CREATE FUNCTION guardarCliente ( `vnombre` VARCHAR(45),
+  `vapellido` VARCHAR(45),
+  `vcedula` INT,
+  `vgenero` VARCHAR(45),
+  `vfecha_naci` DATE) RETURNS INT(1)
   
   READS SQL DATA
   DETERMINISTIC
   COMMENT"no se que estoy haciendo"
   BEGIN
 	DECLARE res INT DEFAULT 0;
-	IF EXISTS(select idmedicamento from medicamento 
-		where idmedicamento=vidmedicamento)
+IF NOT EXISTS(select cedula from cliente where cedula=vcedula)
 	THEN
-		delete from medicamento where idmedicamento = vidmedicamento;
+		insert into cliente(nombre,apellido,cedula,genero,fecha_naci)
+        values(vnombre,vapellido,vcedula,vgenero,vfecha_naci);
+        set res = 1;
+	END IF;
+RETURN res;
+END//
+-- DELIMITER;
+
+select guardarCliente ('willy','colon',0971,'Masculino','1987-03-12');
+
+-- ELIMINAR USUARIO
+
+DELIMITER //
+CREATE FUNCTION eliminarCliente ( `vidcliente` INT) RETURNS INT(1)
+  
+  READS SQL DATA
+  DETERMINISTIC
+  COMMENT"no se que estoy haciendo"
+  BEGIN
+	DECLARE res INT DEFAULT 0;
+IF EXISTS(select idcliente from cliente where idcliente=vidcliente)
+	THEN
+		DELETE FROM cliente WHERE (`idcliente` = `vidcliente`);
+        set res = 1;
+	END IF;
+RETURN res;
+END//
+-- DELIMITER;
+
+select eliminarCliente (5);
+
+-- LISTAR Cliente
+
+DELIMITER//
+CREATE PROCEDURE listarCliente(idcliente int)
+	COMMENT'listar'
+BEGIN
+	select nombre,apellido,cedula,genero,fecha_naci from cliente order by idcliente;
+END//
+
+call listarCliente(1);
+
+-- MODIFICAR Cliente
+
+DELIMITER //
+CREATE FUNCTION modificarCliente ( `vidcliente` INT,
+  `vnombre` VARCHAR(45),
+  `vapellido` VARCHAR(45),
+  `vcedula` INT,
+  `vgenero` VARCHAR(45),
+  `vfecha_naci` DATE) RETURNS INT(1)
+  
+  READS SQL DATA
+  DETERMINISTIC
+  COMMENT"no se que estoy haciendo"
+  BEGIN
+	DECLARE res INT DEFAULT 0;
+IF NOT EXISTS(select cedula from cliente where cedula=vcedula and idcliente<>vidcliente)
+	THEN
+		update cliente
+        set nombre=vnombre, apellido=vapellido, cedula=vcedula, genero=vgenero, fecha_naci=vfecha_naci
+        where idcliente=vidcliente;
         
         set res = 1;
 	END IF;
 RETURN res;
 END//
 -- DELIMITER;
+
+select modificarCliente (4,'pedro','navaja',2345567,'Femenino','1987-03-12');
+
+
+-- BUSCAR
+
+DELIMITER//
+CREATE PROCEDURE buscarCliente(vidcliente int)
+	COMMENT'buscar'
+BEGIN
+	select nombre,apellido,cedula,genero,fecha_naci from cliente where idcliente=vidcliente;
+END//
+
+call buscarCliente(3);
