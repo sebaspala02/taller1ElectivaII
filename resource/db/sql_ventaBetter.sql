@@ -298,13 +298,13 @@ select eliminarCliente (5);
 -- LISTAR Cliente
 
 DELIMITER//
-CREATE PROCEDURE listarCliente(idcliente int)
+CREATE PROCEDURE listarCliente()
 	COMMENT'listar'
 BEGIN
 	select nombre,apellido,cedula,genero,fecha_naci from cliente order by idcliente;
 END//
 
-call listarCliente(1);
+call listarCliente();
 
 -- MODIFICAR Cliente
 
@@ -336,7 +336,7 @@ END//
 select modificarCliente (4,'pedro','navaja',2345567,'Femenino','1987-03-12');
 
 
--- BUSCAR
+-- BUSCAR Cliente
 
 DELIMITER//
 CREATE PROCEDURE buscarCliente(vidcliente int)
@@ -346,3 +346,108 @@ BEGIN
 END//
 
 call buscarCliente(3);
+
+-- ______________________________________MEDICAMENTO_________________________________________________
+
+DELIMITER //
+CREATE FUNCTION guardarMedicamento (
+  `vnombre` VARCHAR(45),
+  `vdescrip` VARCHAR(45),
+  `vfecha_venc` DATE,
+  `vcant` INT,
+  `vfecha_creado` DATE,
+  `vprecio` INT,
+  `vusuario_idusuario` INT,
+  `vlaboratorio_idlaboratorio` INT
+  ) RETURNS INT(1)
+  
+  READS SQL DATA
+  DETERMINISTIC
+  COMMENT"no se que estoy haciendo"
+  BEGIN
+	DECLARE res INT DEFAULT 0;
+	IF NOT EXISTS(select idmedicamento from medicamento 
+		where nombre=vnombre and laboratorio_idlaboratorio = vlaboratorio_idlaboratorio)
+	THEN
+		insert into medicamento(nombre, descrip, fecha_venc, cant, fecha_creado, precio, usuario_idusuario, laboratorio_idlaboratorio)
+        values(vnombre,vdescrip,vfecha_venc,vcant,vfecha_creado,vprecio,vusuario_idusuario,vlaboratorio_idlaboratorio);
+        set res = 1;
+	END IF;
+RETURN res;
+END//
+-- DELIMITER;
+
+DELIMITER //
+CREATE FUNCTION editarMedicamento (
+  `vidmedicamento` INT,
+  `vnombre` VARCHAR(45),
+  `vdescrip` VARCHAR(45),
+  `vfecha_venc` DATE,
+  `vcant` INT,
+  `vfecha_creado` DATE,
+  `vprecio` INT,
+  `vusuario_idusuario` INT,
+  `vlaboratorio_idlaboratorio` INT
+  ) RETURNS INT(1)
+  
+  READS SQL DATA
+  DETERMINISTIC
+  COMMENT"no se que estoy haciendo"
+  BEGIN
+	DECLARE res INT DEFAULT 0;
+	IF EXISTS(select idmedicamento from medicamento 
+		where idmedicamento=vidmedicamento)
+	THEN
+		update medicamento set nombre=vnombre,descrip=vdescrip,fecha_venc=vfecha_venc,cant=vcant,
+        fecha_creado=vfecha_creado,precio=vprecio,usuario_idusuario=vusuario_idusuario,
+        laboratorio_idlaboratorio=vlaboratorio_idlaboratorio where idmedicamento = vidmedicamento;
+        
+        set res = 1;
+	END IF;
+RETURN res;
+END//
+-- DELIMITER;
+
+DELIMITER //
+CREATE FUNCTION eliminarMedicamento (
+  `vidmedicamento` INT
+  ) RETURNS INT(1)
+  
+  READS SQL DATA
+  DETERMINISTIC
+  COMMENT"no se que estoy haciendo"
+  BEGIN
+	DECLARE res INT DEFAULT 0;
+	IF EXISTS(select idmedicamento from medicamento 
+		where idmedicamento=vidmedicamento)
+	THEN
+		delete from medicamento where idmedicamento = vidmedicamento;
+        
+        set res = 1;
+	END IF;
+RETURN res;
+END//
+-- DELIMITER;
+
+-- BUSCAR Medi
+
+DELIMITER//
+CREATE PROCEDURE buscarMedi(vidmedicamento int)
+	COMMENT'buscar'
+BEGIN
+	select nombre, descrip, fecha_venc, cant, fecha_creado, precio, usuario_idusuario, laboratorio_idlaboratorio from medicamento where idmedicamento=vidmedicamento;
+END//
+
+call buscarMedi(3);
+
+
+-- LISTAR Medicamento
+
+DELIMITER//
+CREATE PROCEDURE listarMedi()
+	COMMENT'listar'
+BEGIN
+	select nombre, descrip, fecha_venc, cant, fecha_creado, precio, usuario_idusuario, laboratorio_idlaboratorio from medicamento order by idmedicamento;
+END//
+
+call listarMedi();
