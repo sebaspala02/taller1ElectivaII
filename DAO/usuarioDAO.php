@@ -21,9 +21,11 @@ class usuarioDAO
     // }
     public function guardar(clsUsuario $obj)
     {
-        $this->dao->crearConsulta("guardarUsuario", array($obj->getCedula() ,  $obj->getNombreUsuario() . "','"  .
-            $obj->getApellidoUsuario() . "','"  . $obj->getCorreo() . "','"  . $obj->getUsuario() . "',"  .
-            $obj->getPassword()), "funcion");
+        $this->dao->crearConsulta("guardarUsuario", array(
+            $obj->getCedula(),  $obj->getNombreUsuario(),
+            $obj->getApellidoUsuario(), $obj->getCorreo(), $obj->getUsuario(),
+            $obj->getPassword()
+        ), "funcion");
         // $sql = "select guardarUsuario (" . $obj->getCedula() . ",'" . $obj->getNombreUsuario() . "','"  .
         //     $obj->getApellidoUsuario() . "','"  . $obj->getCorreo() . "','"  . $obj->getUsuario() . "',"  .
         //     $obj->getPassword() . ")";
@@ -48,7 +50,7 @@ class usuarioDAO
 
     public function buscar(clsUsuario $obj)
     {
-        $this->dao->crearConsulta("buscarUsuario", $obj->getIdUsuario());
+        $this->dao->crearConsulta("buscarUsuario", array($obj->getIdUsuario()), "procedimiento");
         // $sql = "SELECT cedula,nombre,apellido,correo,usuario,password from usuario 
         // where idusuario = " . $obj->getIdUsuario() . "";
         // $this->objCon->Execute($sql);
@@ -56,17 +58,18 @@ class usuarioDAO
 
     public function eliminar(clsUsuario $obj)
     {
-        $this->dao->crearConsulta("eliminarUsuario", $obj->getIdUsuario());
+        $this->dao->crearConsulta("eliminarUsuario", array($obj->getIdUsuario()), "funcion");
         // $sql = "DELETE from usuario where idusuario=" . $obj->getIdUsuario() . "";
         // $this->objCon->ExecuteTransaction($sql);
     }
 
     public function modificar(clsUsuario $obj)
     {
-        $this->dao->crearConsulta("modificarUsuario", $obj->getCedula() . ",'" .
-            $obj->getNombreUsuario() . "','"  . $obj->getApellidoUsuario() .
-            "','"  . $obj->getCorreo() . "','"  . $obj->getUsuario() .
-            "',"  . $obj->getPassword());
+        $this->dao->crearConsulta("modificarUsuario", array(
+            $obj->getIdUsuario(), $obj->getCedula(),  $obj->getNombreUsuario(),
+            $obj->getApellidoUsuario(), $obj->getCorreo(), $obj->getUsuario(),
+            $obj->getPassword()
+        ), "funcion");
         // $sql = "UPDATE usuario SET cedula=" . $obj->getCedula() . ",nombre='" .
         //     $obj->getNombreUsuario() . "',apellido='"  . $obj->getApellidoUsuario() .
         //     "',correo='"  . $obj->getCorreo() . "',usuario='"  . $obj->getUsuario() .
@@ -76,6 +79,8 @@ class usuarioDAO
 
     public function listar()
     {
-        $this->dao->crearConsulta("listarUsuario", "");
+        $this->dao->crearConsulta("listarUsuario", array(""), "funcion");
+        // $sql = "SELECT idmedicamento,nombre,descrip,fecha_venc,cant,fecha_creado,precio,usuario_idusuario,laboratorio_idlaboratorio from medicamento M";
+        // $this->objCon->Execute($sql);
     }
 }

@@ -16,9 +16,11 @@ class mediDAO
 
     public function guardar(clsMedi $obj)
     {
-        $this->dao->crearConsulta("guardarMedicamento", array($obj->getNombre(),$obj->getDescrip(), $obj->getFecha_venc(),
+        $this->dao->crearConsulta("guardarMedicamento", array(
+            $obj->getNombre(), $obj->getDescrip(), $obj->getFecha_venc(),
             $obj->getCant(), $obj->getFecha_creado(),
-            $obj->getPrecio(), $obj->getIdUsuario(), $obj->getIdLaboratorio()),"funcion");
+            $obj->getPrecio(), $obj->getIdUsuario(), $obj->getIdLaboratorio()
+        ), "funcion");
         // $sql = "INSERT INTO medicamento(nombre,descrip,fecha_venc,cant,fecha_creado,precio,usuario_idusuario,laboratorio_idlaboratorio) "
         //     . "VALUES ('" . $obj->getNombre() . "','" .
         //     $obj->getDescrip() . "','" . $obj->getFecha_venc() . "',"  .
@@ -30,7 +32,7 @@ class mediDAO
 
     public function buscar(clsMedi $obj)
     {
-        $this->dao->crearConsulta("buscarMedicamento", array($obj->getIdMedicamento()),"procedimiento");
+        $this->dao->crearConsulta("buscarMedicamento", array($obj->getIdMedicamento()), "procedimiento");
         // $sql = "SELECT idmedicamento,nombre,descrip,fecha_venc,cant,fecha_creado,precio,usuario_idusuario,laboratorio_idlaboratorio from medicamento M 
         // where idmedicamento ="  . $obj->getIdMedicamento()  . ""  ;
         // $this->objCon->Execute($sql);
@@ -50,7 +52,7 @@ class mediDAO
             $obj->getDescrip(), $obj->getFecha_venc(),
             $obj->getCant(), $obj->getFecha_creado(),
             $obj->getPrecio(), $obj->getIdUsuario(), $obj->getIdLaboratorio()
-        ),"funcion");
+        ), "funcion");
         // $sql = "UPDATE medicamento SET nombre=" . "'" . $obj->getNombre() . "',descrip='" .
         //     $obj->getDescrip() . "',fecha_venc='"  . $obj->getFecha_venc() . "',cant=" .
         //     $obj->getCant() . ",fecha_creado='"  . $obj->getFecha_creado() . "',precio=" . $obj->getPrecio() .
