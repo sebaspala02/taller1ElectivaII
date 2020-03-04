@@ -68,7 +68,6 @@ function listarUsuarios() {
         data: { type: 'list' },
 
         success: function(respuesta) {
-            //console.log(data);
             const res = JSON.parse(respuesta);
             const info = JSON.parse(res.data);
 
@@ -92,6 +91,22 @@ function listarUsuarios() {
                     lista = lista + '</tr>';
                 }
                 $("#listaUsuarios").html(lista);
+                $('#tableUsuarios').dataTable( {
+                    "language": {
+                        "lengthMenu": "Mostrar _MENU_ elementos por pagina",
+                        "zeroRecords": "No se encuentra la informacion",
+                        "info": "Mostrando pagina _PAGE_ de _PAGES_",
+                        "infoEmpty": "Informacion vacia",
+                        "infoFiltered": "(filtered from _MAX_ total records)",
+                        "search": "Buscar:",
+                        "paginate": {
+                            "first":      "Primero",
+                            "last":       "Ultimo",
+                            "next":       "Siguiente",
+                            "previous":   "Anterior"
+                        },
+                    }
+                } )
             } else {
                 $("#listaUsuarios").html("<tr><td>No se encuentra informacion</td>></tr>");
             }

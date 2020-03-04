@@ -8,14 +8,16 @@
     <title>Venta</title>
 
     <!-- Theme CSS - Includes Bootstrap -->
-    <link href="../resource/styles/creative.min.css" rel="stylesheet">
+    <link href="resource/styles/creative.min.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="../resource/styles/bootstrap.min.css">
-
-    <script type="text/javascript" src="../resource/jquery/jquery.js"></script>
-    <!-- <script type="text/javascript" src="../resource/js/cargarList.js"></script> -->
-    <script type="text/javascript" src="../resource/js/gestionCliente.js"></script>
+    <link rel="stylesheet" href="resource/styles/bootstrap.min.css">
+    <link href="resource/styles/jquery.dataTables.css" rel="stylesheet">
+    <script type="text/javascript" src="resource/jquery/jquery.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+    <script type="text/javascript" src="resource/js/jquery.dataTables.js"></script>
+    <!-- <script type="text/javascript" src="../resource/js/cargarList.js"></script> -->
+    <script type="text/javascript" src="resource/js/gestionCliente.js"></script>
+    <script type="text/javascript" src="resource/js/gestionMedi.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
             $("#hide").on('click', function() {
@@ -32,6 +34,7 @@
 
 
             listarClientes();
+            listarMedicamentos()
             // listDeptos();
             // listMunicipios();
             $("#btnGuardarC").click(guardarCliente);
@@ -121,6 +124,22 @@
                                 lista = lista + "</tr>";
                             }
                             $("#listaCliente").html(lista);
+                            $('#tableClientes').dataTable({
+                                "language": {
+                                    "lengthMenu": "Mostrar _MENU_ elementos por pagina",
+                                    "zeroRecords": "No se encuentra la informacion",
+                                    "info": "Mostrando pagina _PAGE_ de _PAGES_",
+                                    "infoEmpty": "Informacion vacia",
+                                    "infoFiltered": "(filtered from _MAX_ total records)",
+                                    "search": "Buscar:",
+                                    "paginate": {
+                                        "first": "Primero",
+                                        "last": "Ultimo",
+                                        "next": "Siguiente",
+                                        "previous": "Anterior"
+                                    },
+                                }
+                            })
                         } else {
                             $("#listaCliente").html(
                                 "<tr><td>No se encuentra informacion</td>></tr>"
@@ -362,9 +381,10 @@
                                         <br><br>
                                     </td>
                                 </tr>
-                                <table border="1">
+                                <table border="1" id="tableClientes">
                                     <thead>
                                         <tr>
+                                            <th style="display: none">id</th>
                                             <th>Nombre</th>
                                             <th>Apellido</th>
                                             <th>Cedula</th>
@@ -399,10 +419,11 @@
                     <table>
                         <tr>
                             <td rowspan="10">
-                                <table border="1">
+                                <table border="1" id="tableMedis">
                                     <thead>
                                         <p style="text-align: center;"><b>Lista de medicamentos</b></p>
                                         <tr>
+                                        <th style="display: none">id</th>
                                             <th>Nombre</th>
                                             <th>Descripción</th>
                                             <th>Fecha de Vencimiento</th>
@@ -440,7 +461,7 @@
                                 <label>Cedula Cliente.:</label>
                             </td>
                             <td colspan="2">
-                                <input class="form-control" type="number" placeholder="C.C" id="txtCedulaClienteVenta" required >
+                                <input class="form-control" type="number" placeholder="C.C" id="txtCedulaClienteVenta" required>
                                 <br>
                             </td>
                         </tr>

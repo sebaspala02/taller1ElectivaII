@@ -12,12 +12,12 @@
 
     <link href="resource/styles/jquery.dataTables.css" rel="stylesheet">
     <link rel="stylesheet" href="resource/styles/bootstrap.min.css">
-    <script type="text/javascript" src="resource/jquery/jquery.js"></script>
+    <!-- <script type="text/javascript" src="resource/jquery/jquery.js"></script> --> -->
+    <!-- <script type="text/javascript" src="resource/js/jquery.dataTables.js"></script> -->
     <!-- <script type="text/javascript" src="resource/js/cargarList.js"></script> -->
-    <script type="text/javascript" src="resource/js/gestionUsuario.js"></script>
+    <!-- <script type="text/javascript" src="resource/js/gestionUsuario.js"></script>
     <script type="text/javascript" src="resource/js/gestionMedi.js"></script>
-    <script type="text/javascript" src="resource/js/gestionCliente.js"></script>
-    <script type="text/javascript" src="resource/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" src="resource/js/gestionCliente.js"></script> -->
     <!-- <script type="text/javascript" src="resource/js/gestionDepto.js"></script>
     <script type="text/javascript" src="resource/js/gestionMuni.js"></script> -->
 </head>

@@ -8,13 +8,14 @@
     <title>CRUD Usuario</title>
 
     <!-- Theme CSS - Includes Bootstrap -->
-    <link href="../resource/styles/creative.min.css" rel="stylesheet">
+    <link href="resource/styles/creative.min.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="../resource/styles/bootstrap.min.css">
+    <link rel="stylesheet" href="resource/styles/bootstrap.min.css">
 
-    <script type="text/javascript" src="../resource/jquery/jquery.js"></script>
+    <script type="text/javascript" src="resource/jquery/jquery.js"></script>
+    <script type="text/javascript" src="resource/js/jquery.dataTables.js"></script>
     <!-- <script type="text/javascript" src="../resource/js/cargarList.js"></script> -->
-    <script type="text/javascript" src="../resource/js/gestionUsuario.js"></script>
+    <script type="text/javascript" src="resource/js/gestionUsuario.js"></script>
 </head>
 
 <body>
@@ -129,9 +130,10 @@
                     <table>
                         <tr>
                             <td rowspan="10">
-                                <table border="1">
+                                <table border="1" id="tableUsuarios">
                                     <thead>
                                         <tr>
+                                            <th style="display: none">id</th>
                                             <th>Cedula</th>
                                             <th>Nombre</th>
                                             <th>Apellido</th>

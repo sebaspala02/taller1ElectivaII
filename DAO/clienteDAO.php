@@ -7,10 +7,10 @@ class clienteDAO
 
     function __construct()
     {
-        require '../infrastructure/clsConexion.php';
-        require './DAO.php';
-        $this->objCon = new clsConexion();
-        $this->con = $this->objCon->conectar();
+        // require '../infrastructure/clsConexion.php';
+        require '../DAO/DAO.php';
+        // $this->objCon = new clsConexion();
+        // $this->con = $this->objCon->conectar();
         $this->dao = new clsDAO();
     }
 
@@ -54,7 +54,7 @@ class clienteDAO
 
     public function listar()
     {
-        $this->dao->crearConsulta("listarCliente", array(""), "funcion");
+        $this->dao->crearConsulta("listarCliente", array(0), "procedimiento");
         // $sql = "SELECT idcliente,nombre,apellido,cedula,genero,fecha_naci from cliente";
         // $this->objCon->Execute($sql);
     }

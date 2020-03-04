@@ -298,13 +298,13 @@ select eliminarCliente (5);
 -- LISTAR Cliente
 
 DELIMITER//
-CREATE PROCEDURE listarCliente()
+CREATE PROCEDURE listarCliente(idcliente int)
 	COMMENT'listar'
 BEGIN
 	select nombre,apellido,cedula,genero,fecha_naci from cliente order by idcliente;
 END//
 
-call listarCliente();
+call listarCliente(0);
 
 -- MODIFICAR Cliente
 
@@ -444,10 +444,10 @@ call buscarMedi(3);
 -- LISTAR Medicamento
 
 DELIMITER//
-CREATE PROCEDURE listarMedi()
+CREATE PROCEDURE listarMedi(idmedi int)
 	COMMENT'listar'
 BEGIN
 	select nombre, descrip, fecha_venc, cant, fecha_creado, precio, usuario_idusuario, laboratorio_idlaboratorio from medicamento order by idmedicamento;
 END//
 
-call listarMedi();
+call listarMedi(0);

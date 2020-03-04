@@ -64,7 +64,6 @@ function listarClientes() {
         data: { type: "list" },
 
         success: function(respuesta) {
-            //console.log(data);
             const res = JSON.parse(respuesta);
             const info = JSON.parse(res.data);
 
@@ -101,9 +100,10 @@ function listarClientes() {
 }
 
 function buscarCliente(codigo) {
+    console.log(codigo)
     $("#txtIdCliente").val(codigo);
     const objCliente = {
-        idcliente: $("#txtIdCliente").val(),
+        idcliente: codigo,
         type: "search"
     };
 
@@ -111,10 +111,11 @@ function buscarCliente(codigo) {
         type: "post",
         url: "controller/ctlCliente.php",
         async: false,
-        beforeSend: function() {},
+        beforeSend: function() {
+        },
         data: objCliente,
         success: function(res) {
-            // console.log(data);
+            console.log(res);
             const info = JSON.parse(res);
             let data;
             if (info.res !== "NotInfo") {

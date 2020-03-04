@@ -9,12 +9,12 @@ class clsDAO
         require '../infrastructure/clsConexion.php';
         $this->objCon = new clsConexion();
         $this->con = $this->objCon->conectar();
-        $this->dao = new clsDAO();
+        // $this->dao = new clsDAO();
     }
 
     public function crearConsulta($nombreFuncion, array $datos, $tipo)
     {
-        if($tipo =="funcion") {
+        if ($tipo == "funcion") {
             $resultado = "select " . $nombreFuncion . "(";
             foreach ($datos as $valor) {
                 if (is_numeric($valor)) {
@@ -26,7 +26,7 @@ class clsDAO
             $resultadoN = substr($resultado, 0, -1);
             $resultado = $resultadoN . ")";
         }
-        if($tipo =="procedimiento") {
+        if ($tipo == "procedimiento") {
             $resultado = "call " . $nombreFuncion . "(";
             foreach ($datos as $valor) {
                 if (is_numeric($valor)) {
@@ -38,6 +38,10 @@ class clsDAO
             $resultadoN = substr($resultado, 0, -1);
             $resultado = $resultadoN . ")";
         }
-        $this->objCon->ExecuteTransaction($resultado);
+        if (strpos($nombreFuncion, 'listar') !== false || strpos($nombreFuncion, 'buscar') !== false) {
+            $this->objCon->Execute($resultado);
+        } else {
+            $this->objCon->ExecuteTransaction($resultado);
+        }
     }
 }
