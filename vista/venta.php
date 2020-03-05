@@ -18,6 +18,7 @@
     <!-- <script type="text/javascript" src="../resource/js/cargarList.js"></script> -->
     <script type="text/javascript" src="resource/js/gestionCliente.js"></script>
     <script type="text/javascript" src="resource/js/gestionMedi.js"></script>
+    <script type="text/javascript" src="resource/js/gestionLogin.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
             $("#hide").on('click', function() {
@@ -303,7 +304,7 @@
     <br><br><br><br><br>
     <div class="row">
         <div class="col-sm-6">
-            <div class="card">
+            <div class="card" style="border-right-width: 1px; margin-right: 84px;">
                 <div class="card-body">
                     <div id="content" class="col-lg-12">
                         <div id="element" class="col-lg-12" style="display: none;">
@@ -405,7 +406,7 @@
                     </div>
                     <br>
                     <br>
-                    <p><a class="btn btn-primary" href="#" id="show"><i class="fa fa-eye"></i> Agregar Cliente</a></p>
+                    <p><a class="btn btn-primary" href="#" id="show"><i class="fa fa-eye"></i> Agregar Cliente +</a></p>
                     <br>
                     <br>
                     <!-- aca iba el script -->
@@ -413,7 +414,7 @@
             </div>
         </div>
 
-        <div class="col-sm-6">
+        <div class="col-sm-6" style="right: 72px; padding-left: 0px;padding-right: 0px;">
             <div class="card">
                 <div class="card-body">
                     <table>
@@ -423,7 +424,7 @@
                                     <thead>
                                         <p style="text-align: center;"><b>Lista de medicamentos</b></p>
                                         <tr>
-                                        <th style="display: none">id</th>
+                                            <th style="display: none">id</th>
                                             <th>Nombre</th>
                                             <th>Descripción</th>
                                             <th>Fecha de Vencimiento</th>
@@ -448,7 +449,7 @@
 
 
         <div class="col-sm-6">
-            <div class="card">
+            <div class="card" style="border-right-width: 1px; margin-right: 84px;">
                 <div class="card-body">
                     <table>
                         <tr>
@@ -461,7 +462,10 @@
                                 <label>Cedula Cliente.:</label>
                             </td>
                             <td colspan="2">
-                                <input class="form-control" type="number" placeholder="C.C" id="txtCedulaClienteVenta" required>
+                                <!-- <input class="form-control" type="number" placeholder="C.C" id="txtCedulaClienteVenta" required> -->
+                                <select name="" id="">
+                                    <option value="0">Seleccione cliente</option>
+                                </select>
                                 <br>
                             </td>
                         </tr>
@@ -475,6 +479,16 @@
                             </td>
                         </tr>
 
+                        <tr>
+                            <td>
+                                <label>Cantidad:</label>
+                            </td>
+                            <td colspan="2">
+                                <input class="form-control" type="number" placeholder="Cant." id="txtCantidad" required>
+                                <br>
+                            </td>
+                        </tr>
+
                         <!-- ------------------------------
                         
                         venta
@@ -483,15 +497,9 @@
                         ---------------------------------------------------- -->
                         <tr>
                             <td>
-                            </td>
-                            <td>
                                 <input class="btn btn-success" type="button" value="Comprar" id="btnCompra">
                                 <input class="btn btn-outline-dark" type="button" value="Limpiar" id="btnLimpiarD">
                                 <!-- <input type="button" value="Buscar" id="btnBuscar"> -->
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
                             </td>
                             <td>
                                 <input class="btn btn-warning" type="button" value="Editar Compra " id="btnModificarC">

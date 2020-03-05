@@ -8,7 +8,7 @@
     <title>Vacas</title>
 
     <!-- Theme CSS - Includes Bootstrap -->
-     <!-- <link href="../resource/styles/creative.min.css" rel="stylesheet"> -->
+    <!-- <link href="../resource/styles/creative.min.css" rel="stylesheet"> -->
 
     <!-- <link rel="stylesheet" href="../resource/styles/bootstrap.min.css"> -->
     <link href="resource/styles/jquery.dataTables.css" rel="stylesheet">
@@ -16,13 +16,14 @@
     <script type="text/javascript" src="resource/js/jquery.dataTables.js"></script>
     <!-- <script type="text/javascript" src="../resource/js/cargarList.js"></script> -->
     <script type="text/javascript" src="resource/js/gestionMedi.js"></script> -->
+    <script type="text/javascript" src="resource/js/gestionLogin.js"></script>
 </head>
 
 <body>
     <br><br><br><br><br>
     <div class="row">
         <div class="col-sm-6">
-            <div class="card">
+            <div class="card" style="margin-right: 83px;">
                 <div class="card-body">
                     <table>
                         <tr>
@@ -124,15 +125,9 @@
                         </tr>
                         <tr>
                             <td>
-                            </td>
-                            <td>
                                 <input class="btn btn-success" type="button" value="Guardar" id="btnGuardarM">
                                 <input class="btn btn-outline-dark" type="button" value="Limpiar" id="btnLimpiarM">
                                 <!-- <input type="button" value="Buscar" id="btnBuscar"> -->
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
                             </td>
                             <td>
                                 <input class="btn btn-warning" type="button" value="Modificar" id="btnModificarM">
@@ -143,8 +138,8 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-6">
-            <div class="card" style="margin-right: -27px;left: -27px;" >
+        <div class="col-sm-6" style="right: 78px;">
+            <div class="card" style="margin-right: -27px;left: -27px;">
                 <div class="card-body">
                     <table>
                         <tr>

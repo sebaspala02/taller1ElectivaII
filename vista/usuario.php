@@ -16,13 +16,14 @@
     <script type="text/javascript" src="resource/js/jquery.dataTables.js"></script>
     <!-- <script type="text/javascript" src="../resource/js/cargarList.js"></script> -->
     <script type="text/javascript" src="resource/js/gestionUsuario.js"></script>
+    <script type="text/javascript" src="resource/js/gestionLogin.js"></script>
 </head>
 
 <body>
     <br><br><br><br><br>
     <div class="row">
         <div class="col-sm-6">
-            <div class="card">
+            <div class="card" style="border-right-width: 1px; margin-right: 254px;">
                 <div class="card-body">
                     <table>
                         <tr>
@@ -97,18 +98,14 @@
                         </tr>
                         <tr>
                             <td>
-                            </td>
-                            <td>
                                 <input class="btn btn-success" type="button" value="Guardar" id="btnGuardar">
                                 <input class="btn btn-outline-dark" type="button" value="Limpiar" id="btnLimpiar">
                                 <!-- <input type="button" value="Buscar" id="btnBuscar"> -->
                             </td>
-                        </tr>
-                        <tr>
-                            <td>
-                            </td>
                             <td>
                                 <input class="btn btn-warning" type="button" value="Modificar" id="btnModificar">
+                            </td>
+                            <td>
                                 <input class="btn btn-danger" type="button" value="Eliminar" id="btnEliminar">
                             </td>
                         </tr>
@@ -124,8 +121,8 @@
 
 
 
-        <div class="col-sm-6">
-            <div class="card" style="margin-right: 91px;">
+        <div class="col-sm-6" style="right: 172px; padding-left: 0px;padding-right: 0px;">
+            <div class="card" style="margin-right: -60px;left: -27px;">
                 <div class="card-body">
                     <table>
                         <tr>
