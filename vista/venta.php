@@ -17,7 +17,7 @@
     <script type="text/javascript" src="resource/js/jquery.dataTables.js"></script>
     <!-- <script type="text/javascript" src="../resource/js/cargarList.js"></script> -->
     <script type="text/javascript" src="resource/js/gestionCliente.js"></script>
-    <script type="text/javascript" src="resource/js/gestionMedi.js"></script>
+    <script type="text/javascript" src="resource/js/gestionVenta.js"></script>
     <script type="text/javascript" src="resource/js/gestionLogin.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
@@ -35,7 +35,7 @@
 
 
             listarClientes();
-            listarMedicamentos()
+            listarMedi()
             // listDeptos();
             // listMunicipios();
             $("#btnGuardarC").click(guardarCliente);
@@ -422,7 +422,7 @@
                     <table>
                         <tr>
                             <td rowspan="10">
-                                <table class="table table-hover" id="tableMedis">
+                                <table class="table table-hover" id="tableMedisV">
                                     <thead>
                                         <b>
                                             <h3 style="text-align: center;">Lista de Medicamentos</h3>
@@ -437,14 +437,7 @@
                                             <!-- <th>Descripción</th> -->
                                         </tr>
                                     </thead>
-                                    <tr>
-                                        <td>jajajajajajajajajajajja</td>
-                                        <td>asasas</td>
-                                        <td>asasas</td>
-                                        <td>$1.03783737878</td>
-                                        <td>asasas</td>
-                                    </tr>
-                                    <tbody id="listaMedi">
+                                    <tbody id="listaMediV">
 
                                     </tbody>
                                 </table>
@@ -459,7 +452,7 @@
         <div class="col-sm-6">
             <div class="card" style="border-right-width: 1px; margin-right: 54px;">
                 <div class="card-body">
-                    <table class="table table-hover">
+                    <table class="table table-hover" id="tableRealizarV">
                         <!-- <tr>
                             <td>
                                 <h1>Realizar Venta</h1>
@@ -519,27 +512,13 @@
                                 <!-- <th>Descripción</th> -->
                             </tr>
                         </thead>
-                        <tr>
-                            <td>asassasasa</td>
-                            <td>asassasasa</td>
-                            <td><input class="col-md-12" type="number" name="txtcantidad" id="" placeholder="Cant."></td>
-                            <td>asassasasa</td>
-                        </tr>
-                        <tr>
-                            <td>asassasasa</td>
-                            <td>asassasasa</td>
-                            <td><input class="col-md-12" type="number" name="txtcantidad" id="" placeholder="Cant."></td>
-                            <td>asassasasa</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                &nbsp;
-                            </td>
-                        </tr>
+                        <tbody id="bodyTableV">
+
+                        </tbody>
                         <tr>
                             <td>
                                 <input class="btn btn-success" type="button" value="Comprar" id="btnCompra">
-                                <!-- <input type="button" value="Buscar" id="btnBuscar"> -->
+                              
                             </td>
                             <td>
                                 <input class="btn btn-outline-dark" type="button" value="Limpiar" id="btnLimpiarD">
