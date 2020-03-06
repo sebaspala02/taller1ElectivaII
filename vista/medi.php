@@ -102,7 +102,7 @@
                             </td>
                             <td colspan="2">
                                 <div class="form-group">
-                                    <select class="form-control" id="txtIdUsuario" name="usuario" onchange="listUsuarios()"></select>
+                                    <select class="form-control" id="txtIdUsuario" name="usuario"></select>
                                 </div>
                             </td>
                         </tr>
