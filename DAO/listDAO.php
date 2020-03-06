@@ -9,18 +9,23 @@ class listDAO {
         $this->con = $this->objCon->conectar();
     }
 
-    public function listDeptos(){
-        $sql = "SELECT * from Departamento";
+    public function listUsuarios(){
+        $sql = "SELECT * FROM usuario";
         $this->objCon->Execute($sql);
     }
 
-    public function listMuni($valor){
-        $sql = "SELECT * from Municipio where Departamento_idDepartamento = " . $valor;
+    public function listLabs(){
+        $sql = "SELECT * FROM laboratorio";
         $this->objCon->Execute($sql);
     }
 
-    public function listFinca(){
-        $sql = "SELECT * from Finca";
-        $this->objCon->Execute($sql);
-    }
+    // public function listMuni($valor){
+    //     $sql = "SELECT * from Municipio where Departamento_idDepartamento = " . $valor;
+    //     $this->objCon->Execute($sql);
+    // }
+
+    // public function listFinca(){
+    //     $sql = "SELECT * from Finca";
+    //     $this->objCon->Execute($sql);
+    // }
 }

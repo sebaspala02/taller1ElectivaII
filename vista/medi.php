@@ -17,6 +17,7 @@
     <!-- <script type="text/javascript" src="../resource/js/cargarList.js"></script> -->
     <script type="text/javascript" src="resource/js/gestionMedi.js"></script> -->
     <script type="text/javascript" src="resource/js/gestionLogin.js"></script>
+    <script type="text/javascript" src="resource/js/cargarList.js"></script>
 </head>
 
 <body>
@@ -101,11 +102,7 @@
                             </td>
                             <td colspan="2">
                                 <div class="form-group">
-                                    <select class="form-control" id="txtIdUsuario" name="usuario">
-                                        <option value="1">
-                                            1
-                                        </option>
-                                    </select>
+                                    <select class="form-control" id="txtIdUsuario" name="usuario" onchange="listUsuarios()"></select>
                                 </div>
                             </td>
                         </tr>
@@ -115,11 +112,7 @@
                             </td>
                             <td colspan="2">
                                 <div class="form-group">
-                                    <select class="form-control" id="txtIdLaboratorio" name="laboratorio">
-                                        <option value="1">
-                                            1
-                                        </option>
-                                    </select>
+                                    <select class="form-control" id="txtIdLaboratorio" name="laboratorio"></select>
                                 </div>
                             </td>
                         </tr>

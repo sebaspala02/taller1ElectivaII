@@ -1,26 +1,26 @@
 $(document).ready(function() {
-    // listDeptos();
-    // listFinca();
+    listUsuarios();
+    listLabs();
 });
 
-function listDeptos() {
+function listUsuarios() {
     $.ajax({
         type: 'post',
         url: "controller/ctlList.php",
         beforeSend: function() {
 
         },
-        data: { type: 'loadListDepto' },
+        data: { type: 'loadListUsuarios' },
         success: function(respuesta) {
             const res = JSON.parse(respuesta);
             const info = JSON.parse(res.data);
-            var lista = "<option value='0'>---SELECCIONE---</option>";
+            var lista = "<option value='0'>.: Seleccionar :. </option>";
 
             if (info.length > 0) {
                 for (k = 0; k < info.length; k++) {
-                    lista = lista + "<option value='" + info[k].idDepartamento + "'>" + info[k].nombreDepto + "</option>";
+                    lista = lista + "<option value='" + info[k].idusuario + "'>" + info[k].nombre + "</option>";
                 }
-                $("#txtDepto").html(lista);
+                $("#txtIdUsuario").html(lista);
             } else {
 
             }
@@ -32,24 +32,24 @@ function listDeptos() {
     });
 }
 
-function listFinca() {
+function listLabs() {
     $.ajax({
         type: 'post',
         url: "controller/ctlList.php",
         beforeSend: function() {
 
         },
-        data: { type: 'loadListFinca' },
+        data: { type: 'loadListLabs' },
         success: function(respuesta) {
             const res = JSON.parse(respuesta);
             const info = JSON.parse(res.data);
-            var lista = "<option value='0'>---SELECCIONE---</option>";
+            var lista = "<option value='0'>.: Seleccionar :. </option>";
 
             if (info.length > 0) {
                 for (k = 0; k < info.length; k++) {
-                    lista = lista + "<option value='" + info[k].idFinca + "'>" + info[k].nombreFinca + "</option>";
+                    lista = lista + "<option value='" + info[k].idlaboratorio + "'>" + info[k].nombre + "</option>";
                 }
-                $("#txtFinca").html(lista);
+                $("#txtIdLaboratorio").html(lista);
             } else {
 
             }
@@ -61,33 +61,62 @@ function listFinca() {
     });
 }
 
-function listMunicipios() {
-    const objMunicipio = {
-        valor: $("#txtDepto").val(),
-        type: 'loadListMuni'
-    };
-    $.ajax({
-        type: 'post',
-        url: "controller/ctlList.php",
-        beforeSend: function() {},
-        data: objMunicipio,
-        success: function(respuesta) {
+// function listFinca() {
+//     $.ajax({
+//         type: 'post',
+//         url: "controller/ctlList.php",
+//         beforeSend: function() {
 
-            const res = JSON.parse(respuesta);
-            const info = JSON.parse(res.data);
+//         },
+//         data: { type: 'loadListFinca' },
+//         success: function(respuesta) {
+//             const res = JSON.parse(respuesta);
+//             const info = JSON.parse(res.data);
+//             var lista = "<option value='0'>---SELECCIONE---</option>";
 
-            var lista = "<option value='0'>---SELECCIONE---</option>";
+//             if (info.length > 0) {
+//                 for (k = 0; k < info.length; k++) {
+//                     lista = lista + "<option value='" + info[k].idFinca + "'>" + info[k].nombreFinca + "</option>";
+//                 }
+//                 $("#txtFinca").html(lista);
+//             } else {
 
-            if (info.length > 0) {
-                for (k = 0; k < info.length; k++) {
-                    lista = lista + "<option value='" + info[k].idMunicipio + "'>" + info[k].nombreMpio + "</option>";
-                }
-                $("#txtMunicipio").html(lista);
-            } else {}
-        },
-        error: (jqXHR, textStatus, errorThrown) => {
-            alert("Error detectado: " + textStatus + "\nException: " + errorThrown);
-            alert("verifique la ruta de archivo!");
-        }
-    });
-}
+//             }
+//         },
+//         error: (jqXHR, textStatus, errorThrown) => {
+//             alert("Error detectado: " + textStatus + "\nException: " + errorThrown);
+//             alert("verifique la ruta de archivo!");
+//         }
+//     });
+// }
+
+// function listMunicipios() {
+//     const objMunicipio = {
+//         valor: $("#txtDepto").val(),
+//         type: 'loadListMuni'
+//     };
+//     $.ajax({
+//         type: 'post',
+//         url: "controller/ctlList.php",
+//         beforeSend: function() {},
+//         data: objMunicipio,
+//         success: function(respuesta) {
+
+//             const res = JSON.parse(respuesta);
+//             const info = JSON.parse(res.data);
+
+//             var lista = "<option value='0'>---SELECCIONE---</option>";
+
+//             if (info.length > 0) {
+//                 for (k = 0; k < info.length; k++) {
+//                     lista = lista + "<option value='" + info[k].idMunicipio + "'>" + info[k].nombreMpio + "</option>";
+//                 }
+//                 $("#txtMunicipio").html(lista);
+//             } else {}
+//         },
+//         error: (jqXHR, textStatus, errorThrown) => {
+//             alert("Error detectado: " + textStatus + "\nException: " + errorThrown);
+//             alert("verifique la ruta de archivo!");
+//         }
+//     });
+// }
