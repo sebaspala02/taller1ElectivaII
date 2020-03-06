@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Venta</title>
+    <title>Lista-Venta</title>
 
     <!-- Theme CSS - Includes Bootstrap -->
     <link href="resource/styles/creative.min.css" rel="stylesheet">
@@ -19,7 +19,7 @@
     <script type="text/javascript" src="resource/js/gestionCliente.js"></script>
     <script type="text/javascript" src="resource/js/gestionMedi.js"></script>
     <script type="text/javascript" src="resource/js/gestionLogin.js"></script>
-    <script type="text/javascript">
+    <!-- <script type="text/javascript">
         $(document).ready(function() {
             $("#hide").on('click', function() {
                 $("#element").hide();
@@ -297,20 +297,17 @@
 
 
         });
-    </script>
+    </script> -->
 </head>
 
 <body>
     <br><br><br><br><br>
     <div class="row">
-        <div class="col-sm-6">
+        <!-- <div class="col-sm-6">
             <div class="card" style="border-right-width: 1px; margin-right: 54px;">
                 <div class="card-body">
                     <div id="content" class="col-lg-12">
                         <div id="element" class="col-lg-12" style="display: none;">
-                            <!-- <div id="close"><a class="btn btn-small" href="#" id="hide" title="Cerrar"><i class="fa fa-close"></i></a></div> -->
-                            <!-- <h2>What is Lorem Ipsum?</h2>
-                            <p>Lorem Ipsum...</p> -->
                             <table>
                                 <tr>
                                     <td>
@@ -391,7 +388,6 @@
                                             <th>Cedula</th>
                                             <th>Sexo</th>
                                             <th>Fecha Nacimiento</th>
-                                            <!-- <th>Descripción</th> -->
                                         </tr>
                                     </thead>
                                     <tbody id="listaCliente">
@@ -411,29 +407,30 @@
                     </div>
                     <br>
                     <br>
-                    <!-- aca iba el script -->
+                    aca iba el script
                 </div>
             </div>
-        </div>
+        </div> -->
 
-        <div class="col-sm-6" style="right: 45px;">
-            <div class="card">
-                <div class="card-body" style="margin-left: 1px;">
+        <div class="col-sm-6">
+            <div class="card" style="margin-right: -55px;">
+                <div class="card-body">
                     <table>
                         <tr>
                             <td rowspan="10">
                                 <table class="table table-hover" id="tableMedis">
                                     <thead>
                                         <b>
-                                            <h3 style="text-align: center;">Lista de Medicamentos</h3>
+                                            <h3 style="text-align: center;">Lista de Ventas</h3>
                                         </b>
                                         <tr>
                                             <th style="display: none">id</th>
-                                            <th>Nombre</th>
-                                            <th>Fecha de Vencimiento</th>
-                                            <th>Cantidad</th>
-                                            <th>Precio</th>
+                                            <th>Cliente</th>
+                                            <th>Medicamento</th>
                                             <th>Laboratorio</th>
+                                            <th>Cantidad</th>
+                                            <th>Precio/Unitario</th>
+                                            
                                             <!-- <th>Descripción</th> -->
                                         </tr>
                                     </thead>
@@ -454,13 +451,16 @@
                 </div>
             </div>
         </div>
+    </div>
+</body>
 
+</html>
 
-        <div class="col-sm-6">
+<!-- <div class="col-sm-6">
             <div class="card" style="border-right-width: 1px; margin-right: 54px;">
                 <div class="card-body">
                     <table class="table table-hover">
-                        <!-- <tr>
+                        <tr>
                             <td>
                                 <h1>Realizar Venta</h1>
                             </td>
@@ -495,28 +495,24 @@
                                 <input class="form-control" type="number" placeholder="Cant." id="txtCantidad" required>
                                 <br>
                             </td>
-                        </tr> -->
+                        </tr>
 
-                        <!-- ------------------------------
+                        ------------------------------
                         
                         venta
 
-                        ---------------------------------------------------- -->
+                        ----------------------------------------------------
 
                         <thead>
                             <b>
                                 <h2 style="text-align: center;">Realizar Venta</h2>
                             </b>
-                            <hr>
-                            <label for=""><b>Cliente: &nbsp;&nbsp;&nbsp;</b></label>
-                            <input type="text" name="txtCedula" id="" placeholder="Cedula Cliente">
                             <tr>
                                 <th style="display: none">id</th>
                                 <th>Medicamento</th>
                                 <th>Laboratorio</th>
                                 <th>Cantidad</th>
                                 <th>Precio/Unitario</th>
-                                <!-- <th>Descripción</th> -->
                             </tr>
                         </thead>
                         <tr>
@@ -526,20 +522,8 @@
                             <td>asassasasa</td>
                         </tr>
                         <tr>
-                            <td>asassasasa</td>
-                            <td>asassasasa</td>
-                            <td><input class="col-md-12" type="number" name="txtcantidad" id="" placeholder="Cant."></td>
-                            <td>asassasasa</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                &nbsp;
-                            </td>
-                        </tr>
-                        <tr>
                             <td>
                                 <input class="btn btn-success" type="button" value="Comprar" id="btnCompra">
-                                <!-- <input type="button" value="Buscar" id="btnBuscar"> -->
                             </td>
                             <td>
                                 <input class="btn btn-outline-dark" type="button" value="Limpiar" id="btnLimpiarD">
@@ -554,9 +538,4 @@
                     </table>
                 </div>
             </div>
-        </div>
-
-    </div>
-</body>
-
-</html>
+        </div> -->

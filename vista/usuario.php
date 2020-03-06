@@ -127,7 +127,7 @@
                     <table>
                         <tr>
                             <td rowspan="10">
-                                <table border="1" id="tableUsuarios">
+                                <table class="table table-hover" id="tableUsuarios">
                                     <thead>
                                         <tr>
                                             <th style="display: none">id</th>

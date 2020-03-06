@@ -23,7 +23,7 @@
     <br><br><br><br><br>
     <div class="row">
         <div class="col-sm-6">
-            <div class="card" style="margin-right: 83px;">
+            <div class="card" style="margin-right: 165px;">
                 <div class="card-body">
                     <table>
                         <tr>
@@ -138,14 +138,15 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-6" style="right: 78px;">
-            <div class="card" style="margin-right: -27px;left: -27px;">
-                <div class="card-body">
+        <div class="col-sm-6" style="right: 165px;">
+            <div class="card" style="margin-right: -145px;">
+                <div class="card-body" style="margin-right: 27px;"> 
                     <table>
                         <tr>
                             <td rowspan="10">
-                                <table border="1" id="tableMedis">
+                                <table class="table table-hover" id="tableMedis">
                                     <thead>
+                                        <b><h3 style="text-align: center;">Lista Medicamentos</h3></b>
                                         <tr>
                                             <th style="display: none">id</th>
                                             <th>Nombre</th>
@@ -159,6 +160,16 @@
                                             <!-- <th>Descripción</th> -->
                                         </tr>
                                     </thead>
+                                    <tr>
+                                        <td>Dolex</td>
+                                        <td>Trata la fiebre y el dolor de cabeza</td>
+                                        <td>09-08-2021</td>
+                                        <td>12</td>
+                                        <td>01-01-2012</td>
+                                        <td>$12.000</td>
+                                        <td>Hernan Ramirez</td>
+                                        <td>Genfar S.A</td>
+                                    </tr>
                                     <tbody id="listaMedi">
 
                                     </tbody>
