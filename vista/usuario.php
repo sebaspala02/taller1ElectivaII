@@ -129,6 +129,8 @@
                             <td rowspan="10">
                                 <table class="table table-hover" id="tableUsuarios">
                                     <thead>
+                                    <b><h3 style="text-align: center;">Lista de Usuarios</h3></b>
+                                    <hr>
                                         <tr>
                                             <th style="display: none">id</th>
                                             <th>Cedula</th>

@@ -182,7 +182,8 @@ CREATE FUNCTION eliminarUsuario ( `vidusuario` INT) RETURNS INT(1)
   COMMENT"no se que estoy haciendo"
   BEGIN
 	DECLARE res INT DEFAULT 0;
-IF EXISTS(select idusuario from usuario where idusuario=vidusuario)
+    -- select idusuario from usuario where idusuario=vidusuario
+IF NOT EXISTS(select m.usuario_idusuario from medicamento m join usuario u  on u.idusuario = m.usuario_idusuario where idusuario=vidusuario)
 	THEN
 		DELETE FROM usuario WHERE (`idusuario` = `vidusuario`);
         set res = 1;
@@ -191,15 +192,15 @@ RETURN res;
 END//
 -- DELIMITER;
 
-select eliminarUsuario (5);
+/*select eliminarUsuario (5);*/
 
 -- LISTAR
 
-DELIMITER//
-CREATE PROCEDURE listarUsuario(idusuario int)
+/*DELIMITER//*/
+CREATE PROCEDURE listarUsuario(vidusuario int)
 	COMMENT'listar'
 BEGIN
-	select cedula,nombre,apellido,correo,usuario,password from usuario order by idusuario;
+	select idusuario,cedula,nombre,apellido,correo,usuario,password from usuario order by idusuario;
 END//
 
 call listarUsuario(1);
@@ -237,7 +238,7 @@ select modificarUsuario (3,3333,'hell','bad','hell@bad.com','jeje',123);
 
 -- BUSCAR
 
-DELIMITER//
+-- DELIMITER//
 CREATE PROCEDURE buscarUsuario(vidusuario int)
 	COMMENT'buscar'
 BEGIN
@@ -250,7 +251,7 @@ call buscarUsuario(3);
 
 -- GUARDAR Cliente
 
-DELIMITER //
+-- DELIMITER //
 CREATE FUNCTION guardarCliente ( `vnombre` VARCHAR(45),
   `vapellido` VARCHAR(45),
   `vcedula` INT,
@@ -276,7 +277,7 @@ select guardarCliente ('willy','colon',0971,'Masculino','1987-03-12');
 
 -- ELIMINAR USUARIO
 
-DELIMITER //
+-- DELIMITER //
 CREATE FUNCTION eliminarCliente ( `vidcliente` INT) RETURNS INT(1)
   
   READS SQL DATA
@@ -293,22 +294,22 @@ RETURN res;
 END//
 -- DELIMITER;
 
-select eliminarCliente (5);
+-- select eliminarCliente (5);
 
 -- LISTAR Cliente
 
-DELIMITER//
-CREATE PROCEDURE listarCliente(idcliente int)
+-- DELIMITER//
+CREATE PROCEDURE listarCliente(vidcliente int)
 	COMMENT'listar'
 BEGIN
-	select nombre,apellido,cedula,genero,fecha_naci from cliente order by idcliente;
+	select idcliente,nombre,apellido,cedula,genero,fecha_naci from cliente order by idcliente;
 END//
 
 call listarCliente(0);
 
 -- MODIFICAR Cliente
 
-DELIMITER //
+-- DELIMITER //
 CREATE FUNCTION modificarCliente ( `vidcliente` INT,
   `vnombre` VARCHAR(45),
   `vapellido` VARCHAR(45),
@@ -338,7 +339,7 @@ select modificarCliente (4,'pedro','navaja',2345567,'Femenino','1987-03-12');
 
 -- BUSCAR Cliente
 
-DELIMITER//
+-- DELIMITER//
 CREATE PROCEDURE buscarCliente(vidcliente int)
 	COMMENT'buscar'
 BEGIN
@@ -349,7 +350,7 @@ call buscarCliente(3);
 
 -- ______________________________________MEDICAMENTO_________________________________________________
 
-DELIMITER //
+-- DELIMITER //
 CREATE FUNCTION guardarMedicamento (
   `vnombre` VARCHAR(45),
   `vdescrip` VARCHAR(45),
@@ -377,7 +378,7 @@ RETURN res;
 END//
 -- DELIMITER;
 
-DELIMITER //
+-- DELIMITER //
 CREATE FUNCTION editarMedicamento (
   `vidmedicamento` INT,
   `vnombre` VARCHAR(45),
@@ -408,7 +409,7 @@ RETURN res;
 END//
 -- DELIMITER;
 
-DELIMITER //
+-- DELIMITER //
 CREATE FUNCTION eliminarMedicamento (
   `vidmedicamento` INT
   ) RETURNS INT(1)
@@ -431,7 +432,7 @@ END//
 
 -- BUSCAR Medi
 
-DELIMITER//
+-- DELIMITER//
 CREATE PROCEDURE buscarMedi(vidmedicamento int)
 	COMMENT'buscar'
 BEGIN
@@ -443,11 +444,11 @@ call buscarMedi(3);
 
 -- LISTAR Medicamento
 
-DELIMITER//
-CREATE PROCEDURE listarMedi(idmedi int)
+-- DELIMITER//
+CREATE PROCEDURE listarMedi(vidmedicamento int)
 	COMMENT'listar'
 BEGIN
-	select nombre, descrip, fecha_venc, cant, fecha_creado, precio, usuario_idusuario, laboratorio_idlaboratorio from medicamento order by idmedicamento;
+	select idmedicamento,nombre, descrip, fecha_venc, cant, fecha_creado, precio, usuario_idusuario, laboratorio_idlaboratorio from medicamento order by idmedicamento;
 END//
 
 call listarMedi(0);

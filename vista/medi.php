@@ -24,17 +24,20 @@
     <br><br><br><br><br>
     <div class="row">
         <div class="col-sm-6">
-            <div class="card" style="margin-right: 165px;">
+            <div class="card" style="margin-right: 265px;">
                 <div class="card-body">
                     <table>
                         <tr>
                             <td>
-                                <br>
+                                <h3>Gestionar</h3>
+                            </td>
+                            <td>
+                                <h3> Medicamentos</h3>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <h1>Gestionar Medicamentos</h1>
+                                <br>
                             </td>
                         </tr>
                         <tr>
@@ -119,41 +122,48 @@
                         <tr>
                             <td>
                                 <input class="btn btn-success" type="button" value="Guardar" id="btnGuardarM">
-                                <input class="btn btn-outline-dark" type="button" value="Limpiar" id="btnLimpiarM">
                                 <!-- <input type="button" value="Buscar" id="btnBuscar"> -->
                             </td>
                             <td>
                                 <input class="btn btn-warning" type="button" value="Modificar" id="btnModificarM">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
                                 <input class="btn btn-danger" type="button" value="Eliminar" id="btnEliminarM">
+                            </td>
+                            <td>
+                                <input class="btn btn-outline-dark" type="button" value="Limpiar" id="btnLimpiarM">
                             </td>
                         </tr>
                     </table>
                 </div>
             </div>
         </div>
-        <div class="col-sm-6" style="right: 165px;">
-            <div class="card" style="margin-right: -145px;">
-                <div class="card-body" style="margin-right: 27px;"> 
-                    <table>
-                        <tr>
-                            <td rowspan="10">
-                                <table class="table table-hover" id="tableMedis">
-                                    <thead>
-                                        <b><h3 style="text-align: center;">Lista Medicamentos</h3></b>
-                                        <tr>
-                                            <th style="display: none">id</th>
-                                            <th>Nombre</th>
-                                            <th>Descripción</th>
-                                            <th>Fecha de Vencimiento</th>
-                                            <th>Cantidad</th>
-                                            <th>Fecha de Creación</th>
-                                            <th>Precio</th>
-                                            <th>Usuario</th>
-                                            <th>Laboratorio</th>
-                                            <!-- <th>Descripción</th> -->
-                                        </tr>
-                                    </thead>
-                                    <!-- <tr>
+        <div class="col-sm-6" style="right: 275px;">
+            <div class="card" style="margin-right: -265px;">
+                <div class="card-body" style="margin-right: 27px;">
+                    <div class="table-responsive-sm">
+                        <table class="table" id="tableMedis">
+                            <thead>
+                                <b>
+                                    <h3 style="text-align: center;">Lista Medicamentos</h3>
+                                </b>
+                                <hr>
+                                <tr>
+                                    <th style="display: none">id</th>
+                                    <th>Nombre</th>
+                                    <th>Descripción</th>
+                                    <th>Fecha de Vencimiento</th>
+                                    <th>Cantidad</th>
+                                    <th>Fecha de Creación</th>
+                                    <th>Precio</th>
+                                    <th>Usuario</th>
+                                    <th>Laboratorio</th>
+                                    <!-- <th>Descripción</th> -->
+                                </tr>
+                            </thead>
+                            <!-- <tr>
                                         <td>Dolex</td>
                                         <td>Trata la fiebre y el dolor de cabeza</td>
                                         <td>09-08-2021</td>
@@ -163,13 +173,11 @@
                                         <td>Hernan Ramirez</td>
                                         <td>Genfar S.A</td>
                                     </tr> -->
-                                    <tbody id="listaMedi">
+                            <tbody id="listaMedi">
 
-                                    </tbody>
-                                </table>
-                            </td>
-                        </tr>
-                    </table>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
