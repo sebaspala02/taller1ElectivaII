@@ -451,3 +451,44 @@ BEGIN
 END//
 
 call listarMedi(0);
+
+-- VENTA
+
+-- CREATE FUNCTION `guardarVenta`(vtotal integer,vfecha date,
+-- vinv varchar(2000),vcant varchar(2000),vcliente integer,vusuario integer) RETURNS int(1)
+-- READS SQL DATA
+-- DETERMINISTIC
+-- COMMENT 'Guardar venta'
+-- BEGIN
+-- DECLARE res INT DEFAULT 0;
+-- DECLARE inv INT DEFAULT -1;
+-- DECLARE can INT DEFAULT -1;
+-- DECLARE id_ven INT DEFAULT -1;
+-- DECLARE inv_old INT DEFAULT 0;
+-- DECLARE inv_update INT;
+-- insert into venta(fecha_venta,valor_total,cliente_idcliente,usuario_idusuario)
+-- VALUES (vfecha,vtotal, vcliente, vempleado);
+
+-- WHILE (LOCATE(',', vinv) > 0) DO
+
+-- SET inv = ELT(1, vinv);
+-- SET can = ELT(1, vcant);
+
+
+
+-- SET inv_old = (SELECT cant FROM medicamento where idmedicamento = inv);
+-- SET inv_update = inv_old - can;
+
+-- SET id_ven = (SELECT MAX(idventa) from venta where cliente_idcliente=vcliente and usuario_idusuario=vusuario);
+
+-- SET vinv = SUBSTRING(vinv, LOCATE(',',vinv) + 1);
+-- SET vcant = SUBSTRING(vcant, LOCATE(',',vcant) + 1);
+
+-- IF inv <> ',' THEN
+-- INSERT INTO detalleventa(cant, venta_idventa, medicamento_idmedicamento) VALUES (can, id_ven, inv);
+-- UPDATE medicamento SET cant = inv_update WHERE idmedicamento = inv;
+-- END IF;
+-- END WHILE;
+-- SET res = 1;
+-- RETURN res;
+-- END

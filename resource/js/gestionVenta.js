@@ -5,9 +5,10 @@ $(document).ready(function () {
     listarVentas();
     // listDeptos();
     // listMunicipios();
-    $("#btnGuardarV").click(guardarVenta);
+    // $("#btnGuardarV").click(guardarVenta);
     $("#btnModificarV").click(guardarVenta);
     $("#btnEliminarV").click(eliminarVenta);
+    $('#btnCompra').click(guardarVenta)
     $('#tableRealizarV').on('click', 'a', function (e) { $(this).closest('tr').remove(); calcularPrecio() })
 });
 
@@ -196,14 +197,17 @@ function agregarMedi(id, nombre, precio, labo, cantidad) {
 // }
 function calcularPrecio() {
     precioTotal = 0
+    medisV = []
+    cantmedisV = []
     $('#bodyTableV tr').each(function () {
-        let prec = parseFloat($(this).find("td").find("input").val());
-        let cant = parseFloat(($(this).find("td")).eq(5).text());
+        let id = parseFloat(($(this).find("td")).eq(0).text());
+        let cant = parseFloat($(this).find("td").find("input").val());
+        let prec = parseFloat(($(this).find("td")).eq(5).text());
         precioTotal += (cant * prec)
+        medisV.push(id)
+        cantmedisV.push(cant)
     });
     $('#precioVenta').val(precioTotal)
-    // medisV.push(idmedi)
-    // cantmedisV.push(cant)
 }
 function listarVenta(codigo) {
     $("#txtIdCliente").val(codigo);
@@ -236,6 +240,55 @@ function listarVenta(codigo) {
             }
         }
     });
+}
+function guardarVenta() {
+    let objCliente = {
+        vtotal: precioTotal,
+        vfecha: new Date(),
+        vinv: medisV,
+        vcant: cantmedisV,
+        vcliente: $("#txtCedulaClienteVenta").val(),
+        vusuario: $("#txtusuario_idusuario").val(),
+        type: ""
+    };
+    if (
+        objCliente.vtotal !== "" &&
+        objCliente.vfecha !== "" &&
+        objCliente.vinv !== "" &&
+        objCliente.vcant !== "" &&
+        objCliente.vcliente !== "" &&
+        objCliente.vusuario !== ""
+    ) {
+        if (objCliente.idcliente !== "") {
+            objCliente.type = "update";
+        } else {
+            objCliente.type = "save";
+        }
+        $.ajax({
+            type: "post",
+            url: "controller/ctlCliente.php",
+            beforeSend: function () { },
+            data: objCliente,
+            success: function (data) {
+                console.log(data);
+                var info = JSON.parse(data);
+                console.log(info);
+                if (info.res === "Success") {
+                    limpiar();
+                    alert("Operacion exitosa");
+                    listarVentas();
+                } else {
+                    alert("No se pudo almacenar");
+                }
+            },
+            error: (jqXHR, textStatus, errorThrown) => {
+                alert("Error detectado: " + textStatus + "\nException: " + errorThrown);
+                alert("verifique la ruta de archivo!");
+            }
+        });
+    } else {
+        alert("Ingrese todos los datos");
+    }
 }
 
 

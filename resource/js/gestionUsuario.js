@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function () {
     // $('#tableUsuarios').dataTable( {
     //     "language": {
     //         "lengthMenu": "Mostrar _MENU_ elementos por pagina",
@@ -50,26 +50,38 @@ function guardarUsuario() {
         $.ajax({
             type: 'post',
             url: "controller/ctlUsuario.php",
-            beforeSend: function() {},
+            beforeSend: function () { },
             data: objUsuario,
-            success: function(data) {
+            success: function (data) {
                 var info = JSON.parse(data);
                 console.log(info);
                 if (info.res === "Success") {
                     limpiar();
-                    alert("Operacion exitosa");
+                    Swal.fire(
+                        'Operacion Exitosa!',
+                        'Usuario guardado',
+                        'success'
+                    )
                     listarUsuarios();
                 } else {
-                    alert("No se pudo almacenar");
+                    Swal.fire(
+                        'Error!',
+                        'No se pudo almacenar',
+                        'error'
+                    )
                 }
             },
             error: (jqXHR, textStatus, errorThrown) => {
-                alert("Error detectado: " + textStatus + "\nException: " + errorThrown);
-                alert("verifique la ruta de archivo!");
+                Swal.fire("Error detectado: " + textStatus + "\nException: " + errorThrown);
+                aleSwal.firert("verifique la ruta de archivo!");
             }
         });
     } else {
-        alert("Ingrese todos los datos");
+        Swal.fire(
+            'No se pudo almacenar',
+            'Llenar todos los campos',
+            'warning'
+        )
     }
 }
 
@@ -77,12 +89,12 @@ function listarUsuarios() {
     $.ajax({
         type: 'post',
         url: "controller/ctlUsuario.php",
-        beforeSend: function() {
+        beforeSend: function () {
 
         },
         data: { type: 'list' },
 
-        success: function(respuesta) {
+        success: function (respuesta) {
             const res = JSON.parse(respuesta);
             const info = JSON.parse(res.data);
 
@@ -124,16 +136,16 @@ function buscarUsuario(codigo) {
         idusuario: $("#txtIdUsuario").val(),
         type: 'search'
     };
-    
+
     $.ajax({
         type: 'post',
         url: "controller/ctlUsuario.php",
         async: false,
-        beforeSend: function() {
+        beforeSend: function () {
 
         },
         data: objUsuario,
-        success: function(res) {
+        success: function (res) {
             // console.log(data);
             const info = JSON.parse(res);
             let data;
@@ -195,11 +207,11 @@ function eliminarUsuario() {
         $.ajax({
             type: 'post',
             url: "controller/ctlUsuario.php",
-            beforeSend: function() {
+            beforeSend: function () {
 
             },
             data: objUsuario,
-            success: function(res) {
+            success: function (res) {
                 var info = JSON.parse(res);
                 if (info.res == "Success") {
                     limpiar();

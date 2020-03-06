@@ -451,7 +451,7 @@
 
         <div class="col-sm-6">
             <br>
-            <div class="card" style="border-right-width: 1px; margin-right: -205px;">
+            <div class="card" style="border-right-width: 1px; margin-right: -285px;">
                 <div class="card-body">
                     <table class="table table-hover" id="tableRealizarV">
                         <!-- <tr>
@@ -511,6 +511,7 @@
                                 <th>Cantidad</th>
                                 <th>Inventario</th>
                                 <th>Precio/Unitario</th>
+                                <th>Accion</th>
                                 <!-- <th>Descripción</th> -->
                             </tr>
                         </thead>
