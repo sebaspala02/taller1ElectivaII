@@ -412,7 +412,7 @@
             </div>
         </div> -->
 
-        <div class="col-sm-6">
+        <div class="col-sm-6" style="right: -355px;">
             <div class="card" style="margin-right: -55px;">
                 <div class="card-body">
                     <table>
