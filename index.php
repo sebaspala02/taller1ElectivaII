@@ -17,6 +17,9 @@
     <!-- <script type="text/javascript" src="resource/js/gestionMuni.js"></script> -->
     <script type="text/javascript" src="resource/js/gestionMedi.js"></script>
     <script type="text/javascript" src="resource/js/gestionCliente.js"></script>
+    <!-- ICONOS -->
+    <!-- Place your kit's code here -->
+    <script src="https://kit.fontawesome.com/77cb279007.js" crossorigin="anonymous"></script>
 </head>
 
 <body>

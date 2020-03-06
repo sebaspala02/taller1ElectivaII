@@ -412,13 +412,13 @@
             </div>
         </div> -->
 
-        <div class="col-sm-6" style="right: -355px;">
-            <div class="card" style="margin-right: -55px;">
+        <div class="col-sm-6">
+            <div class="card" style="margin-right: -55px;right: -77px;">
                 <div class="card-body">
                     <table>
                         <tr>
                             <td rowspan="10">
-                                <table class="table table-hover" id="tableMedis">
+                                <table class="table table-hover" id="tableVentas">
                                     <thead>
                                         <b>
                                             <h3 style="text-align: center;">Lista de Ventas</h3>
@@ -430,18 +430,17 @@
                                             <th>Laboratorio</th>
                                             <th>Cantidad</th>
                                             <th>Precio/Unitario</th>
-                                            
                                             <!-- <th>Descripción</th> -->
                                         </tr>
                                     </thead>
-                                    <tr>
+                                    <!-- <tr>
                                         <td>jajajajajajajajajajajja</td>
                                         <td>asasas</td>
                                         <td>asasas</td>
                                         <td>$1.03783737878</td>
                                         <td>asasas</td>
-                                    </tr>
-                                    <tbody id="listaMedi">
+                                    </tr> -->
+                                    <tbody id="listaVenta">
 
                                     </tbody>
                                 </table>
@@ -450,6 +449,56 @@
                     </table>
                 </div>
             </div>
+        </div>
+        <div class="col-sm-4" style="left: 135px;">
+            <div class="card">
+                <div class="card-body">
+                    <table>
+                        <tr>
+                            <td rowspan="10">
+                                <table class="table table-hover" id="tableDetalle">
+                                    <thead>
+                                        <b>
+                                            <h3 style="text-align: center;">Detalle Ventas</h3>
+                                        </b>
+                                        <tr>
+                                            <th style="display: none">id</th>
+                                            <th>Cant.</th>
+                                            <th>Medicamento</th>
+                                            <th>Ref. Venta</th>
+                                        </tr>
+                                    </thead>
+                                    <!-- <tr>
+                                        <td><input class="col-md-8 mb-8" type="text" name="cant" id="" placeholder="Cant."></td>
+                                        <td>asasas</td>
+                                        <td>3783737878</td>
+                                    </tr> -->
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <br>
+                                        </td>
+                                        <td>
+                                            <input class="btn btn-outline-dark" type="button" value="Devolver" id="btnDev">
+                                        </td>
+                                        <td>
+                                            <br>
+                                        </td>
+                                    </tr>
+                                    <tbody id="listaDetalle">
+
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
         </div>
     </div>
 </body>
