@@ -1,4 +1,4 @@
-var precioTotal
+var precioTotal = 0
 var medisV = []
 var cantmedisV = []
 $(document).ready(function () {
@@ -8,6 +8,7 @@ $(document).ready(function () {
     $("#btnGuardarV").click(guardarVenta);
     $("#btnModificarV").click(guardarVenta);
     $("#btnEliminarV").click(eliminarVenta);
+    $('#tableRealizarV').on('click', 'a', function (e) { $(this).closest('tr').remove(); calcularPrecio() })
 });
 
 function guardarVenta() {
@@ -119,7 +120,8 @@ function listarMedi() {
                 // let a =
                 for (k = 0; k < info.length; k++) {
                     lista = lista + '<tr id="codigo" onclick="agregarMedi(' + info[k].idmedicamento
-                        + ",'" + info[k].nombre + "'," + info[k].precio + "," + info[k].laboratorio_idlaboratorio + ')">';
+                        + ",'" + info[k].nombre + "'," + info[k].precio + "," + info[k].laboratorio_idlaboratorio +
+                        "," + info[k].cant + ')">';
                     lista = lista + '<th style="display: none">' + info[k].idmedicamento + "</th>";
                     lista = lista + '<th>' + info[k].nombre + '</th>';
                     lista = lista + '<th>' + info[k].fecha_venc + '</th>';
@@ -157,26 +159,51 @@ function listarMedi() {
     });
 }
 
-function agregarMedi(id, nombre, precio, labo) {
-
-    let text = '<tr>'
-        + '<td style="display: none">' + id + '</td>'
-        + '< td >' + nombre + '</td >'
-        + '< td >' + labo + '</td >'
-        + '< td > <input class="form-control" type="number" placeholder="Cant." id="txtCantidad" required> </td >'
-        + '< td >' + precio + '</td >'
-        + '</tr>';
-    $('#tableRealizarV').find('tbody').append("'"+text+"'")
+function agregarMedi(id, nombre, precio, labo, cantidad) {
+    var existe = $("tr[value='" + id + "']");
+    if (existe.length > 0) {
+        alert('El medicamento elegido ya esta en la venta');
+    } else {
+        $("#bodyTableV").append("<tr value='" + id +
+            "'><td style='display: none'>" + id +
+            "</td><td>" + nombre + "</td> <td>" +
+            labo + "</td> <td> <input type='number'onClick='calcularPrecio()'onChange='calcularPrecio()' onkeydown='calcularPrecio()' value='1' min='1' max='" + cantidad + "'" +
+            " value='1'> </td><td>" + cantidad + "</td> <td>" + precio +
+            "</td> <td> <a href='javascript:'> Eliminar </a> </td> </tr>")
+        // arrInv.push(id);
+        // actualiza_total();
+    }
+    // let text = '<tr>'
     calcularPrecio()
+    //     + '<td style="display: none">' + id + '</td>'
+    //     + '< td >' + nombre + '</td >'
+    //     + '< td >' + labo + '</td >'
+    //     + '< td > <input class="form-control" type="number" placeholder="Cant." id="txtCantidad" required> </td >'
+    //     + '< td >' + precio + '</td >'
+    //     + '</tr>';
+    // $('#tableRealizarV').find('tbody').append("'"+text+"'")
 }
+
+// function agrega_venta(id, cantidad, precio) {
+//     var existe = $("tr[value='" + id + "'][class='tr_venta']");
+//     if (existe.length > 0) {
+//         alert('El medicamento elegido ya esta en la venta');
+//     } else {
+//         $("#body_venta").append("<tr value='" + id + "' class='tr_venta' data-precio='" + precio + "'> <td>" + $("tr[value=" + id + "]").data('nombre') + "</td> <td> <input type='number' onkeydown='return false' data-precio='" + precio + "'class='cantidad_venta' value='1' min='1' max='" + cantidad + "'> </td> <td data-unitario='" + precio + "' class='valor_medicamento'>" + precio + "</td> <td> <button class='btn_elimina btn btn-danger btn-sm' value='" + id + "'type='button'> X </button> </td> </tr>")
+//         arrInv.push(id);
+//         actualiza_total();
+//     }
+// }
 function calcularPrecio() {
+    precioTotal = 0
     $('#bodyTableV tr').each(function () {
-        var idmedi = $(this).find("td").eq(0).html();
-        var cant = $(this).find("td").eq(2).html();
-        medisV.push(idmedi)
-        cantmedisV.push(cant)
-        precioTotal += parseFloat($(this).find("td").eq(2).html()) * parseFloat($(this).find("td").eq(3).html());
+        let prec = parseFloat($(this).find("td").find("input").val());
+        let cant = parseFloat(($(this).find("td")).eq(5).text());
+        precioTotal += (cant * prec)
     });
+    $('#precioVenta').val(precioTotal)
+    // medisV.push(idmedi)
+    // cantmedisV.push(cant)
 }
 function listarVenta(codigo) {
     $("#txtIdCliente").val(codigo);
@@ -253,14 +280,3 @@ function limpiar() {
     $("#txtcliente_idclienteCliente").val("");
     $("#txtusuario_idusuario").val("");
 }
-
-// function agrega_venta(id, cantidad, precio) {
-//     var existe = $("tr[value='" + id + "'][class='tr_venta']");
-//     if (existe.length > 0) {
-//         alert('El medicamento elegido ya esta en la venta');
-//     } else {
-//         $("#body_venta").append("<tr value='" + id + "' class='tr_venta' data-precio='" + precio + "'> <td>" + $("tr[value=" + id + "]").data('nombre') + "</td> <td> <input type='number' onkeydown='return false' data-precio='" + precio + "'class='cantidad_venta' value='1' min='1' max='" + cantidad + "'> </td> <td data-unitario='" + precio + "' class='valor_medicamento'>" + precio + "</td> <td> <button class='btn_elimina btn btn-danger btn-sm' value='" + id + "'type='button'> X </button> </td> </tr>")
-//         arrInv.push(id);
-//         actualiza_total();
-//     }
-// }

@@ -450,7 +450,8 @@
 
 
         <div class="col-sm-6">
-            <div class="card" style="border-right-width: 1px; margin-right: 54px;">
+            <br>
+            <div class="card" style="border-right-width: 1px; margin-right: -205px;">
                 <div class="card-body">
                     <table class="table table-hover" id="tableRealizarV">
                         <!-- <tr>
@@ -508,12 +509,13 @@
                                 <th>Medicamento</th>
                                 <th>Laboratorio</th>
                                 <th>Cantidad</th>
+                                <th>Inventario</th>
                                 <th>Precio/Unitario</th>
                                 <!-- <th>Descripción</th> -->
                             </tr>
                         </thead>
                         <tbody id="bodyTableV">
-                        <!-- <tr>
+                            <!-- <tr>
                                 <th style="display: none">id</th>
                                 <th>Medicamento</th>
                                 <th>Laboratorio</th>
@@ -525,7 +527,7 @@
                         <tr>
                             <td>
                                 <input class="btn btn-success" type="button" value="Comprar" id="btnCompra">
-                              
+
                             </td>
                             <td>
                                 <input class="btn btn-outline-dark" type="button" value="Limpiar" id="btnLimpiarD">
@@ -538,6 +540,8 @@
                             </td>
                         </tr>
                     </table>
+                    <label for=""><b>Precio Total: &nbsp;&nbsp;</b></label>
+                    <input type="number" name="txtPrecioVenta" id="precioVenta" placeholder="Precio Total" readonly>
                 </div>
             </div>
         </div>
