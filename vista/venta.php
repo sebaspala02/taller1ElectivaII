@@ -513,7 +513,14 @@
                             </tr>
                         </thead>
                         <tbody id="bodyTableV">
-
+                        <!-- <tr>
+                                <th style="display: none">id</th>
+                                <th>Medicamento</th>
+                                <th>Laboratorio</th>
+                                <th>Cantidad</th>
+                                <th>Precio/Unitario</th>
+                                <!-- <th>Descripción</th> -->
+                            </tr> -->
                         </tbody>
                         <tr>
                             <td>

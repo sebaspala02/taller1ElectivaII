@@ -153,16 +153,6 @@
                                             <!-- <th>Descripción</th> -->
                                         </tr>
                                     </thead>
-                                    <tr>
-                                        <td>Dolex</td>
-                                        <td>Trata la fiebre y el dolor de cabeza</td>
-                                        <td>09-08-2021</td>
-                                        <td>12</td>
-                                        <td>01-01-2012</td>
-                                        <td>$12.000</td>
-                                        <td>Hernan Ramirez</td>
-                                        <td>Genfar S.A</td>
-                                    </tr>
                                     <tbody id="listaMedi">
 
                                     </tbody>

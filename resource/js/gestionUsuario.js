@@ -1,4 +1,20 @@
 $(document).ready(function() {
+    // $('#tableUsuarios').dataTable( {
+    //     "language": {
+    //         "lengthMenu": "Mostrar _MENU_ elementos por pagina",
+    //         "zeroRecords": "No se encuentra la informacion",
+    //         "info": "Mostrando pagina _PAGE_ de _PAGES_",
+    //         "infoEmpty": "Informacion vacia",
+    //         "infoFiltered": "(filtered from _MAX_ total records)",
+    //         "search": "Buscar:",
+    //         "paginate": {
+    //             "first":      "Primero",
+    //             "last":       "Ultimo",
+    //             "next":       "Siguiente",
+    //             "previous":   "Anterior"
+    //         },
+    //     }
+    // } )
     listarUsuarios();
     // listDeptos();
     // listMunicipios();
@@ -37,7 +53,6 @@ function guardarUsuario() {
             beforeSend: function() {},
             data: objUsuario,
             success: function(data) {
-                console.log(data);
                 var info = JSON.parse(data);
                 console.log(info);
                 if (info.res === "Success") {
@@ -91,22 +106,7 @@ function listarUsuarios() {
                     lista = lista + '</tr>';
                 }
                 $("#listaUsuarios").html(lista);
-                $('#tableUsuarios').dataTable( {
-                    "language": {
-                        "lengthMenu": "Mostrar _MENU_ elementos por pagina",
-                        "zeroRecords": "No se encuentra la informacion",
-                        "info": "Mostrando pagina _PAGE_ de _PAGES_",
-                        "infoEmpty": "Informacion vacia",
-                        "infoFiltered": "(filtered from _MAX_ total records)",
-                        "search": "Buscar:",
-                        "paginate": {
-                            "first":      "Primero",
-                            "last":       "Ultimo",
-                            "next":       "Siguiente",
-                            "previous":   "Anterior"
-                        },
-                    }
-                } )
+                $('#tableUsuarios').dataTable()
             } else {
                 $("#listaUsuarios").html("<tr><td>No se encuentra informacion</td>></tr>");
             }

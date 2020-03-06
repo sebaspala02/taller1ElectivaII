@@ -1,3 +1,6 @@
+var precioTotal
+var medisV = []
+var cantmedisV = []
 $(document).ready(function () {
     listarVentas();
     // listDeptos();
@@ -10,6 +13,8 @@ $(document).ready(function () {
 function guardarVenta() {
     let objCliente = {
         fecha_venta: new Date(),
+        productos: medisV,
+        cantidades: cantmedisV,
         valor_total: $("#txtvalor_totalCliente").val(),
         cliente_idcliente: $("#txtCedulaClienteVenta").val(),
         usuario_idusuario: $("#txtusuario_idusuario").val(),
@@ -153,19 +158,25 @@ function listarMedi() {
 }
 
 function agregarMedi(id, nombre, precio, labo) {
-    let text = $('#bodyTableV').html()
-    text += '<tr>'
-    text += '<td style="display: none">' + id + '</td>'
-    text += '< td >' + nombre + '</td >'
-    text += '< td >' + labo + '</td >'
-    text += '< td > <input class="form-control" type="number" placeholder="Cant." id="txtCantidad" required> </td >'
-    text += '< td >' + precio + '</td >'
-    text += '</tr>';
-    $('#bodyTableV').html(text)
 
+    let text = '<tr>'
+        + '<td style="display: none">' + id + '</td>'
+        + '< td >' + nombre + '</td >'
+        + '< td >' + labo + '</td >'
+        + '< td > <input class="form-control" type="number" placeholder="Cant." id="txtCantidad" required> </td >'
+        + '< td >' + precio + '</td >'
+        + '</tr>';
+    $('#tableRealizarV').find('tbody').append("'"+text+"'")
+    calcularPrecio()
 }
 function calcularPrecio() {
-    console.log("hola")
+    $('#bodyTableV tr').each(function () {
+        var idmedi = $(this).find("td").eq(0).html();
+        var cant = $(this).find("td").eq(2).html();
+        medisV.push(idmedi)
+        cantmedisV.push(cant)
+        precioTotal += parseFloat($(this).find("td").eq(2).html()) * parseFloat($(this).find("td").eq(3).html());
+    });
 }
 function listarVenta(codigo) {
     $("#txtIdCliente").val(codigo);
@@ -200,32 +211,6 @@ function listarVenta(codigo) {
     });
 }
 
-// function listMunicipios() {
-//     console.log($('#txtDepto').val())
-//     $.ajax({
-//         type: 'post',
-//         url: "controller/ctlList.php",
-//         data: { type: 'loadListMuni', depto: $('#txtDepto').val()},
-//         success: function (response) {
-//             var aux= JSON.parse(response)
-//             var municipios = JSON.parse(aux.data);
-//             console.log(municipios)
-//             var combo = "<option value='0'>---SELECCIONAR MUNICIPIO---</option>";
-//             if (municipios.length > 0) {
-//                 for (k = 0; k < municipios.length; k++) {
-//                     combo = combo + "<option value='" + municipios[k].idMunicipio + "'>" + municipios[k].fecha_ventaMpio + "</option>";
-//                 }
-//                 $("#txtMunicipio").html(combo);
-//             } else {
-
-//             }
-//         },
-//         error: (jqXHR, textStatus, errorThrown) => {
-//             alert("Error detectado: " + textStatus + "\nException: " + errorThrown);
-//             alert("verifique la ruta de archivo!");
-//         }
-//     });
-// }
 
 function eliminarVenta() {
     var dato = $("#txtIdClienteVenta").val();
@@ -269,32 +254,13 @@ function limpiar() {
     $("#txtusuario_idusuario").val("");
 }
 
-// function listDeptos() {
-//     $.ajax({
-//         type: 'post',
-//         url: "controller/ctlList.php",
-//         beforeSend: function() {
-
-//         },
-//         data: { type: 'loadListDepto' },
-//         success: function(respuesta) {
-//             const res = JSON.parse(respuesta);
-//             const info = JSON.parse(res.data);
-//             var lista = "<option value='0'>---SELECCIONE DEPTO---</option>";
-
-//             if (info.length > 0) {
-//                 for (k = 0; k < info.length; k++) {
-//                     lista = lista + "<option value='" + info[k].idDepartamento + "'>" + info[k].fecha_ventaDepto + "</option>";
-//                 }
-//                 $("#txtDepto").html(lista);
-//             } else {
-
-//             }
-//         },
-//         error: (jqXHR, textStatus, errorThrown) => {
-//             alert("Error detectado: " + textStatus + "\nException: " + errorThrown);
-//             alert("verifique la ruta de archivo!");
-//         }
-//     });
-// }   });
+// function agrega_venta(id, cantidad, precio) {
+//     var existe = $("tr[value='" + id + "'][class='tr_venta']");
+//     if (existe.length > 0) {
+//         alert('El medicamento elegido ya esta en la venta');
+//     } else {
+//         $("#body_venta").append("<tr value='" + id + "' class='tr_venta' data-precio='" + precio + "'> <td>" + $("tr[value=" + id + "]").data('nombre') + "</td> <td> <input type='number' onkeydown='return false' data-precio='" + precio + "'class='cantidad_venta' value='1' min='1' max='" + cantidad + "'> </td> <td data-unitario='" + precio + "' class='valor_medicamento'>" + precio + "</td> <td> <button class='btn_elimina btn btn-danger btn-sm' value='" + id + "'type='button'> X </button> </td> </tr>")
+//         arrInv.push(id);
+//         actualiza_total();
+//     }
 // }

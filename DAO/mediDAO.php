@@ -32,7 +32,7 @@ class mediDAO
 
     public function buscar(clsMedi $obj)
     {
-        $this->dao->crearConsulta("buscarMedicamento", array($obj->getIdMedicamento()), "procedimiento");
+        $this->dao->crearConsulta("buscarMedi", array($obj->getIdMedicamento()), "procedimiento");
         // $sql = "SELECT idmedicamento,nombre,descrip,fecha_venc,cant,fecha_creado,precio,usuario_idusuario,laboratorio_idlaboratorio from medicamento M 
         // where idmedicamento ="  . $obj->getIdMedicamento()  . ""  ;
         // $this->objCon->Execute($sql);
@@ -47,7 +47,7 @@ class mediDAO
 
     public function modificar(clsMedi $obj)
     {
-        $this->dao->crearConsulta("modificarMedicamento", array(
+        $this->dao->crearConsulta("editarMedicamento", array(
             $obj->getIdMedicamento(), $obj->getNombre(),
             $obj->getDescrip(), $obj->getFecha_venc(),
             $obj->getCant(), $obj->getFecha_creado(),
