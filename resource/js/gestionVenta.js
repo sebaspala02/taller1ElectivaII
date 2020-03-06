@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function () {
     listarVentas();
     // listDeptos();
     // listMunicipios();
@@ -29,9 +29,9 @@ function guardarVenta() {
         $.ajax({
             type: "post",
             url: "controller/ctlCliente.php",
-            beforeSend: function() {},
+            beforeSend: function () { },
             data: objCliente,
-            success: function(data) {
+            success: function (data) {
                 console.log(data);
                 var info = JSON.parse(data);
                 console.log(info);
@@ -57,10 +57,10 @@ function listarVentas() {
     $.ajax({
         type: "post",
         url: "controller/ctlCliente.php",
-        beforeSend: function() {},
+        beforeSend: function () { },
         data: { type: "list" },
 
-        success: function(respuesta) {
+        success: function (respuesta) {
             //console.log(data);
             const res = JSON.parse(respuesta);
             const info = JSON.parse(res.data);
@@ -95,7 +95,78 @@ function listarVentas() {
         }
     });
 }
+function listarMedi() {
+    $.ajax({
+        type: 'post',
+        url: "controller/ctlMedi.php",
+        beforeSend: function () {
 
+        },
+        data: { type: 'list' },
+
+        success: function (respuesta) {
+            const res = JSON.parse(respuesta);
+            const info = JSON.parse(res.data);
+
+            var lista = "";
+
+            if (info.length > 0) {
+                // let a =
+                for (k = 0; k < info.length; k++) {
+                    lista = lista + '<tr id="codigo" onclick="agregarMedi(' + info[k].idmedicamento
+                        + ",'" + info[k].nombre + "'," + info[k].precio + "," + info[k].laboratorio_idlaboratorio + ')">';
+                    lista = lista + '<th style="display: none">' + info[k].idmedicamento + "</th>";
+                    lista = lista + '<th>' + info[k].nombre + '</th>';
+                    lista = lista + '<th>' + info[k].fecha_venc + '</th>';
+                    lista = lista + '<th>' + info[k].cant + '</th>';
+                    lista = lista + '<th>' + info[k].precio + '</th>';
+                    lista = lista + '<th>' + info[k].laboratorio_idlaboratorio + '</th>';
+                    //   lista = lista + "<th>" + info[k].descripcion + "</th>";
+                    lista = lista + '</tr>';
+                }
+                $("#listaMediV").html(lista);
+                $("#tableMedisV").dataTable({
+                    "language": {
+                        "lengthMenu": "Mostrar _MENU_ elementos por pagina",
+                        "zeroRecords": "No se encuentra la informacion",
+                        "info": "Mostrando pagina _PAGE_ de _PAGES_",
+                        "infoEmpty": "Informacion vacia",
+                        "infoFiltered": "(filtered from _MAX_ total records)",
+                        "search": "Buscar:",
+                        "paginate": {
+                            "first": "Primero",
+                            "last": "Ultimo",
+                            "next": "Siguiente",
+                            "previous": "Anterior"
+                        },
+                    }
+                });
+            } else {
+                $("#listaMedi").html("<tr><th>No se encuentra informacion</th>></tr>");
+            }
+        },
+        error: (jqXHR, textStatus, errorThrown) => {
+            alert("Error detectado: " + textStatus + "\nException: " + errorThrown);
+            alert("verifique la ruta de archivo!");
+        }
+    });
+}
+
+function agregarMedi(id, nombre, precio, labo) {
+    let text = $('#bodyTableV').html()
+    text += '<tr>'
+    text += '<td style="display: none">' + id + '</td>'
+    text += '< td >' + nombre + '</td >'
+    text += '< td >' + labo + '</td >'
+    text += '< td > <input class="form-control" type="number" placeholder="Cant." id="txtCantidad" required> </td >'
+    text += '< td >' + precio + '</td >'
+    text += '</tr>';
+    $('#bodyTableV').html(text)
+
+}
+function calcularPrecio() {
+    console.log("hola")
+}
 function listarVenta(codigo) {
     $("#txtIdCliente").val(codigo);
     const objCliente = {
@@ -107,9 +178,9 @@ function listarVenta(codigo) {
         type: "post",
         url: "controller/ctlCliente.php",
         async: false,
-        beforeSend: function() {},
+        beforeSend: function () { },
         data: objCliente,
-        success: function(res) {
+        success: function (res) {
             // console.log(data);
             const info = JSON.parse(res);
             let data;
@@ -169,9 +240,9 @@ function eliminarVenta() {
         $.ajax({
             type: "post",
             url: "controller/ctlCliente.php",
-            beforeSend: function() {},
+            beforeSend: function () { },
             data: objCliente,
-            success: function(res) {
+            success: function (res) {
                 var info = JSON.parse(res);
                 if (info.res == "Success") {
                     limpiar();
