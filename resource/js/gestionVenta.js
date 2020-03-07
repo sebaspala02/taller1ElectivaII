@@ -64,12 +64,12 @@ function guardarVenta() {
 function listarVentas() {
     $.ajax({
         type: "post",
-        url: "controller/ctlCliente.php",
+        url: "controller/ctlDetalle.php",
         beforeSend: function () { },
         data: { type: "list" },
 
         success: function (respuesta) {
-            //console.log(data);
+            console.log(respuesta);
             const res = JSON.parse(respuesta);
             const info = JSON.parse(res.data);
 
@@ -79,10 +79,9 @@ function listarVentas() {
                 for (k = 0; k < info.length; k++) {
                     lista = lista + '<tr id="codigo" onclick="listarVenta(' + info[k].idcliente + ')">';
                     lista = lista + '<td style="display: none">' + info[k].idcliente + "</td>";
+                    lista = lista + "<td>" + info[k].cliente_idcliente + "</td>";
                     lista = lista + "<td>" + info[k].fecha_venta + "</td>";
                     lista = lista + "<td>" + info[k].valor_total + "</td>";
-                    lista = lista + "<td>" + info[k].cliente_idcliente + "</td>";
-                    lista = lista + "<td>" + info[k].usuario_idusuario + "</td>";
                     // if (info[k].piscina === '1') {
                     //     lista = lista + '<td>SI</td>';
                     // } else {
@@ -90,7 +89,8 @@ function listarVentas() {
                     // }
                     lista = lista + "</tr>";
                 }
-                $("#listaCliente").html(lista);
+                $("#listaVenta").html(lista);
+                $('#tableVentas').dataTable()
             } else {
                 $("#listaCliente").html(
                     "<tr><td>No se encuentra informacion</td>></tr>"

@@ -20,6 +20,7 @@
     <script type="text/javascript" src="resource/js/gestionCliente.js"></script>
     <script type="text/javascript" src="resource/js/gestionMedi.js"></script>
     <script type="text/javascript" src="resource/js/gestionLogin.js"></script>
+    <script type="text/javascript" src="resource/js/gestionVenta.js"></script>
     <!-- <script type="text/javascript">
         $(document).ready(function() {
             $("#hide").on('click', function() {
@@ -427,10 +428,8 @@
                                         <tr>
                                             <th style="display: none">id</th>
                                             <th>Cliente</th>
-                                            <th>Medicamento</th>
-                                            <th>Laboratorio</th>
-                                            <th>Cantidad</th>
-                                            <th>Precio/Unitario</th>
+                                            <th>Fecha Venta</th>
+                                            <th>Precio/Total</th>
                                             <!-- <th>Descripción</th> -->
                                         </tr>
                                     </thead>

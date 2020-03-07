@@ -44,4 +44,21 @@ class clsDAO
             $this->objCon->ExecuteTransaction($resultado);
         }
     }
+
+
+
+
+
+
+
+
+
+
+
+
+    public function listar()
+    {
+        $sql = "SELECT idventa,fecha_venta,valor_total,cliente_idcliente,usuario_idusuario from venta";
+        $this->objCon->Execute($sql);
+    }
 }
