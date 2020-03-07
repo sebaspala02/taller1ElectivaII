@@ -11,33 +11,37 @@ class ventaDAO
         $this->con = $this->objCon->conectar();
     }
 
-    public function guardar(clsVenta $obj)
+    public function guardar(clsDetalle $obj)
     {
-        $sql = "INSERT INTO venta(fecha_venta,valor_total,cliente_idcliente,usuario_idusuario) " .
-            "VALUES ('" . $obj->getfecha_venta() . "'," . $obj->getvalor_total() . "," . $obj->getcliente_idcliente() . ",
-        " . $obj->getusuario_idusuario() . ")";
-        $this->objCon->ExecuteTransaction($sql);
+        $this->dao->crearConsulta("guardarVenta", array(
+            $obj->getTotal(),  $obj->getFecha(),
+            $obj->getMedi(), $obj->getCant() , $obj->getCliente() , $_SESSION['user']
+        ), "funcion");
+        // $sql = "INSERT INTO venta(fecha_venta,valor_total,cliente_idcliente,usuario_idusuario) " .
+        //     "VALUES ('" . $obj->getfecha_venta() . "'," . $obj->getvalor_total() . "," . $obj->getcliente_idcliente() . ",
+        // " . $obj->getusuario_idusuario() . ")";
+        // $this->objCon->ExecuteTransaction($sql);
     }
 
-    public function buscar(clsVenta $obj)
+    public function buscar(clsDetalle $obj)
     {
         $sql = "SELECT idventa,fecha_venta,valor_total,cliente_idcliente,usuario_idusuario from venta
         where idventa = " . $obj->getidventa() . "";
         $this->objCon->Execute($sql);
     }
 
-    public function eliminar(clsVenta $obj)
+    public function eliminar(clsDetalle $obj)
     {
         $sql = "DELETE from venta where idcliente=" . $obj->getidventa() . "";
         $this->objCon->ExecuteTransaction($sql);
     }
 
-    public function modificar(clsVenta $obj)
+    public function modificar(clsDetalle $obj)
     {
-        $sql = "UPDATE venta SET fecha_venta='" . $obj->getfecha_venta() . "',valor_total=" .
-            $obj->getvalor_total() . ",cliente_idcliente="  . $obj->getcliente_idcliente() .
-            ",usuario_idusuario="  . $obj->getusuario_idusuario() . " where idventa=" . $obj->getidventa() . "";
-        $this->objCon->ExecuteTransaction($sql);
+        // $sql = "UPDATE venta SET fecha_venta='" . $obj->getfecha_venta() . "',valor_total=" .
+        //     $obj->getvalor_total() . ",cliente_idcliente="  . $obj->getcliente_idcliente() .
+        //     ",usuario_idusuario="  . $obj->getusuario_idusuario() . " where idventa=" . $obj->getidventa() . "";
+        // $this->objCon->ExecuteTransaction($sql);
     }
 
     public function listar()

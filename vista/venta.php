@@ -504,6 +504,7 @@
                                 <h2 style="text-align: center;">Realizar Venta</h2>
                             </b>
                             <hr>
+                            <input type="text" id="txtIddetalleventa" style="display: none" value="">
                             <label for=""><b>Cliente: &nbsp;&nbsp;&nbsp;</b></label>
                             <select class="form-control" id="txtIdClienteVenta" name="laboratorio" style="display: inline-block;
     width: 40%;"></select>
@@ -519,14 +520,6 @@
                             </tr>
                         </thead>
                         <tbody id="bodyTableV">
-                            <!-- <tr>
-                                <th style="display: none">id</th>
-                                <th>Medicamento</th>
-                                <th>Laboratorio</th>
-                                <th>Cantidad</th>
-                                <th>Precio/Unitario</th>
-                                <!-- <th>Descripción</th> -->
-                            </tr> -->
                         </tbody>
                         <tr>
                             <td>
