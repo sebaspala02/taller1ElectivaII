@@ -73,7 +73,7 @@ function guardarUsuario() {
             },
             error: (jqXHR, textStatus, errorThrown) => {
                 Swal.fire("Error detectado: " + textStatus + "\nException: " + errorThrown);
-                aleSwal.firert("verifique la ruta de archivo!");
+                Swal.fire("verifique la ruta de archivo!");
             }
         });
     } else {
@@ -124,8 +124,8 @@ function listarUsuarios() {
             }
         },
         error: (jqXHR, textStatus, errorThrown) => {
-            alert("Error detectado: " + textStatus + "\nException: " + errorThrown);
-            alert("verifique la ruta de archivo!");
+            Swal.fire("Error detectado: " + textStatus + "\nException: " + errorThrown);
+            Swal.fire("verifique la ruta de archivo!");
         }
     });
 }
@@ -160,7 +160,7 @@ function buscarUsuario(codigo) {
                 $("#txtUsuario").val(data[0].usuario);
                 $("#txtPassword").val(data[0].password);
             } else {
-                alert("No se encuentra");
+                Swal.fire("No se encuentra");
                 limpiar();
             }
         }
@@ -188,8 +188,8 @@ function buscarUsuario(codigo) {
 //             }
 //         },
 //         error: (jqXHR, textStatus, errorThrown) => {
-//             alert("Error detectado: " + textStatus + "\nException: " + errorThrown);
-//             alert("verifique la ruta de archivo!");
+//             Swal.fire("Error detectado: " + textStatus + "\nException: " + errorThrown);
+//             Swal.fire("verifique la ruta de archivo!");
 //         }
 //     });
 // }
@@ -197,7 +197,7 @@ function buscarUsuario(codigo) {
 function eliminarUsuario() {
     var dato = $("#txtIdUsuario").val();
     if (dato == "") {
-        alert("Debe cargar los datos a eliminar");
+        Swal.fire("Debe cargar los datos a eliminar");
     } else {
         const objUsuario = {
             idusuario: dato,
@@ -215,16 +215,24 @@ function eliminarUsuario() {
                 var info = JSON.parse(res);
                 if (info.res == "Success") {
                     limpiar();
-                    alert("Eliminado con exito");
+                    Swal.fire(
+                        'Operacion Exitosa!',
+                        'Usuario eliminado',
+                        'success'
+                    )
                     listarUsuarios();
                 } else {
-                    alert("No se pudo eliminar");
+                    Swal.fire(
+                        'Error!',
+                        'No se pudo eliminar',
+                        'error'
+                    )
                     limpiar();
                 }
             },
             error: (jqXHR, textStatus, errorThrown) => {
-                alert("Error detectado: " + textStatus + "\nException: " + errorThrown);
-                alert("verifique la ruta de archivo!");
+                Swal.fire("Error detectado: " + textStatus + "\nException: " + errorThrown);
+                Swal.fire("verifique la ruta de archivo!");
             }
         });
     }
@@ -264,8 +272,8 @@ function limpiar() {
 //             }
 //         },
 //         error: (jqXHR, textStatus, errorThrown) => {
-//             alert("Error detectado: " + textStatus + "\nException: " + errorThrown);
-//             alert("verifique la ruta de archivo!");
+//             Swal.fire("Error detectado: " + textStatus + "\nException: " + errorThrown);
+//             Swal.fire("verifique la ruta de archivo!");
 //         }
 //     });
 // }

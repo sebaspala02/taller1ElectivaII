@@ -46,19 +46,27 @@ function guardarMedi() {
         console.log(info);
         if (info.res === "Success") {
           limpiar();
-          alert("Operacion exitosa");
+          Swal.fire(
+            'Operacion Exitosa!',
+            'Medicamento guardado',
+            'success'
+          )
           listarMedi();
         } else {
-          alert("No se pudo almacenar");
+          Swal.fire(
+            'Error!',
+            'No se pudo almacenar',
+            'error'
+          )
         }
       },
       error: (jqXHR, textStatus, errorThrown) => {
-        alert("Error detectado: " + textStatus + "\nException: " + errorThrown);
-        alert("verifique la ruta de archivo!");
+        Swal.fire("Error detectado: " + textStatus + "\nException: " + errorThrown);
+        Swal.fire("verifique la ruta de archivo!");
       }
     });
   } else {
-    alert("Ingrese todos los datos");
+    Swal.fire("Ingrese todos los datos");
   }
 }
 
@@ -99,8 +107,8 @@ function listarMedi() {
       }
     },
     error: (jqXHR, textStatus, errorThrown) => {
-      alert("Error detectado: " + textStatus + "\nException: " + errorThrown);
-      alert("verifique la ruta de archivo!");
+      Swal.fire("Error detectado: " + textStatus + "\nException: " + errorThrown);
+      Swal.fire("verifique la ruta de archivo!");
     }
   });
 }
@@ -135,7 +143,7 @@ function buscarMedi(codigo) {
         $('#txtIdLaboratorio').val(data[0].laboratorio_idlaboratorio);
         // $("#txthescripcion").val(data[0].descripcion);
       } else {
-        alert("No se encuentra");
+        Swal.fire("No se encuentra");
         limpiar();
       }
     }
@@ -145,7 +153,7 @@ function buscarMedi(codigo) {
 function eliminarMedi() {
   var dato = $("#txtIdMedicamento").val();
   if (dato == "") {
-    alert("Debe cargar los datos a eliminar");
+    Swal.fire("Debe cargar los datos a eliminar");
   } else {
     const objMedi = {
       idmedicamento: dato,
@@ -161,17 +169,17 @@ function eliminarMedi() {
         var info = JSON.parse(res);
         if (info.res == "Success") {
           limpiar();
-          alert("Eliminado con exito");
+          Swal.fire("Eliminado con exito");
           listarMedi();
           limpiar();
         } else {
-          alert("No se pudo eliminar");
+          Swal.fire("No se pudo eliminar");
           limpiar();
         }
       },
       error: (jqXHR, textStatus, errorThrown) => {
-        alert("Error detectado: " + textStatus + "\nException: " + errorThrown);
-        alert("verifique la ruta de archivo!");
+        Swal.fire("Error detectado: " + textStatus + "\nException: " + errorThrown);
+        Swal.fire("verifique la ruta de archivo!");
       }
     });
   }

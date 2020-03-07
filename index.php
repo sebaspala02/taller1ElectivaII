@@ -10,6 +10,7 @@
     <link href="resource/styles/jquery.dataTables.css" rel="stylesheet">
     <link href="resource/styles/creative.min.css" rel="stylesheet">
     <script type="text/javascript" src="resource/jquery/jquery.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <script type="text/javascript" src="resource/js/cargarList.js"></script>
     <script type="text/javascript" src="resource/js/jquery.dataTables.js"></script>
     <script type="text/javascript" src="resource/js/gestionUsuario.js"></script>

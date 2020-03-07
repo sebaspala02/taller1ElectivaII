@@ -15,10 +15,12 @@
     <script type="text/javascript" src="resource/jquery/jquery.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
     <script type="text/javascript" src="resource/js/jquery.dataTables.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <!-- <script type="text/javascript" src="../resource/js/cargarList.js"></script> -->
     <script type="text/javascript" src="resource/js/gestionCliente.js"></script>
     <script type="text/javascript" src="resource/js/gestionVenta.js"></script>
     <script type="text/javascript" src="resource/js/gestionLogin.js"></script>
+    <script type="text/javascript" src="resource/js/cargarList.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
             $("#hide").on('click', function() {
@@ -503,7 +505,8 @@
                             </b>
                             <hr>
                             <label for=""><b>Cliente: &nbsp;&nbsp;&nbsp;</b></label>
-                            <input type="text" name="txtCedula" id="" placeholder="Cedula Cliente">
+                            <select class="form-control" id="txtIdClienteVenta" name="laboratorio" style="display: inline-block;
+    width: 40%;"></select>
                             <tr>
                                 <th style="display: none">id</th>
                                 <th>Medicamento</th>

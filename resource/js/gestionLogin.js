@@ -6,7 +6,7 @@ function validarLogin(fl, tipo) {
         if (fl.usuario.value !== "" && fl.password.value !== "") {
             fl.submit();
         } else {
-            alert("ingrese todos los datos");
+            Swal.fire("ingrese todos los datos");
         }
     } else {
         fl.submit();

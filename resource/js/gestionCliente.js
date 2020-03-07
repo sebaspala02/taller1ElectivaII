@@ -40,19 +40,19 @@ function guardarCliente() {
                 console.log(info);
                 if (info.res === "Success") {
                     limpiar();
-                    alert("Operacion exitosa");
+                    Swal.fire("Operacion exitosa");
                     listarClientes();
                 } else {
-                    alert("No se pudo almacenar");
+                    Swal.fire("No se pudo almacenar");
                 }
             },
             error: (jqXHR, textStatus, errorThrown) => {
-                alert("Error detectado: " + textStatus + "\nException: " + errorThrown);
-                alert("verifique la ruta de archivo!");
+                Swal.fire("Error detectado: " + textStatus + "\nException: " + errorThrown);
+                Swal.fire("verifique la ruta de archivo!");
             }
         });
     } else {
-        alert("Ingrese todos los datos");
+        Swal.fire("Ingrese todos los datos");
     }
 }
 
@@ -93,8 +93,8 @@ function listarClientes() {
             }
         },
         error: (jqXHR, textStatus, errorThrown) => {
-            alert("Error detectado: " + textStatus + "\nException: " + errorThrown);
-            alert("verifique la ruta de archivo!");
+            Swal.fire("Error detectado: " + textStatus + "\nException: " + errorThrown);
+            Swal.fire("verifique la ruta de archivo!");
         }
     });
 }
@@ -129,7 +129,7 @@ function buscarCliente(codigo) {
                 $("#txtFecha_naci").val(data[0].fecha_naci);
                 $('#txtCedulaClienteVenta').val(codigo)
             } else {
-                alert("No se encuentra");
+                Swal.fire("No se encuentra");
                 limpiar();
             }
         }
@@ -157,8 +157,8 @@ function buscarCliente(codigo) {
 //             }
 //         },
 //         error: (jqXHR, textStatus, errorThrown) => {
-//             alert("Error detectado: " + textStatus + "\nException: " + errorThrown);
-//             alert("verifique la ruta de archivo!");
+//             Swal.fire("Error detectado: " + textStatus + "\nException: " + errorThrown);
+//             Swal.fire("verifique la ruta de archivo!");
 //         }
 //     });
 // }
@@ -166,7 +166,7 @@ function buscarCliente(codigo) {
 function eliminarCliente() {
     var dato = $("#txtIdCliente").val();
     if (dato == "") {
-        alert("Debe cargar los datos a eliminar");
+        Swal.fire("Debe cargar los datos a eliminar");
     } else {
         const objCliente = {
             idcliente: dato,
@@ -182,16 +182,16 @@ function eliminarCliente() {
                 var info = JSON.parse(res);
                 if (info.res == "Success") {
                     limpiar();
-                    alert("Eliminado con exito");
+                    Swal.fire("Eliminado con exito");
                     listarClientes();
                 } else {
-                    alert("No se pudo eliminar");
+                    Swal.fire("No se pudo eliminar");
                     limpiar();
                 }
             },
             error: (jqXHR, textStatus, errorThrown) => {
-                alert("Error detectado: " + textStatus + "\nException: " + errorThrown);
-                alert("verifique la ruta de archivo!");
+                Swal.fire("Error detectado: " + textStatus + "\nException: " + errorThrown);
+                Swal.fire("verifique la ruta de archivo!");
             }
         });
     }
@@ -229,8 +229,8 @@ function limpiar() {
 //             }
 //         },
 //         error: (jqXHR, textStatus, errorThrown) => {
-//             alert("Error detectado: " + textStatus + "\nException: " + errorThrown);
-//             alert("verifique la ruta de archivo!");
+//             Swal.fire("Error detectado: " + textStatus + "\nException: " + errorThrown);
+//             Swal.fire("verifique la ruta de archivo!");
 //         }
 //     });
 // }   });

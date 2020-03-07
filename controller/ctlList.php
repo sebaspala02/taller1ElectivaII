@@ -14,7 +14,10 @@ switch ($type) {
     case "loadListLabs":
         $conex->listLabs();
         break;
-    // case "loadListFinca":
-    //     $conex->listFinca();
-    //     break;
+    case "loadListClientes":
+        $conex->listClientes();
+        break;
+        // case "loadListFinca":
+        //     $conex->listFinca();
+        //     break;
 }

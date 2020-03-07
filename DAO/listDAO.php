@@ -18,6 +18,10 @@ class listDAO {
         $sql = "SELECT * FROM laboratorio";
         $this->objCon->Execute($sql);
     }
+    public function listClientes(){
+        $sql = "SELECT * FROM cliente";
+        $this->objCon->Execute($sql);
+    }
 
     // public function listMuni($valor){
     //     $sql = "SELECT * from Municipio where Departamento_idDepartamento = " . $valor;

@@ -15,8 +15,8 @@ $(document).ready(function () {
 function guardarVenta() {
     let objCliente = {
         fecha_venta: new Date(),
-        productos: medisV,
-        cantidades: cantmedisV,
+        productos: medisV.toString() + ",",
+        cantidades: cantmedisV.toString() + ",",
         valor_total: $("#txtvalor_totalCliente").val(),
         cliente_idcliente: $("#txtCedulaClienteVenta").val(),
         usuario_idusuario: $("#txtusuario_idusuario").val(),
@@ -44,19 +44,19 @@ function guardarVenta() {
                 console.log(info);
                 if (info.res === "Success") {
                     limpiar();
-                    alert("Operacion exitosa");
+                    Swal.fire("Operacion exitosa");
                     listarVentas();
                 } else {
-                    alert("No se pudo almacenar");
+                    Swal.fire("No se pudo almacenar");
                 }
             },
             error: (jqXHR, textStatus, errorThrown) => {
-                alert("Error detectado: " + textStatus + "\nException: " + errorThrown);
-                alert("verifique la ruta de archivo!");
+                Swal.fire("Error detectado: " + textStatus + "\nException: " + errorThrown);
+                Swal.fire("verifique la ruta de archivo!");
             }
         });
     } else {
-        alert("Ingrese todos los datos");
+        Swal.fire("Ingrese todos los datos");
     }
 }
 
@@ -97,8 +97,8 @@ function listarVentas() {
             }
         },
         error: (jqXHR, textStatus, errorThrown) => {
-            alert("Error detectado: " + textStatus + "\nException: " + errorThrown);
-            alert("verifique la ruta de archivo!");
+            Swal.fire("Error detectado: " + textStatus + "\nException: " + errorThrown);
+            Swal.fire("verifique la ruta de archivo!");
         }
     });
 }
@@ -157,8 +157,8 @@ function listarMedi() {
             }
         },
         error: (jqXHR, textStatus, errorThrown) => {
-            alert("Error detectado: " + textStatus + "\nException: " + errorThrown);
-            alert("verifique la ruta de archivo!");
+            Swal.fire("Error detectado: " + textStatus + "\nException: " + errorThrown);
+            Swal.fire("verifique la ruta de archivo!");
         }
     });
 }
@@ -166,7 +166,7 @@ function listarMedi() {
 function agregarMedi(id, nombre, precio, labo, cantidad) {
     var existe = $("tr[value='" + id + "']");
     if (existe.length > 0) {
-        alert('El medicamento elegido ya esta en la venta');
+        Swal.fire('El medicamento elegido ya esta en la venta');
     } else {
         $("#bodyTableV").append("<tr value='" + id +
             "'><td style='display: none'>" + id +
@@ -191,7 +191,7 @@ function agregarMedi(id, nombre, precio, labo, cantidad) {
 // function agrega_venta(id, cantidad, precio) {
 //     var existe = $("tr[value='" + id + "'][class='tr_venta']");
 //     if (existe.length > 0) {
-//         alert('El medicamento elegido ya esta en la venta');
+//         Swal.fire('El medicamento elegido ya esta en la venta');
 //     } else {
 //         $("#body_venta").append("<tr value='" + id + "' class='tr_venta' data-precio='" + precio + "'> <td>" + $("tr[value=" + id + "]").data('nombre') + "</td> <td> <input type='number' onkeydown='return false' data-precio='" + precio + "'class='cantidad_venta' value='1' min='1' max='" + cantidad + "'> </td> <td data-unitario='" + precio + "' class='valor_medicamento'>" + precio + "</td> <td> <button class='btn_elimina btn btn-danger btn-sm' value='" + id + "'type='button'> X </button> </td> </tr>")
 //         arrInv.push(id);
@@ -238,7 +238,7 @@ function listarVenta(codigo) {
                 $("#txtcliente_idclienteCliente").val(data[0].cliente_idcliente);
                 $("#txtusuario_idusuario").val(data[0].usuario_idusuario);
             } else {
-                alert("No se encuentra");
+                Swal.fire("No se encuentra");
                 limpiar();
             }
         }
@@ -250,10 +250,11 @@ function guardarVenta() {
         vfecha: new Date(),
         vinv: medisV,
         vcant: cantmedisV,
-        vcliente: $("#txtCedulaClienteVenta").val(),
-        vusuario: $("#txtusuario_idusuario").val(),
+        vcliente: parseInt($('#txtIdClienteVenta').val()),
+        vusuario: 1,
         type: ""
     };
+    console.log(objCliente)
     if (
         objCliente.vtotal !== "" &&
         objCliente.vfecha !== "" &&
@@ -269,7 +270,7 @@ function guardarVenta() {
         }
         $.ajax({
             type: "post",
-            url: "controller/ctlCliente.php",
+            url: "controller/ctlVenta.php",
             beforeSend: function () { },
             data: objCliente,
             success: function (data) {
@@ -278,56 +279,56 @@ function guardarVenta() {
                 console.log(info);
                 if (info.res === "Success") {
                     limpiar();
-                    alert("Operacion exitosa");
+                    Swal.fire("Operacion exitosa");
                     listarVentas();
                 } else {
-                    alert("No se pudo almacenar");
+                    Swal.fire("No se pudo almacenar");
                 }
             },
             error: (jqXHR, textStatus, errorThrown) => {
-                alert("Error detectado: " + textStatus + "\nException: " + errorThrown);
-                alert("verifique la ruta de archivo!");
+                Swal.fire("Error detectado: " + textStatus + "\nException: " + errorThrown);
+                Swal.fire("verifique la ruta de archivo!");
             }
         });
     } else {
-        alert("Ingrese todos los datos");
+        Swal.fire("Ingrese todos los datos");
     }
 }
 
 
-function eliminarVenta() {
-    var dato = $("#txtIdClienteVenta").val();
-    if (dato == "") {
-        alert("Debe cargar los datos a eliminar");
-    } else {
-        const objCliente = {
-            idcliente: dato,
-            type: "delete"
-        };
+// function eliminarVenta() {
+//     var dato = $("#txtIdClienteVenta").val();
+//     if (dato == "") {
+//         Swal.fire("Debe cargar los datos a eliminar");
+//     } else {
+//         const objCliente = {
+//             idcliente: dato,
+//             type: "delete"
+//         };
 
-        $.ajax({
-            type: "post",
-            url: "controller/ctlCliente.php",
-            beforeSend: function () { },
-            data: objCliente,
-            success: function (res) {
-                var info = JSON.parse(res);
-                if (info.res == "Success") {
-                    limpiar();
-                    alert("Eliminado con exito");
-                    listarVentas();
-                } else {
-                    alert("No se pudo eliminar");
-                    limpiar();
-                }
-            },
-            error: (jqXHR, textStatus, errorThrown) => {
-                alert("Error detectado: " + textStatus + "\nException: " + errorThrown);
-                alert("verifique la ruta de archivo!");
-            }
-        });
-    }
-}
+//         $.ajax({
+//             type: "post",
+//             url: "controller/ctlCliente.php",
+//             beforeSend: function () { },
+//             data: objCliente,
+//             success: function (res) {
+//                 var info = JSON.parse(res);
+//                 if (info.res == "Success") {
+//                     limpiar();
+//                     Swal.fire("Eliminado con exito");
+//                     listarVentas();
+//                 } else {
+//                     Swal.fire("No se pudo eliminar");
+//                     limpiar();
+//                 }
+//             },
+//             error: (jqXHR, textStatus, errorThrown) => {
+//                 Swal.fire("Error detectado: " + textStatus + "\nException: " + errorThrown);
+//                 Swal.fire("verifique la ruta de archivo!");
+//             }
+//         });
+//     }
+// }
 
 function limpiar() {
     $("#txtIdCliente").val("");
