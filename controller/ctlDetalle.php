@@ -17,7 +17,6 @@ include '../DAO/ventaDAO.php';
 
     $detalle = new clsDetalle($iddetalle_venta, $total, $fecha, $medi, $cant, $cliente, $usuario, $idventa);
     $conex = new ventaDAO();
-
 switch ($type) {
     case "save":
         $conex->guardar($detalle);
@@ -35,4 +34,3 @@ switch ($type) {
         $conex->listar();
         break;
 }
-?>

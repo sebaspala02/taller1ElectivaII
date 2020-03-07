@@ -467,7 +467,7 @@ call listarMedi(0);
 -- DECLARE inv_old INT DEFAULT 0;
 -- DECLARE inv_update INT;
 -- insert into venta(fecha_venta,valor_total,cliente_idcliente,usuario_idusuario)
--- VALUES (vfecha,vtotal, vcliente, vempleado);
+-- VALUES (vfecha,vtotal, vcliente, vusuario);
 
 -- WHILE (LOCATE(',', vinv) > 0) DO
 

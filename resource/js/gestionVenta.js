@@ -7,35 +7,36 @@ $(document).ready(function () {
     // listMunicipios();
     // $("#btnGuardarV").click(guardarVenta);
     $("#btnModificarV").click(guardarVenta);
-    $("#btnEliminarV").click(eliminarVenta);
+    // $("#btnEliminarV").click(eliminarVenta);
     $('#btnCompra').click(guardarVenta)
     $('#tableRealizarV').on('click', 'a', function (e) { $(this).closest('tr').remove(); calcularPrecio() })
 });
 
 function guardarVenta() {
+    console.log(medisV.toString())
     let objCliente = {
-        fecha_venta: new Date(),
-        productos: medisV.toString() + ",",
-        cantidades: cantmedisV.toString() + ",",
-        valor_total: $("#txtvalor_totalCliente").val(),
-        cliente_idcliente: $("#txtCedulaClienteVenta").val(),
-        usuario_idusuario: $("#txtusuario_idusuario").val(),
+        fecha: new Date(),
+        medi: medisV.toString() + ",",
+        cant: cantmedisV.toString() + ",",
+        total: $("#precioVenta").val(),
+        cliente: $("#txtIdClienteVenta").val(),
+        usuario: 1,
         type: ""
     };
     if (
-        objCliente.fecha_venta !== "" &&
-        objCliente.valor_total !== "" &&
-        objCliente.cliente_idcliente !== "" &&
-        objCliente.usuario_idusuario !== ""
+        objCliente.fecha !== "" &&
+        objCliente.total !== "" &&
+        objCliente.cliente !== "" &&
+        objCliente.usuario !== ""
     ) {
-        if (objCliente.idcliente !== "") {
-            objCliente.type = "update";
-        } else {
+        // if (objCliente.id !== "") {
+            // objCliente.type = "update";
+        // } else {
             objCliente.type = "save";
-        }
+        // }
         $.ajax({
             type: "post",
-            url: "controller/ctlCliente.php",
+            url: "controller/ctlDetalle.php",
             beforeSend: function () { },
             data: objCliente,
             success: function (data) {
@@ -244,56 +245,56 @@ function listarVenta(codigo) {
         }
     });
 }
-function guardarVenta() {
-    let objCliente = {
-        vtotal: precioTotal,
-        vfecha: new Date(),
-        vinv: medisV,
-        vcant: cantmedisV,
-        vcliente: parseInt($('#txtIdClienteVenta').val()),
-        vusuario: 1,
-        type: ""
-    };
-    console.log(objCliente)
-    if (
-        objCliente.vtotal !== "" &&
-        objCliente.vfecha !== "" &&
-        objCliente.vinv !== "" &&
-        objCliente.vcant !== "" &&
-        objCliente.vcliente !== "" &&
-        objCliente.vusuario !== ""
-    ) {
-        if (objCliente.idcliente !== "") {
-            objCliente.type = "update";
-        } else {
-            objCliente.type = "save";
-        }
-        $.ajax({
-            type: "post",
-            url: "controller/ctlVenta.php",
-            beforeSend: function () { },
-            data: objCliente,
-            success: function (data) {
-                console.log(data);
-                var info = JSON.parse(data);
-                console.log(info);
-                if (info.res === "Success") {
-                    limpiar();
-                    Swal.fire("Operacion exitosa");
-                    listarVentas();
-                } else {
-                    Swal.fire("No se pudo almacenar");
-                }
-            },
-            error: (jqXHR, textStatus, errorThrown) => {
-                Swal.fire("Error detectado: " + textStatus + "\nException: " + errorThrown);
-                Swal.fire("verifique la ruta de archivo!");
-            }
-        });
-    } else {
-        Swal.fire("Ingrese todos los datos");
-    }
-}
+// function guardarVenta() {
+//     let objCliente = {
+//         vtotal: precioTotal,
+//         vfecha: new Date(),
+//         vinv: medisV,
+//         vcant: cantmedisV,
+//         vcliente: parseInt($('#txtIdClienteVenta').val()),
+//         vusuario: 1,
+//         type: ""
+//     };
+//     console.log(objCliente)
+//     if (
+//         objCliente.vtotal !== "" &&
+//         objCliente.vfecha !== "" &&
+//         objCliente.vinv !== "" &&
+//         objCliente.vcant !== "" &&
+//         objCliente.vcliente !== "" &&
+//         objCliente.vusuario !== ""
+//     ) {
+//         if (objCliente.idcliente !== "") {
+//             objCliente.type = "update";
+//         } else {
+//             objCliente.type = "save";
+//         }
+//         $.ajax({
+//             type: "post",
+//             url: "controller/ctlVenta.php",
+//             beforeSend: function () { },
+//             data: objCliente,
+//             success: function (data) {
+//                 console.log(data);
+//                 var info = JSON.parse(data);
+//                 console.log(info);
+//                 if (info.res === "Success") {
+//                     limpiar();
+//                     Swal.fire("Operacion exitosa");
+//                     listarVentas();
+//                 } else {
+//                     Swal.fire("No se pudo almacenar");
+//                 }
+//             },
+//             error: (jqXHR, textStatus, errorThrown) => {
+//                 Swal.fire("Error detectado: " + textStatus + "\nException: " + errorThrown);
+//                 Swal.fire("verifique la ruta de archivo!");
+//             }
+//         });
+//     } else {
+//         Swal.fire("Ingrese todos los datos");
+//     }
+// }
 
 
 // function eliminarVenta() {

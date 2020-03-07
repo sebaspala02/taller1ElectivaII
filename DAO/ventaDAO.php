@@ -1,4 +1,5 @@
 <?php
+session_start();
 class ventaDAO
 {
     private $con;
@@ -6,16 +7,21 @@ class ventaDAO
 
     function __construct()
     {
-        require '../infrastructure/clsConexion.php';
-        $this->objCon = new clsConexion();
-        $this->con = $this->objCon->conectar();
+        // require '../infrastructure/clsConexion.php';
+        // $this->objCon = new clsConexion();
+        // $this->con = $this->objCon->conectar();
+        require '../DAO/DAO.php';
+        // $this->objCon = new clsConexion();
+        // $this->con = $this->objCon->conectar();
+        $this->dao = new clsDAO();
     }
 
     public function guardar(clsDetalle $obj)
     {
+        $user = $_SESSION['user'];
         $this->dao->crearConsulta("guardarVenta", array(
             $obj->getTotal(),  $obj->getFecha(),
-            $obj->getMedi(), $obj->getCant() , $obj->getCliente() , $_SESSION['user']
+            $obj->getMedi(), $obj->getCant(), $obj->getCliente(), $user
         ), "funcion");
         // $sql = "INSERT INTO venta(fecha_venta,valor_total,cliente_idcliente,usuario_idusuario) " .
         //     "VALUES ('" . $obj->getfecha_venta() . "'," . $obj->getvalor_total() . "," . $obj->getcliente_idcliente() . ",
