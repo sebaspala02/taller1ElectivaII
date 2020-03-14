@@ -44,8 +44,8 @@ function guardarVenta() {
                 var info = JSON.parse(data);
                 console.log(info);
                 if (info.res === "Success") {
-                    limpiar();
                     Swal.fire("Operacion exitosa");
+                    limpiar();
                     listarVentas();
                 } else {
                     Swal.fire("No se pudo almacenar");
@@ -332,9 +332,10 @@ function listarVenta(codigo) {
 // }
 
 function limpiar() {
-    $("#txtIdCliente").val("");
-    $("#txtfecha_ventaCliente").val("");
-    $("#txtvalor_totalCliente").val("");
-    $("#txtcliente_idclienteCliente").val("");
-    $("#txtusuario_idusuario").val("");
+    $("#txtIdClienteVenta").val(0);
+    $('#bodyTableV').html('')
+    // $("#txtfecha_ventaCliente").val("");
+    // $("#txtvalor_totalCliente").val("");
+    // $("#txtcliente_idclienteCliente").val("");
+    // $("#txtusuario_idusuario").val("");
 }

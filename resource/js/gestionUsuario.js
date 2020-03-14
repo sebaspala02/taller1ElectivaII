@@ -1,20 +1,4 @@
 $(document).ready(function () {
-    // $('#tableUsuarios').dataTable( {
-    //     "language": {
-    //         "lengthMenu": "Mostrar _MENU_ elementos por pagina",
-    //         "zeroRecords": "No se encuentra la informacion",
-    //         "info": "Mostrando pagina _PAGE_ de _PAGES_",
-    //         "infoEmpty": "Informacion vacia",
-    //         "infoFiltered": "(filtered from _MAX_ total records)",
-    //         "search": "Buscar:",
-    //         "paginate": {
-    //             "first":      "Primero",
-    //             "last":       "Ultimo",
-    //             "next":       "Siguiente",
-    //             "previous":   "Anterior"
-    //         },
-    //     }
-    // } )
     listarUsuarios();
     // listDeptos();
     // listMunicipios();
@@ -166,6 +150,7 @@ function buscarUsuario(codigo) {
         }
     });
 }
+
 
 // function listMunicipios() {
 //     console.log($('#txtDepto').val())

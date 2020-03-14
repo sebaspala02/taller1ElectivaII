@@ -7,7 +7,7 @@ class clsConexion {
     private $database;
     private $port;
     private $host;
-    private $connect;
+    public $connect;
 
     public function conectar() {
         $this->userbd = "root";
