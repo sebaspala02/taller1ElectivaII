@@ -61,4 +61,11 @@ class clsDAO
         $sql = "SELECT idventa,fecha_venta,valor_total,cliente_idcliente,usuario_idusuario from venta";
         $this->objCon->Execute($sql);
     }
+
+    public function listarDetalle($valor)
+    {
+        $sql = "SELECT d.iddetalle_venta,d.cant,d.medicamento_idmedicamento,d.venta_idventa,m.nombre 
+        from medicamento m join detalle_venta d on m.idmedicamento = d.medicamento_idmedicamento where d.venta_idventa= " . $valor;
+        $this->objCon->Execute($sql);
+    }
 }

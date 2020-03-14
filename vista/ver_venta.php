@@ -466,6 +466,7 @@
                                             <th>Cant.</th>
                                             <th>Medicamento</th>
                                             <th>Ref. Venta</th>
+                                            <th>Opción</th>
                                         </tr>
                                     </thead>
                                     <!-- <tr>
@@ -473,22 +474,6 @@
                                         <td>asasas</td>
                                         <td>3783737878</td>
                                     </tr> -->
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <br>
-                                        </td>
-                                        <td>
-                                            <input class="btn btn-outline-dark" type="button" value="Devolver" id="btnDev">
-                                        </td>
-                                        <td>
-                                            <br>
-                                        </td>
-                                    </tr>
                                     <tbody id="listaDetalle">
 
                                     </tbody>

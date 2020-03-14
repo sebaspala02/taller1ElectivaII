@@ -95,8 +95,8 @@ function listarMedi() {
           lista = lista + '<th>' + info[k].cant + '</th>';
           lista = lista + '<th>' + info[k].fecha_creado + '</th>';
           lista = lista + '<th>' + info[k].precio + '</th>';
-          lista = lista + '<th>' + info[k].usuario_idusuario + '</th>';
-          lista = lista + '<th>' + info[k].laboratorio_idlaboratorio + '</th>';
+          lista = lista + '<th>' + info[k].usuario + '</th>';
+          lista = lista + '<th>' + info[k].labo + '</th>';
           //   lista = lista + "<th>" + info[k].descripcion + "</th>";
           lista = lista + '</tr>';
         }

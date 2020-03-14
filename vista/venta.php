@@ -526,7 +526,7 @@
                                 <input class="btn btn-success" type="button" value="Comprar" id="btnCompra">
 
                             </td>
-                            <td>
+                            <!-- <td>
                                 <input class="btn btn-outline-dark" type="button" value="Limpiar" id="btnLimpiarD">
                             </td>
                             <td>
@@ -534,7 +534,7 @@
                             </td>
                             <td>
                                 <input class="btn btn-danger" type="button" value="Eliminar Compra" id="btnEliminarC">
-                            </td>
+                            </td> -->
                         </tr>
                     </table>
                     <label for=""><b>Precio Total: &nbsp;&nbsp;</b></label>

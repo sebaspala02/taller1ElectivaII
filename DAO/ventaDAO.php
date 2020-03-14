@@ -55,4 +55,10 @@ class ventaDAO
         $this->dao->listar();
 
     }
+
+    public function listarDetalle($id)
+    {
+        $this->dao->listarDetalle($id);
+
+    }
 }
