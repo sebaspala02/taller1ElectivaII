@@ -443,6 +443,16 @@
                                     <tbody id="listaVenta">
 
                                     </tbody>
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <form name="formPDF" target="_blank">
+                                                    <input type="text" id="txtReporteV" style="display: none" value="venta">
+                                                    <input class="btn btn-outline-info" type="submit" value="Generar PDF" id="btnPdfV">
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    </table>
                                 </table>
                             </td>
                         </tr>
@@ -477,6 +487,16 @@
                                     <tbody id="listaDetalle">
 
                                     </tbody>
+                                </table>
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <form name="formPDF" target="_blank">
+                                                <input type="text" id="txtReporteDV" style="display: none" value="detalle_venta">
+                                                <input class="btn btn-outline-info" type="submit" value="Generar PDF" id="btnPdfDV">
+                                            </form>
+                                        </td>
+                                    </tr>
                                 </table>
                             </td>
                         </tr>

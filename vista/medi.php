@@ -177,6 +177,16 @@
                             <tbody id="listaMedi">
 
                             </tbody>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <form name="formPDF" target="_blank">
+                                            <input type="text" id="txtReporteM" style="display: none" value="medicamento">
+                                            <input class="btn btn-outline-info" type="submit" value="Generar PDF" id="btnPdfM">
+                                        </form>
+                                    </td>
+                                </tr>
+                            </table>
                         </table>
                     </div>
                 </div>

@@ -25,7 +25,7 @@
     <br><br><br><br><br>
     <div class="row">
         <div class="col-sm-6">
-            <div class="card" style="border-right-width: 1px; margin-right: 254px;">
+            <div class="card" style="border-right-width: 1px; margin-right: 254px;left: 35px;">
                 <div class="card-body">
                     <table>
                         <tr>
@@ -131,8 +131,10 @@
                             <td rowspan="10">
                                 <table class="table table-hover" id="tableUsuarios">
                                     <thead>
-                                    <b><h3 style="text-align: center;">Lista de Usuarios</h3></b>
-                                    <hr>
+                                        <b>
+                                            <h3 style="text-align: center;">Lista de Usuarios</h3>
+                                        </b>
+                                        <hr>
                                         <tr>
                                             <th style="display: none">id</th>
                                             <th>Cedula</th>
@@ -146,6 +148,16 @@
                                     <tbody id="listaUsuarios">
 
                                     </tbody>
+                                </table>
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <form name="formPDF" target="_blank">
+                                                <input type="text" id="txtReporteU" style="display: none" value="usuario">
+                                                <input class="btn btn-outline-info" type="submit" value="Generar PDF" id="btnPdfU">
+                                            </form>
+                                        </td>
+                                    </tr>
                                 </table>
                             </td>
                         </tr>
