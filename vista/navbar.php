@@ -8,16 +8,16 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto my-2 my-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="masterpage.php?page=usuario">Registrar Usuarios</a>
+                    <a class="nav-link js-scroll-trigger" href="masterpage.php?page=usuario">Usuarios</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="masterpage.php?page=medi">CRUD Medicamentos</a>
+                    <a class="nav-link js-scroll-trigger" href="masterpage.php?page=medi">Medicamentos</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="masterpage.php?page=venta">Ventas-Medicamento</a>
+                    <a class="nav-link js-scroll-trigger" href="masterpage.php?page=venta">Registar Venta</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="masterpage.php?page=ver_venta">Lista-Ventas</a>
+                    <a class="nav-link js-scroll-trigger" href="masterpage.php?page=ver_venta">Listar Ventas</a>
                 </li>
                 <!-- <li class="nav-item">
                     <a class="nav-link js-scroll-trigger" href="masterpage.php?page=muni">CRUD Municipio</a>

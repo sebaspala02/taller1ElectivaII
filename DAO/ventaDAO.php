@@ -52,7 +52,13 @@ class ventaDAO
 
     public function listar()
     {
-        $sql = "SELECT idventa,fecha_venta,valor_total,cliente_idcliente,usuario_idusuario from venta";
-        $this->objCon->Execute($sql);
+        $this->dao->listar();
+
+    }
+
+    public function listarDetalle($id)
+    {
+        $this->dao->listarDetalle($id);
+
     }
 }

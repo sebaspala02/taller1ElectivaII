@@ -20,6 +20,7 @@
     <script type="text/javascript" src="resource/js/gestionCliente.js"></script>
     <script type="text/javascript" src="resource/js/gestionMedi.js"></script>
     <script type="text/javascript" src="resource/js/gestionLogin.js"></script>
+    <script type="text/javascript" src="resource/js/gestionVenta.js"></script>
     <!-- <script type="text/javascript">
         $(document).ready(function() {
             $("#hide").on('click', function() {
@@ -427,10 +428,8 @@
                                         <tr>
                                             <th style="display: none">id</th>
                                             <th>Cliente</th>
-                                            <th>Medicamento</th>
-                                            <th>Laboratorio</th>
-                                            <th>Cantidad</th>
-                                            <th>Precio/Unitario</th>
+                                            <th>Fecha Venta</th>
+                                            <th>Precio/Total</th>
                                             <!-- <th>Descripción</th> -->
                                         </tr>
                                     </thead>
@@ -444,6 +443,16 @@
                                     <tbody id="listaVenta">
 
                                     </tbody>
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <form name="formPDF" target="_blank">
+                                                    <input type="text" id="txtReporteV" style="display: none" value="venta">
+                                                    <input class="btn btn-outline-info" type="submit" value="Generar PDF" id="btnPdfV">
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    </table>
                                 </table>
                             </td>
                         </tr>
@@ -467,6 +476,7 @@
                                             <th>Cant.</th>
                                             <th>Medicamento</th>
                                             <th>Ref. Venta</th>
+                                            <th>Opción</th>
                                         </tr>
                                     </thead>
                                     <!-- <tr>
@@ -474,25 +484,19 @@
                                         <td>asasas</td>
                                         <td>3783737878</td>
                                     </tr> -->
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <br>
-                                        </td>
-                                        <td>
-                                            <input class="btn btn-outline-dark" type="button" value="Devolver" id="btnDev">
-                                        </td>
-                                        <td>
-                                            <br>
-                                        </td>
-                                    </tr>
                                     <tbody id="listaDetalle">
 
                                     </tbody>
+                                </table>
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <form name="formPDF" target="_blank">
+                                                <input type="text" id="txtReporteDV" style="display: none" value="detalle_venta">
+                                                <input class="btn btn-outline-info" type="submit" value="Generar PDF" id="btnPdfDV">
+                                            </form>
+                                        </td>
+                                    </tr>
                                 </table>
                             </td>
                         </tr>

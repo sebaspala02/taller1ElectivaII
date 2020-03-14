@@ -400,9 +400,21 @@
 
                                     </tbody>
                                 </table>
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <form name="formPDF" target="_blank">
+                                                <input type="text" id="txtReporteC" style="display: none" value="cliente">
+                                                <input class="btn btn-outline-info" type="submit" value="Generar PDF" id="btnPdfC">
+                                            </form>
+                                        </td>
+                                    </tr>
+                                </table>
                                 <br>
                                 <br>
-                                <p><a class="btn btn-danger" href="#" id="hide"><i class="fa fa-eye"></i> Cerrar Pestaña</a></p>
+                                <div class="text-center">
+                                    <p><a class="btn btn-danger" href="#" id="hide"><i class="fa fa-eye"></i> Cerrar Pestaña -</a></p>
+                                </div>
                             </table>
                         </div>
                     </div>
@@ -442,6 +454,16 @@
                                     <tbody id="listaMediV">
 
                                     </tbody>
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <form name="formPDF" target="_blank">
+                                                    <input type="text" id="txtReporteM" style="display: none" value="medicamento">
+                                                    <input class="btn btn-outline-info" type="submit" value="Generar PDF" id="btnPdfM">
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    </table>
                                 </table>
                             </td>
                         </tr>
@@ -498,7 +520,6 @@
                         venta
 
                         ---------------------------------------------------- -->
-
                         <thead>
                             <b>
                                 <h2 style="text-align: center;">Realizar Venta</h2>
@@ -506,8 +527,7 @@
                             <hr>
                             <input type="text" id="txtIddetalleventa" style="display: none" value="">
                             <label for=""><b>Cliente: &nbsp;&nbsp;&nbsp;</b></label>
-                            <select class="form-control" id="txtIdClienteVenta" name="laboratorio" style="display: inline-block;
-    width: 40%;"></select>
+                            <select class="form-control" id="txtIdClienteVenta" name="laboratorio" style="display: inline-block; width: 40%;"></select>
                             <tr>
                                 <th style="display: none">id</th>
                                 <th>Medicamento</th>
@@ -526,7 +546,7 @@
                                 <input class="btn btn-success" type="button" value="Comprar" id="btnCompra">
 
                             </td>
-                            <td>
+                            <!-- <td>
                                 <input class="btn btn-outline-dark" type="button" value="Limpiar" id="btnLimpiarD">
                             </td>
                             <td>
@@ -534,7 +554,7 @@
                             </td>
                             <td>
                                 <input class="btn btn-danger" type="button" value="Eliminar Compra" id="btnEliminarC">
-                            </td>
+                            </td> -->
                         </tr>
                     </table>
                     <label for=""><b>Precio Total: &nbsp;&nbsp;</b></label>
@@ -542,7 +562,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 </body>
 
