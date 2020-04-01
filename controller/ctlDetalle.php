@@ -31,7 +31,7 @@ switch ($type) {
         $conex->modificar($detalle);
         break;
     case "list":
-        $conex->listar();
+        $conex->listarVenta();
         break;
     case "listD":
         $conex->listarDetalle($idventa);

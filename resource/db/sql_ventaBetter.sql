@@ -452,3 +452,32 @@ BEGIN
 END//
 
 call listarMedi(0);
+
+-- detalleVenta
+
+-- LISTAR
+
+-- DELIMITER//
+CREATE PROCEDURE listarDetalleV(viddetalle_venta int)
+	COMMENT'listar'
+BEGIN
+	select d.iddetalle_venta,d.cant,d.medicamento_idmedicamento,d.venta_idventa,m.nombre 
+        from medicamento m join detalle_venta d on m.idmedicamento = d.medicamento_idmedicamento where d.venta_idventa=viddetalle_venta 
+        order by iddetalle_venta;
+END//
+
+call listarDetalleV(2);
+
+
+-- venta
+
+-- LISTAR
+
+-- DELIMITER//
+CREATE PROCEDURE listarVenta(vidventa int)
+	COMMENT'listar'
+BEGIN
+	select idventa,fecha_venta,valor_total,cliente_idcliente,usuario_idusuario from venta  order by idventa;
+END//
+
+call listarVenta(0);
