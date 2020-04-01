@@ -39,7 +39,7 @@ class clsDAO
             $resultado = $resultadoN . ")";
         }
         if (strpos($nombreFuncion, 'listar') !== false || strpos($nombreFuncion, 'buscar') !== false) {
-            $this->objCon->Execute($resultado);
+             $this->objCon->Execute($resultado);
         } else {
             $this->objCon->ExecuteTransaction($resultado);
         }

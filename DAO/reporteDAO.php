@@ -15,28 +15,31 @@ class reporteDAO
 
     public function crearReporte($tabla)
     {
-        $sql = "SELECT * FROM " . $tabla;
-        $this->objCon->Execute($sql);
-        $colcount = $this->objCon->getConnect->columnCount();
-        echo($colcount);
-        // ob_start(); //Habilita el buffer para la salida de datos 
-        // ob_get_clean(); //Limpia lo que actualmente tenga el buffer
+        // $sql = "SELECT * FROM " . $tabla;
+        $sql = "call listar" . $tabla . "(0)" ;
+        $result = $this->objCon->ExecuteReport($sql);
+        $resultKeys = array_keys($result[0]);
+        print_r($result);
+        // print_r($resultKeys);
+
+        ob_start(); //Habilita el buffer para la salida de datos 
+        ob_get_clean(); //Limpia lo que actualmente tenga el buffer
         // //En la variable content entre las etiquetas <page></page> va todo el contenido del pdf en formato html
-        // $content = "<page backtop='40mm' backbottom='30mm' backleft='20mm' backright='20mm' footer='date;page'>";
+        $content = "<page backtop='40mm' backbottom='30mm' backleft='20mm' backright='20mm' footer='date;page'>";
+        
+        $content .= "<h1>ESTE ES EL REPORTE</h1>";
+        $content .= '<link href="./estilosPDF.css" type="text/css" rel="stylesheet">';
+        
+        $content .= "<page_header>
+                    <table style='width: 100%;'>
+                        <tr>
+                            <td>
+                                <div><label class='logo'>Aqui pueden cargar una imagen que va en el header</label></div>
+                            </td>                                        
+                        </tr>
+                    </table>
+                </page_header>";
 
-        // $content .= "<h1>ESTE ES EL REPORTE</h1>";
-        // $content .= '<link href="./estilosPDF.css" type="text/css" rel="stylesheet">';
-
-
-        // $content .= "<page_header>
-        //             <table style='width: 100%;'>
-        //                 <tr>
-        //                     <td>
-        //                         <div><label class='logo'>Aqui pueden cargar una imagen que va en el header</label></div>
-        //                     </td>                                        
-        //                 </tr>
-        //             </table>
-        //         </page_header>
                                
         //         <page_footer>
         //             <table style='width: 100%;'>
@@ -48,19 +51,34 @@ class reporteDAO
         //             </table>
         //         </page_footer>";
 
-
-
-        // $content .= "<table border='1'>";
-
-        // $content .= "<tr>";
+        $content .= "<table border='1'>";
+        $content .= "<tr>";
+        for ($i = 1; $i < count($resultKeys); $i++) {
+            // print_r($resultKeys[$i]);
+            $content .= "<th>" . $resultKeys[$i] . "</th>";
+        }
         // $content .= "<th>Codigo</th>";
         // $content .= "<th>Nombre</th>";
         // $content .= "<th>Apellido</th>";
         // $content .= "<th>Cedula</th>";
         // $content .= "<th>Edad</th>";
         // $content .= "<th>Semestre</th>";
-        // $content .= "</tr>";
-
+        $content .= "</tr>";
+        for ($i = 0; $i < count($result); $i++) {
+            $aux = $result[$i];
+            for ($j = 1; $j < count($result[$i]); $j++) {
+                if ($j == 1) {
+                    $content .= "<tr>";
+                }
+                $b = $resultKeys[$j];
+                $content .= "<td>" . $aux[$b] . "</td>";
+                if ($j == count($result[$i]) - 1) {
+                    $content .= "</tr>";
+                }
+                // print_r($aux[$b] . $j . "   ");
+            }
+        }
+        print_r($content);
         // for ($cont = 0; $cont < 20; $cont++) {
         //     $content .= "<tr>";
         //     $content .= "<td>Codigo " . $cont . "</td>";
@@ -72,14 +90,14 @@ class reporteDAO
         //     $content .= "</tr>";
         // }
 
-        // $content .= "</table>";
-        // $content .= "</page>";
+        $content .= "</table>";
+        $content .= "</page>";
 
 
-        // $html2pdf = new HTML2PDF('P', 'A4', 'es'); //formato del pdf (posicion (P=vertical L=horizontal), tamaño del pdf, lenguaje)
-        // $html2pdf->WriteHTML($content); //Lo que tenga content lo pasa a pdf
-        // ob_end_clean(); // se limpia nuevamente el buffer
-        // $html2pdf->Output('miPDF.pdf'); //se genera el pdf, generando por defecto el nombre indicado para guardar
+        $html2pdf = new HTML2PDF('P', 'A4', 'es'); //formato del pdf (posicion (P=vertical L=horizontal), tamaño del pdf, lenguaje)
+        $html2pdf->WriteHTML($content); //Lo que tenga content lo pasa a pdf
+        ob_end_clean(); // se limpia nuevamente el buffer
+        $html2pdf->Output('miPDF.pdf'); //se genera el pdf, generando por defecto el nombre indicado para guardar
 
     }
 }
