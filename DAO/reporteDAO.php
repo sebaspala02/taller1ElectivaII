@@ -16,7 +16,7 @@ class reporteDAO
     public function crearReporte($tabla)
     {
         // $sql = "SELECT * FROM " . $tabla;
-        $sql = "call listar" . $tabla . "(0)" ;
+        $sql = "call listar" . $tabla  ;
         $result = $this->objCon->ExecuteReport($sql);
         $resultKeys = array_keys($result[0]);
         print_r($result);

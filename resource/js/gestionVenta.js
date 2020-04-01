@@ -120,7 +120,7 @@ function listarVentas() {
 }
 
 function listarDetalle(id) {
-  $('#txtReporteDVid').val(id)
+  $('#txtReporteDV').val("DetalleV("+id+")")
   $.ajax({
     type: "post",
     url: "controller/ctlDetalle.php",
