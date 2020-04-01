@@ -50,15 +50,28 @@ class ventaDAO
         // $this->objCon->ExecuteTransaction($sql);
     }
 
-    public function listar()
+    // public function listar()
+    // {
+    //     $this->dao->listar();
+    // }
+    public function listarVenta()
     {
-        $this->dao->listar();
-
+        $this->dao->crearConsulta("listarVenta", array(0), "procedimiento");
+        // $sql = "SELECT d.iddetalle_venta,d.cant,d.medicamento_idmedicamento,d.venta_idventa,m.nombre 
+        // from medicamento m join detalle_venta d on m.idmedicamento = d.medicamento_idmedicamento where d.venta_idventa= " . $valor;
+        // $this->objCon->Execute($sql);
     }
+    // public function listarDetalle($id)
+    // {
+    //     $this->dao->listarDetalle($id);
 
-    public function listarDetalle($id)
+    // }
+
+    public function listarDetalle($valor)
     {
-        $this->dao->listarDetalle($id);
-
+        $this->dao->crearConsulta("listarDetalleV", array($valor), "procedimiento");
+        // $sql = "SELECT d.iddetalle_venta,d.cant,d.medicamento_idmedicamento,d.venta_idventa,m.nombre 
+        // from medicamento m join detalle_venta d on m.idmedicamento = d.medicamento_idmedicamento where d.venta_idventa= " . $valor;
+        // $this->objCon->Execute($sql);
     }
 }
