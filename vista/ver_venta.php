@@ -491,9 +491,13 @@
                                 <table>
                                     <tr>
                                         <td>
-                                            <form name="formPDF" target="_blank">
-                                                <input type="text" id="txtReporteDV" style="display: none" name="tabla"value="DetalleV">
+                                            <!-- <form name="formPDF" target="_blank">
+                                                <input type="text" id="txtReporteDV" style="display: none" name="tabla" value="DetalleV">
                                                 <input type="text" id="txtReporteDVid" style="display: none" value="">
+                                                <input class="btn btn-outline-info" type="submit" value="Generar PDF" id="btnPdfDV">
+                                            </form> -->
+                                            <form name="formPDF" method="post" target="_blank" action="./controller/ctlReporte.php">
+                                                <input type="text" id="txtReporteDV" style="display: none" value="DetalleV(0)" name="tabla">
                                                 <input class="btn btn-outline-info" type="submit" value="Generar PDF" id="btnPdfDV">
                                             </form>
                                         </td>

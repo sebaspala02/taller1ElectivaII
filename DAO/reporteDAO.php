@@ -27,15 +27,21 @@ class reporteDAO
         // //En la variable content entre las etiquetas <page></page> va todo el contenido del pdf en formato html
         $content = "<page backtop='40mm' backbottom='30mm' backleft='20mm' backright='20mm' footer='date;page'>";
         
-        $content .= "<h1>ESTE ES EL REPORTE</h1>";
-        $content .= '<link href="./estilosPDF.css" type="text/css" rel="stylesheet">';
+        $content .= '<h1 class="centrar">REPORTE</h1>';
+        // $content .= '<link href="./estilosPDF.css" type="text/css" rel="stylesheet">';
+        $content .= '<link href="../resource/styles/tabla.css" type="text/css" rel="stylesheet">';
         
         $content .= "<page_header>
-                    <table style='width: 100%;'>
-                        <tr>
-                            <td>
-                                <div><label class='logo'>Aqui pueden cargar una imagen que va en el header</label></div>
-                            </td>                                        
+                    <table>
+                        <tr class='centro'>
+                            <td class='color'>
+                                <img src='../resource/img/cruz.png' width='100' height='100'/>
+                            </td>
+                        </tr>
+                        <tr class='centro'>
+                            <td class='color'>
+                                <h2 class='titulo'>FARMACIA</h2>
+                            </td>
                         </tr>
                     </table>
                 </page_header>";
@@ -51,7 +57,7 @@ class reporteDAO
         //             </table>
         //         </page_footer>";
 
-        $content .= "<table border='1'>";
+        $content .= "<table class='table table-striped'>";
         $content .= "<tr>";
         for ($i = 1; $i < count($resultKeys); $i++) {
             // print_r($resultKeys[$i]);
