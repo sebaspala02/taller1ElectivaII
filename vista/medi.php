@@ -186,6 +186,13 @@
                                             <input class="btn btn-outline-info" type="submit" value="Generar PDF" id="btnPdfM">
                                         </form>
                                     </td>
+                                    <td>
+                                            <form name="formPDF" method="post" target="_blank" action="./controller/ctlExportar.php">
+                                                <input type="text" id="txtReporteU" style="display: none" value="Medi(0)" name="tabla">
+                                                <input type="text" id="nomTabla" style="display: none" value="Medicamentos" name="nomTabla">
+                                                <input class="btn btn-outline-info" type="submit" value="Exportar CSV" id="btnCsvM">
+                                            </form>
+                                        </td>
                                 </tr>
                             </table>
                         </table>
