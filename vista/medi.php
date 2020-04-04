@@ -182,6 +182,7 @@
                                     <td>
                                         <form name="formPDF" method="post" target="_blank" action="./controller/ctlReporte.php">
                                             <input type="text" id="txtReporteM" style="display: none" value="Medi(0)" name="tabla">
+                                            <input type="text" id="nomTabla" style="display: none" value="Medicamentos" name="nomTabla">
                                             <input class="btn btn-outline-info" type="submit" value="Generar PDF" id="btnPdfM">
                                         </form>
                                     </td>

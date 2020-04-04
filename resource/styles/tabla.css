@@ -1,9 +1,9 @@
-body {
+/* body {
   font-family: Arial, Helvetica, sans-serif;
-}
+} */
 
 table {
-  font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 12px;
   margin: 45px;
   width: 480px;
@@ -15,32 +15,44 @@ th {
   font-size: 13px;
   font-weight: normal;
   padding: 8px;
-  background: #b9c9fe;
-  border-top: 4px solid #aabcfe;
+  background: #b9feb9;
+  border-top: 4px solid #00ff80;
   border-bottom: 1px solid #fff;
-  color: #039;
+  color: #156d29;
 }
 
 td {
   padding: 8px;
   background: #e8edff;
   border-bottom: 1px solid #fff;
-  color: #669;
+  color: #156d29;
   border-top: 1px solid transparent;
 }
 
 tr:hover td {
   background: #d0dafd;
-  color: #339;
+  color: #11441d;
 }
 
 h1 {
   text-align: center;
-  color: #339;
+  color: #156d29;
 }
 
 .centro {
   text-align: center;
+}
+
+.izq {
+  float: left;
+}
+
+.dere {
+  text-align: right;
+}
+
+.tabla{
+  margin: auto;
 }
 
 .color {
@@ -49,5 +61,10 @@ h1 {
 }
 
 .titulo {
-    text-shadow: 2px 2px 5px blue;
+  text-shadow: 2px 2px 5px #156d29;
+}
+
+img {
+  display: block;
+  margin: auto;
 }

@@ -448,6 +448,7 @@
                                             <td>
                                                 <form name="formPDF" method="post" target="_blank" action="./controller/ctlReporte.php">
                                                     <input type="text" id="txtReporteV" style="display: none" name="tabla" value="Venta(0)">
+                                                    <input type="text" id="nomTabla" style="display: none" value="Ventas" name="nomTabla">
                                                     <input class="btn btn-outline-info" type="submit" value="Generar PDF" id="btnPdfV">
                                                 </form>
                                             </td>
@@ -498,6 +499,7 @@
                                             </form> -->
                                             <form name="formPDF" method="post" target="_blank" action="./controller/ctlReporte.php">
                                                 <input type="text" id="txtReporteDV" style="display: none" value="DetalleV(0)" name="tabla">
+                                                <input type="text" id="nomTabla" style="display: none" value="Detalle Ventas" name="nomTabla">
                                                 <input class="btn btn-outline-info" type="submit" value="Generar PDF" id="btnPdfDV">
                                             </form>
                                         </td>

@@ -13,10 +13,11 @@ class reporteDAO
     }
 
 
-    public function crearReporte($tabla)
+    public function crearReporte($tabla, $nTabla)
     {
+        // $nomTabla = $tabla.substr(-3,2);
         // $sql = "SELECT * FROM " . $tabla;
-        $sql = "call listar" . $tabla  ;
+        $sql = "call listar" . $tabla;
         $result = $this->objCon->ExecuteReport($sql);
         $resultKeys = array_keys($result[0]);
         print_r($result);
@@ -25,28 +26,25 @@ class reporteDAO
         ob_start(); //Habilita el buffer para la salida de datos 
         ob_get_clean(); //Limpia lo que actualmente tenga el buffer
         // //En la variable content entre las etiquetas <page></page> va todo el contenido del pdf en formato html
-        $content = "<page backtop='40mm' backbottom='30mm' backleft='20mm' backright='20mm' footer='date;page'>";
+        $content = "<page backtop='40mm' backbottom='30mm' backleft=8mm' backright='2mm' footer='date;page'>";
+
         
-        $content .= '<h1 class="centrar">REPORTE</h1>';
         // $content .= '<link href="./estilosPDF.css" type="text/css" rel="stylesheet">';
         $content .= '<link href="../resource/styles/tabla.css" type="text/css" rel="stylesheet">';
-        
-        $content .= "<page_header>
-                    <table>
-                        <tr class='centro'>
-                            <td class='color'>
-                                <img src='../resource/img/cruz.png' width='100' height='100'/>
-                            </td>
-                        </tr>
-                        <tr class='centro'>
-                            <td class='color'>
-                                <h2 class='titulo'>FARMACIA</h2>
-                            </td>
-                        </tr>
-                    </table>
-                </page_header>";
 
-                               
+        $content .= "<page_header>";
+        $content .= "<div>
+                        <img class='izq' src='../resource/img/cruz.png' width='100' height='100'/>
+                        <br>
+                        <br>
+                        <h2 class='dere' style='color: #28a745;'>Drogueria Johnny S.A.S</h2>
+                     </div>";      
+        $content .= '<h1 class="centro">' . $nTabla . '</h1>';
+        $content .= "</page_header>";
+        $content .= "<br>";
+        $content .= "<br>";
+
+
         //         <page_footer>
         //             <table style='width: 100%;'>
         //                 <tr>
@@ -57,7 +55,8 @@ class reporteDAO
         //             </table>
         //         </page_footer>";
 
-        $content .= "<table class='table table-striped'>";
+        // $content .= "<div class='tabla'>";
+        $content .= "<table class='table tabla'>";
         $content .= "<tr>";
         for ($i = 1; $i < count($resultKeys); $i++) {
             // print_r($resultKeys[$i]);
@@ -97,6 +96,7 @@ class reporteDAO
         // }
 
         $content .= "</table>";
+        // $content .= "</div>";
         $content .= "</page>";
 
 

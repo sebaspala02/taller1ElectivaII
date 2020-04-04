@@ -154,6 +154,7 @@
                                         <td>
                                             <form name="formPDF" method="post" target="_blank" action="./controller/ctlReporte.php">
                                                 <input type="text" id="txtReporteU" style="display: none" value="Usuario(0)" name="tabla">
+                                                <input type="text" id="nomTabla" style="display: none" value="Usuarios" name="nomTabla">
                                                 <input class="btn btn-outline-info" type="submit" value="Generar PDF" id="btnPdfU">
                                             </form>
                                         </td>
