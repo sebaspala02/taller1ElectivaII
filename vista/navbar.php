@@ -19,6 +19,9 @@
                 <li class="nav-item">
                     <a class="nav-link js-scroll-trigger" href="masterpage.php?page=ver_venta">Listar Ventas</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="masterpage.php?page=reporteExcel">Reportes CSV</a>
+                </li>
                 <!-- <li class="nav-item">
                     <a class="nav-link js-scroll-trigger" href="masterpage.php?page=muni">CRUD Municipio</a>
                 </li> -->

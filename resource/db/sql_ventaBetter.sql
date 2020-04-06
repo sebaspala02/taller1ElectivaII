@@ -481,3 +481,39 @@ BEGIN
 END//
 
 call listarVenta(0);
+
+
+-- PL 1 EXCEL
+
+CREATE PROCEDURE listarPlUno()
+BEGIN
+	select c.nombre,c.apellido,c.cedula,count(*) as compras, sum(v.valor_total) as invertido  from cliente c join venta v on v.cliente_idcliente
+	= c.idcliente group by v.cliente_idcliente order by compras desc;
+END//
+
+
+-- PL 2 EXCEL
+
+CREATE PROCEDURE listarPlDos()
+BEGIN
+	select u.nombre,u.apellido,u.cedula,u.usuario,count(*) as ventas, sum(v.valor_total) as ingresos  from usuario u join venta v on v.usuario_idusuario
+	= u.idusuario group by v.usuario_idusuario order by ventas desc;
+END//
+
+-- PL 3 EXCEL
+
+CREATE PROCEDURE listarPlTres()
+BEGIN
+	select m.nombre,l.nombre as laboratorio,m.descrip as descripción,count(*) as cantidad from medicamento m join detalle_venta dv on dv.medicamento_idmedicamento
+	= m.idmedicamento join laboratorio l on m.laboratorio_idlaboratorio = l.idlaboratorio
+	group by dv.medicamento_idmedicamento order by cantidad desc;
+END//
+
+
+-- PL 4 EXCEL
+
+CREATE PROCEDURE listarPlCuatro()
+BEGIN
+	select v.fecha_venta,count(*) as cantidad,sum(v.valor_total) as ingresos from venta v
+	group by v.fecha_venta;
+END//
