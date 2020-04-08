@@ -13,11 +13,26 @@
                             <h5 class="card-title">Reporte #1</h5>
                             <p class="card-text text-justify">Se debe mostrar un informe de los clientes, ordenados del que más compras a realizado al que menos compras
                                 a realizado, mostrando el total de compras y el total de dinero invertido en la farmacia.<br><br></p>
-                            <form name="formPDF" method="post" target="_blank" action="./controller/ctlExportar.php">
-                                <input type="text" id="txtReporteU" style="display: none" value="PlUno()" name="tabla">
-                                <input type="text" id="nomTabla" style="display: none" value="Informe Clientes" name="nomTabla">
-                                <input class="btn btn-outline-info" type="submit" value="Exportar CSV">
-                            </form>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <form name="formPDF" method="post" target="_blank" action="./controller/ctlExportar.php">
+                                            <input type="text" id="txtReporteU" style="display: none" value="PlUno()" name="tabla">
+                                            <input type="text" value="," name="coma" id="coma" style="display: none">
+                                            <input type="text" id="nomTabla" style="display: none" value="Informe Clientes" name="nomTabla">
+                                            <input class="btn btn-outline-info" type="submit" value="Exportar CSV ,">
+                                        </form>
+                                    </td>
+                                    <td>
+                                        <form name="formPDF" method="post" target="_blank" action="./controller/ctlExportar.php">
+                                            <input type="text" id="txtReporteU" style="display: none" value="PlUno()" name="tabla">
+                                            <input type="text" id="nomTabla" style="display: none" value="Informe Clientes" name="nomTabla">
+                                            <input type="text" value=";" name="coma" id="coma" style="display: none">
+                                            <input class="btn btn-outline-info" type="submit" value="Exportar CSV ;" id="btnCsvM">
+                                        </form>
+                                    </td>
+                                </tr>
+                            </table>
                             <!-- <a href="#" class="btn btn-primary">Generar Reporte</a> -->
                         </div>
                     </div>
@@ -30,11 +45,26 @@
                             <p class="card-text text-justify">Se debe mostrar un informe de todos los empleados, ordenados del empleado que más ventas ha realizado al
                                 que menos ventas ha realizado. Además, de cada empleado se debe mostrar cuantos ingresos por ventas ha
                                 generado a la farmacia.</p>
-                            <form name="formPDF" method="post" target="_blank" action="./controller/ctlExportar.php">
-                                <input type="text" id="txtReporteU" style="display: none" value="PlDos()" name="tabla">
-                                <input type="text" id="nomTabla" style="display: none" value="Informe Empleados" name="nomTabla">
-                                <input class="btn btn-outline-info" type="submit" value="Exportar CSV">
-                            </form>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <form name="formPDF" method="post" target="_blank" action="./controller/ctlExportar.php">
+                                            <input type="text" id="txtReporteU" style="display: none" value="PlDos()" name="tabla">
+                                            <input type="text" id="nomTabla" style="display: none" value="Informe Empleados" name="nomTabla">
+                                            <input type="text" value="," name="coma" id="coma" style="display: none">
+                                            <input class="btn btn-outline-info" type="submit" value="Exportar CSV ,">
+                                        </form>
+                                    </td>
+                                    <td>
+                                        <form name="formPDF" method="post" target="_blank" action="./controller/ctlExportar.php">
+                                            <input type="text" id="txtReporteU" style="display: none" value="PlDos()" name="tabla">
+                                            <input type="text" id="nomTabla" style="display: none" value="Informe Empleados" name="nomTabla">
+                                            <input type="text" value=";" name="coma" id="coma" style="display: none">
+                                            <input class="btn btn-outline-info" type="submit" value="Exportar CSV ;" id="btnCsvM">
+                                        </form>
+                                    </td>
+                                </tr>
+                            </table>
                             <!-- <a href="#" class="btn btn-primary">Generar Reporte</a> -->
                         </div>
                     </div>
@@ -45,11 +75,26 @@
                             <h5 class="card-title">Reporte #3</h5>
                             <p class="card-text text-justify">Se debe mostrar un informe de los productos más vendidos al menos vendido. Indicando por cada producto la
                                 cantidad total que se ha vendido cada producto.</p>
-                            <form name="formPDF" method="post" target="_blank" action="./controller/ctlExportar.php">
-                                <input type="text" id="txtReporteU" style="display: none" value="PlTres()" name="tabla">
-                                <input type="text" id="nomTabla" style="display: none" value="Informe Productos" name="nomTabla">
-                                <input class="btn btn-outline-info" type="submit" value="Exportar CSV">
-                            </form>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <form name="formPDF" method="post" target="_blank" action="./controller/ctlExportar.php">
+                                            <input type="text" id="txtReporteU" style="display: none" value="PlTres()" name="tabla">
+                                            <input type="text" id="nomTabla" style="display: none" value="Informe Productos" name="nomTabla">
+                                            <input type="text" value="," name="coma" id="coma" style="display: none">
+                                            <input class="btn btn-outline-info" type="submit" value="Exportar CSV ,">
+                                        </form>
+                                    </td>
+                                    <td>
+                                        <form name="formPDF" method="post" target="_blank" action="./controller/ctlExportar.php">
+                                            <input type="text" id="txtReporteU" style="display: none" value="PlTres()" name="tabla">
+                                            <input type="text" id="nomTabla" style="display: none" value="Informe Productos" name="nomTabla">
+                                            <input type="text" value=";" name="coma" id="coma" style="display: none">
+                                            <input class="btn btn-outline-info" type="submit" value="Exportar CSV ;" id="btnCsvM">
+                                        </form>
+                                    </td>
+                                </tr>
+                            </table>
                             <!-- <a href="#" class="btn btn-primary">Generar Reporte</a> -->
                         </div>
                     </div>
@@ -60,11 +105,26 @@
                             <h5 class="card-title">Reporte #4</h5>
                             <p class="card-text text-justify">Se debe mostrar un informe que indique por día, cuantas ventas se ha realizado, y el total de ingresos generados
                                 por día.</p>
-                            <form name="formPDF" method="post" target="_blank" action="./controller/ctlExportar.php">
-                                <input type="text" id="txtReporteU" style="display: none" value="PlCuatro()" name="tabla">
-                                <input type="text" id="nomTabla" style="display: none" value="Informe Día" name="nomTabla">
-                                <input class="btn btn-outline-info" type="submit" value="Exportar CSV">
-                            </form>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <form name="formPDF" method="post" target="_blank" action="./controller/ctlExportar.php">
+                                            <input type="text" id="txtReporteU" style="display: none" value="PlCuatro()" name="tabla">
+                                            <input type="text" id="nomTabla" style="display: none" value="Informe Día" name="nomTabla">
+                                            <input type="text" value="," name="coma" id="coma" style="display: none">
+                                            <input class="btn btn-outline-info" type="submit" value="Exportar CSV ,">
+                                        </form>
+                                    </td>
+                                    <td>
+                                        <form name="formPDF" method="post" target="_blank" action="./controller/ctlExportar.php">
+                                            <input type="text" id="txtReporteU" style="display: none" value="PlCuatro()" name="tabla">
+                                            <input type="text" id="nomTabla" style="display: none" value="Informe Día" name="nomTabla">
+                                            <input type="text" value=";" name="coma" id="coma" style="display: none">
+                                            <input class="btn btn-outline-info" type="submit" value="Exportar CSV ;" id="btnCsvM">
+                                        </form>
+                                    </td>
+                                </tr>
+                            </table>
                             <!-- <a href="#" class="btn btn-primary">Generar Reporte</a> -->
                         </div>
                     </div>

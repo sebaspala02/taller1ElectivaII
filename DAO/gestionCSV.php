@@ -12,7 +12,7 @@ class gestionCSV
         $this->con = $this->objCon->conectar();
     }
 
-    public function exportarCSV($tabla,$nTabla)
+    public function exportarCSV($tabla, $nTabla, $coma)
     {
 
         $sql = "call listar" . $tabla;
@@ -23,12 +23,22 @@ class gestionCSV
         /* Se define la zona horaria en Colombia para generar el archivo */
         date_default_timezone_set("America/Bogota");
         /* Se genera el nombre del archivo con la fecha y hora de la generacion */
-        $fileName = 'Reporte de '. $nTabla . '-' . date("Y-m-d") . "(" . date("h:i:sa") . ")" . '.csv';
+        $fileName = 'Reporte de ' . $nTabla . '-' . date("Y-m-d") . "(" . date("h:i:sa") . ")" . '.csv';
         /* Se define que se retornara un archivo CVS */
         header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
         header('Content-Disposition: attachment; filename=' . $fileName);
 
-        $caracterSeparado = ';';
+        // $caracterSeparado = ';';
+
+        
+        // $caracterSeparado = '';
+        // if ($coma == ',') {
+        //     $caracterSeparado = ',';
+        // } else {
+        //     $caracterSeparado = ';';
+        // }
+
+        $caracterSeparado = $coma;
 
         $content = '';
         for ($i = 1; $i < count($resultKeys); $i++) {
@@ -58,7 +68,7 @@ class gestionCSV
                 //     $content .= "<tr>";
                 // }
                 $b = $resultKeys[$j];
-                $content .= $aux[$b]. $caracterSeparado;
+                $content .= $aux[$b] . $caracterSeparado;
                 // if ($j == count($result[$i]) - 1) {
                 //     $content .= "</tr>";
                 // }
