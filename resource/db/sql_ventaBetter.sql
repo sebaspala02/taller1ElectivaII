@@ -448,7 +448,7 @@ call buscarMedi(3);
 CREATE PROCEDURE listarMedi(vidmedicamento int)
 	COMMENT'listar'
 BEGIN
-	select idmedicamento,nombre, descrip, fecha_venc, cant, fecha_creado, precio, usuario_idusuario, laboratorio_idlaboratorio from medicamento order by idmedicamento;
+	select m.idmedicamento,m.nombre, m.descrip as descripcion, m.fecha_venc as vencimiento, m.cant as cantidad, m.fecha_creado as registro, m.precio as precio, u.usuario as usuario, l.nombre as laboratorio, l.idlaboratorio from medicamento m join laboratorio l on m.laboratorio_idlaboratorio = l.idlaboratorio join usuario u on m.usuario_idusuario = u.idusuario order by idmedicamento;
 END//
 
 call listarMedi(0);

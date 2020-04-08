@@ -188,7 +188,7 @@ function listarMedi() {
       if (info.length > 0) {
         // let a =
         for (k = 0; k < info.length; k++) {
-          if (info[k].cant > 0) {
+          if (info[k].cantidad > 0) {
             lista =
               lista +
               '<tr id="codigo" onclick="agregarMedi(' +
@@ -197,10 +197,12 @@ function listarMedi() {
               info[k].nombre +
               "'," +
               info[k].precio +
+              ",'" +
+              info[k].laboratorio +
+              "'," +
+              info[k].cantidad +
               "," +
-              info[k].laboratorio_idlaboratorio +
-              "," +
-              info[k].cant +
+              info[k].idlaboratorio +
               ')">';
             lista =
               lista +
@@ -209,11 +211,11 @@ function listarMedi() {
               "</th>";
 
             lista = lista + "<th>" + info[k].nombre + "</th>";
-            lista = lista + "<th>" + info[k].fecha_venc + "</th>";
-            lista = lista + "<th>" + info[k].cant + "</th>";
+            lista = lista + "<th>" + info[k].vencimiento + "</th>";
+            lista = lista + "<th>" + info[k].cantidad + "</th>";
             lista = lista + "<th>" + info[k].precio + "</th>";
             lista =
-              lista + "<th>" + info[k].laboratorio_idlaboratorio + "</th>";
+              lista + "<th>" + info[k].laboratorio + "</th>";
             //   lista = lista + "<th>" + info[k].descripcion + "</th>";
             lista = lista + "</tr>";
           }
@@ -250,7 +252,7 @@ function listarMedi() {
   });
 }
 
-function agregarMedi(id, nombre, precio, labo, cantidad) {
+function agregarMedi(id, nombre, precio, labo, cantidad,idlaboratorio) {
   var existe = $("tr[value='" + id + "']");
   if (existe.length > 0) {
     Swal.fire("El medicamento elegido ya esta en la venta");

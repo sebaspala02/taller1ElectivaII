@@ -90,13 +90,13 @@ function listarMedi() {
           lista = lista + '<tr id="codigo" onclick="buscarMedi(' + info[k].idmedicamento + ')">';
           lista = lista + '<th style="display: none">' + info[k].idmedicamento + "</th>";
           lista = lista + '<th>' + info[k].nombre + '</th>';
-          lista = lista + '<th>' + info[k].descrip + '</th>';
-          lista = lista + '<th>' + info[k].fecha_venc + '</th>';
-          lista = lista + '<th>' + info[k].cant + '</th>';
-          lista = lista + '<th>' + info[k].fecha_creado + '</th>';
+          lista = lista + '<th>' + info[k].descripcion + '</th>';
+          lista = lista + '<th>' + info[k].vencimiento + '</th>';
+          lista = lista + '<th>' + info[k].cantidad + '</th>';
+          lista = lista + '<th>' + info[k].registro + '</th>';
           lista = lista + '<th>' + info[k].precio + '</th>';
           lista = lista + '<th>' + info[k].usuario + '</th>';
-          lista = lista + '<th>' + info[k].labo + '</th>';
+          lista = lista + '<th>' + info[k].laboratorio + '</th>';
           //   lista = lista + "<th>" + info[k].descripcion + "</th>";
           lista = lista + '</tr>';
         }
