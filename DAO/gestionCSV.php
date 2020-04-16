@@ -41,7 +41,7 @@ class gestionCSV
         $caracterSeparado = $coma;
 
         $content = '';
-        for ($i = 1; $i < count($resultKeys); $i++) {
+        for ($i = 0; $i < count($resultKeys); $i++) {
             // print_r($resultKeys[$i]);
             $content .= $resultKeys[$i] . $caracterSeparado;
         }
@@ -63,7 +63,7 @@ class gestionCSV
 
         for ($i = 0; $i < count($result); $i++) {
             $aux = $result[$i];
-            for ($j = 1; $j < count($result[$i]); $j++) {
+            for ($j = 0; $j < count($result[$i]); $j++) {
                 // if ($j == 1) {
                 //     $content .= "<tr>";
                 // }

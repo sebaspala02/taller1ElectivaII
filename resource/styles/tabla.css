@@ -15,28 +15,28 @@ th {
   font-size: 13px;
   font-weight: normal;
   padding: 8px;
-  background: #b9feb9;
-  border-top: 4px solid #00ff80;
+  background: #79c3ff;
+  border-top: 4px solid #79c3ff;
   border-bottom: 1px solid #fff;
-  color: #156d29;
+  color: #0003ce;
 }
 
 td {
   padding: 8px;
   background: #e8edff;
   border-bottom: 1px solid #fff;
-  color: #156d29;
+  color: #393cf7;
   border-top: 1px solid transparent;
 }
 
 tr:hover td {
   background: #d0dafd;
-  color: #11441d;
+  color: #393cf7;
 }
 
 h1 {
   text-align: center;
-  color: #156d29;
+  color: #54c8fd;
 }
 
 .centro {
@@ -61,7 +61,7 @@ h1 {
 }
 
 .titulo {
-  text-shadow: 2px 2px 5px #156d29;
+  text-shadow: 2px 2px 5px #54c8fd;
 }
 
 img {

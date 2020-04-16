@@ -28,32 +28,37 @@ class reporteDAO
         // //En la variable content entre las etiquetas <page></page> va todo el contenido del pdf en formato html
         $content = "<page backtop='40mm' backbottom='30mm' backleft=8mm' backright='2mm' footer='date;page'>";
 
-        
+
         // $content .= '<link href="./estilosPDF.css" type="text/css" rel="stylesheet">';
         $content .= '<link href="../resource/styles/tabla.css" type="text/css" rel="stylesheet">';
 
         $content .= "<page_header>";
         $content .= "<div>
-                        <img class='izq' src='../resource/img/cruz.png' width='100' height='100'/>
+                        <img class='izq' src='../resource/img/cruzA.jpg' width='110' height='100'/>
                         <br>
                         <br>
-                        <h2 class='dere' style='color: #28a745;'>Drogueria Johnny S.A.S</h2>
-                     </div>";      
+                        <h2 class='dere' style='color: #54c8fd;'>Drogueria FarmaTest S.A.S</h2>
+                     </div>";
         $content .= '<h1 class="centro">' . $nTabla . '</h1>';
         $content .= "</page_header>";
         $content .= "<br>";
         $content .= "<br>";
 
 
-        //         <page_footer>
-        //             <table style='width: 100%;'>
-        //                 <tr>
-        //                     <td>
-        //                         <div><label class='footer'>Aqui pueden cargar una imagen que va en el footer</label></div>
-        //                     </td>                                        
-        //                  </tr>
-        //             </table>
-        //         </page_footer>";
+        $content .= "<page_footer>
+                        <table style='width: 100%;'>
+                            <tr>
+                                <td>
+                                    <div>
+                                        <img class='izq' src='../resource/img/cruzA.jpg' width='110' height='100'/>
+                                        <h2 class='centro' style='color: #54c8fd;'>Drogueria FarmaTest S.A.S</h2>
+                                        <h4 class='centro' style='color: #393cf7;'>Realizado por Alejandro Hoyos & Sebastian Palacio</h4>
+                                        <hr style='color: blue;'/>
+                                    </div>
+                                </td>                                        
+                            </tr>
+                        </table>
+                    </page_footer>";
 
         // $content .= "<div class='tabla'>";
         $content .= "<table class='table tabla'>";
@@ -103,7 +108,7 @@ class reporteDAO
         $html2pdf = new HTML2PDF('P', 'A4', 'es'); //formato del pdf (posicion (P=vertical L=horizontal), tamaño del pdf, lenguaje)
         $html2pdf->WriteHTML($content); //Lo que tenga content lo pasa a pdf
         ob_end_clean(); // se limpia nuevamente el buffer
-        $html2pdf->Output('miPDF.pdf'); //se genera el pdf, generando por defecto el nombre indicado para guardar
+        $html2pdf->Output('Reporte_' . $nTabla . 'PDF.pdf'); //se genera el pdf, generando por defecto el nombre indicado para guardar
 
     }
 }
