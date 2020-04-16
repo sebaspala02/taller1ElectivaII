@@ -50,11 +50,78 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `listarCliente` (`vidcliente` INT)  
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `listarMedi` (`vidmedicamento` INT)  BEGIN
-	select idmedicamento,nombre, descrip, fecha_venc, cant, fecha_creado, precio, usuario_idusuario, laboratorio_idlaboratorio from medicamento order by idmedicamento;
+	select m.idmedicamento,m.nombre, m.descrip as descripcion, m.fecha_venc as vencimiento, m.cant as cantidad, m.fecha_creado as registro, m.precio as precio, u.usuario as usuario, l.nombre as laboratorio, l.idlaboratorio from medicamento m join laboratorio l on m.laboratorio_idlaboratorio = l.idlaboratorio join usuario u on m.usuario_idusuario = u.idusuario order by idmedicamento;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `listarUsuario` (`vidusuario` INT)  BEGIN
 	select idusuario,cedula,nombre,apellido,correo,usuario,password from usuario order by idusuario;
+END$$
+
+
+
+-- detalleVenta
+
+-- LISTAR
+
+-- DELIMITER//
+CREATE PROCEDURE listarDetalleV(viddetalle_venta int)
+	COMMENT'listar'
+BEGIN
+	select d.iddetalle_venta,d.cant,d.medicamento_idmedicamento,d.venta_idventa,m.nombre 
+        from medicamento m join detalle_venta d on m.idmedicamento = d.medicamento_idmedicamento where d.venta_idventa=viddetalle_venta 
+        order by iddetalle_venta;
+END$$
+
+-- call listarDetalleV(2);
+
+
+-- venta
+
+-- LISTAR
+
+-- DELIMITER//
+CREATE PROCEDURE listarVenta(vidventa int)
+	COMMENT'listar'
+BEGIN
+	select idventa,fecha_venta,valor_total,cliente_idcliente,usuario_idusuario from venta  order by idventa;
+END$$
+
+-- call listarVenta(0);
+
+
+-- PL 1 EXCEL
+
+CREATE PROCEDURE listarPlUno()
+BEGIN
+	select c.nombre,c.apellido,c.cedula,count(*) as compras, sum(v.valor_total) as invertido  from cliente c join venta v on v.cliente_idcliente
+	= c.idcliente group by v.cliente_idcliente order by compras desc;
+END$$
+
+
+-- PL 2 EXCEL
+
+CREATE PROCEDURE listarPlDos()
+BEGIN
+	select u.nombre,u.apellido,u.cedula,u.usuario,count(*) as ventas, sum(v.valor_total) as ingresos  from usuario u join venta v on v.usuario_idusuario
+	= u.idusuario group by v.usuario_idusuario order by ventas desc;
+END$$
+
+-- PL 3 EXCEL
+
+CREATE PROCEDURE listarPlTres()
+BEGIN
+	select m.nombre,l.nombre as laboratorio,m.descrip as descripción,count(*) as cantidad from medicamento m join detalle_venta dv on dv.medicamento_idmedicamento
+	= m.idmedicamento join laboratorio l on m.laboratorio_idlaboratorio = l.idlaboratorio
+	group by dv.medicamento_idmedicamento order by cantidad desc;
+END$$
+
+
+-- PL 4 EXCEL
+
+CREATE PROCEDURE listarPlCuatro()
+BEGIN
+	select v.fecha_venta,count(*) as cantidad,sum(v.valor_total) as ingresos from venta v
+	group by v.fecha_venta;
 END$$
 
 --
@@ -373,13 +440,13 @@ CREATE TABLE `venta` (
 --
 
 INSERT INTO `venta` (`idventa`, `fecha_venta`, `valor_total`, `cliente_idcliente`, `usuario_idusuario`) VALUES
-(5, '0000-00-00 00:00:00', 55, 1, 1),
-(6, '0000-00-00 00:00:00', 55, 1, 1),
-(7, '0000-00-00 00:00:00', 101, 1, 1),
-(8, NULL, 200, 2, 1),
-(9, '0000-00-00 00:00:00', 55, 2, 1),
-(10, '0000-00-00 00:00:00', 255, 1, 1),
-(11, '0000-00-00 00:00:00', 55, 2, 1),
+(5, '2020-01-12', 55, 1, 1),
+(6, '2020-02-21', 55, 1, 1),
+(7, '2020-03-27', 101, 1, 1),
+(8, '2020-04-01', 55, 2, 1),
+(9, '2020-09-23', 255, 1, 1),
+(10, '2020-11-12', 55, 2, 1),
+(11, '2020-12-31', 55, 1, 1),
 (12, '0000-00-00 00:00:00', 55, 1, 1);
 
 --
