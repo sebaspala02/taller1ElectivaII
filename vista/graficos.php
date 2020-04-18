@@ -16,14 +16,14 @@
                                 total de clientes hombres y mujeres y su distribución en porcentajes.<br><br></p>
                             <table>
                                 <tr>
-                                    <td>
+                                    <!-- <td>
                                         <form name="formPDF" method="post" action="./controller/ctlExportar.php">
                                             <input type="text" id="txtReporteU" style="display: none" value="Genero()" name="tabla">
                                             <input type="text" value="," name="coma" id="coma" style="display: none">
                                             <input type="text" id="nomTabla" style="display: none" value="datos1" name="nomTabla">
                                             <input class="btn btn-outline-info" type="submit" value="Exportar CSV ,">
                                         </form>
-                                    </td>
+                                    </td> -->
                                     <td>
                                         <form name="graficas" method="post" target="_blank" action="masterpage.php?page=C1">
                                             <!-- <input type="text" id="txtReporteU" style="display: none" value="PlUno()" name="tabla"> -->
