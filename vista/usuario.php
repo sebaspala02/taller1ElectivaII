@@ -94,7 +94,7 @@
                             </td>
                             <td colspan="2">
                                 <!-- <input type="text" id="txtIdUsuario" style="display: none" value=""> -->
-                                <input class="form-control" type="password" placeholder="Calve" id="txtPassword" required>
+                                <input class="form-control" type="password" placeholder="Clave" id="txtPassword" required>
                                 <br>
                             </td>
                         </tr>

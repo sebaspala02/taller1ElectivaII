@@ -88,6 +88,24 @@ END$$
 
 -- call listarVenta(0);
 
+-- Grafico 1
+
+CREATE PROCEDURE listarGenero()
+BEGIN
+	select c.genero,count(*) as total  from cliente c group by genero;
+END$$
+
+-- call listarGenero();
+
+-- Grafico 2
+
+CREATE PROCEDURE listarProd()
+BEGIN
+	select m.nombre, sum(cant) as cantidad  from medicamento m group by nombre;
+END$$
+
+-- call listarProd();
+
 
 -- PL 1 EXCEL
 
