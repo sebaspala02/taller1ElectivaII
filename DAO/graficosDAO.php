@@ -15,7 +15,21 @@ class graficosDAO
     }
     public function listarG1()
     {
+        // $sql = "call listar" . $tabla;
+        // $result = $this->objCon->ExecuteReport($sql);
+        // $resultKeys = array_keys($result[0]);
+        // return $resultKeys;
         $this->dao->crearConsulta("listarGenero", array(0), "procedimiento");
+        // $sql = "SELECT idmedicamento,nombre,descrip,fecha_venc,cant,fecha_creado,precio,usuario_idusuario,laboratorio_idlaboratorio from medicamento M";
+        // $this->objCon->Execute($sql);
+    }
+    public function listarG2()
+    {
+        // $sql = "call listar" . $tabla;
+        // $result = $this->objCon->ExecuteReport($sql);
+        // $resultKeys = array_keys($result[0]);
+        // return $resultKeys;
+        $this->dao->crearConsulta("listarProd", array(0), "procedimiento");
         // $sql = "SELECT idmedicamento,nombre,descrip,fecha_venc,cant,fecha_creado,precio,usuario_idusuario,laboratorio_idlaboratorio from medicamento M";
         // $this->objCon->Execute($sql);
     }

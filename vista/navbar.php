@@ -41,7 +41,7 @@
                     <input type="text" name="type" style="display: none">
                 </td>
                 <td>
-                    <input class="btn btn-primary" type="button" value="Desconectar" id="btnDesconectar" onclick="validarLogin(formularioLogout,'desc')">
+                    <input class="btn btn-light" type="button" value="Desconectar" id="btnDesconectar" onclick="validarLogin(formularioLogout,'desc')">
                 </td>
             </tr>
         </table>

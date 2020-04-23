@@ -90,21 +90,21 @@ END$$
 
 -- Grafico 1
 
-CREATE PROCEDURE listarGenero()
+CREATE PROCEDURE listarGenero(vid INT)
 BEGIN
 	select c.genero,count(*) as total  from cliente c group by genero;
 END$$
 
--- call listarGenero();
+-- call listarGenero(0);
 
 -- Grafico 2
 
-CREATE PROCEDURE listarProd()
+CREATE PROCEDURE listarProd(vid INT)
 BEGIN
 	select m.nombre, sum(cant) as cantidad  from medicamento m group by nombre;
 END$$
 
--- call listarProd();
+-- call listarProd(0);
 
 
 -- PL 1 EXCEL
