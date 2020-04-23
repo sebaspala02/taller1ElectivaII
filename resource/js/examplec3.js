@@ -41,35 +41,34 @@ function cargarDataset1() {
         for (k = 0; k < info.length; k++) {
           var fila = [info[k].genero, info[k].total];
           arreglo.push(fila);
-          console.log(fila + "holaaaa");
-          //   chart3.Palette = ChartColorPalette.Pastel;
-          //   chart3.Titles.Add("no se" + info[k].genero, info[k].total);
-          //   info = chart1.Series.Add(info[k]);
-          //   info.Label = puntos[k].ToString();
-          //   info.Points.Add(puntos[k]);
+          console.log(fila[0] + " ");
+          console.log(fila[1] + " ");
+
+          var chart3 = c3.generate({
+            bindto: "#chart1",
+            data: {
+              columns: [
+                ["".concat(arreglo[1]), info[1].total],
+                ["".concat(arreglo[0]), info[0].total],
+              ],
+              // url: "resource/data/datos1.csv",
+              type: "donut",
+              onmouseout: function (d, i) {
+                console.log("onmouseout", d, i);
+                console.log(d.id);
+                console.log(d.value);
+              },
+            },
+            donut: {
+              title: "Cant. Clientes por Genero",
+            },
+          });
+          //   fin
         }
       }
 
-      //   $("#chart3").hide();
-      var chart3 = c3.generate({
-        bindto: "#chart3",
-        data: {
-          columns: arreglo,
-          // url: "resource/data/datos1.csv",
-          type: "donut",
-          onmouseover: function (d, i) {
-            console.log("onmouseover", d, i);
-          },
-          onmouseout: function (d, i) {
-            console.log("onmouseout", d, i);
-            console.log(d.id);
-            console.log(d.value);
-          },
-        },
-        donut: {
-          title: "Cant. Clientes por Genero",
-        },
-      });
+      console.log(arreglo[0] + "W !");
+      console.log(arreglo[1] + "M !");
     },
     error: (jqXHR, textStatus, errorThrown) => {
       Swal.fire(
@@ -88,7 +87,10 @@ function cargarDataset2() {
   document.getElementById("titulo").innerHTML = "Grafica #2";
   document.getElementById("tipo").innerHTML = "Consulta Prodcutos";
   var info = {};
-  var arreglo = [];
+  var name = [];
+  var cant = [];
+  let fila = [];
+  //   var arreglo = [];
   $.ajax({
     type: "post",
     url: "controller/ctlGraficos.php",
@@ -104,25 +106,44 @@ function cargarDataset2() {
 
       console.log(info);
 
+      //   if (info.length > 0) {
+      //     for (k = 0; k < info.length; k++) {
+      //       var fila = [info[k].nombre, info[k].cantidad];
+      //       arreglo.push(fila);
+      //       console.log(k);
+      //     }
+      //   }
+
       if (info.length > 0) {
         for (k = 0; k < info.length; k++) {
-          var fila = [info[k].nombre, info[k].cantidad];
-          arreglo.push(fila);
-        }
-      }
+          name.push(info[k].nombre);
 
-      //   $("#chart3").hide();
-      var chart3 = c3.generate({
-        bindto: "#chart2",
-        data: {
-          columns: arreglo,
-          // url: "resource/data/datos1.csv",
-          type: "donut",
-        },
-        donut: {
-          title: "Cant. de Productos",
-        },
-      });
+          cant.push(info[k].cantidad);
+
+          console.log(name);
+
+          console.log(cant);
+
+          fila.push([name[k] + "," + cant[k], cant[k]]);
+          
+          console.log("fila");
+          console.log(fila);
+
+          //   $("#chart3").hide();
+          var chart2 = c3.generate({
+            bindto: "#chart2",
+            data: {
+              columns: fila,
+              // url: "resource/data/datos1.csv",
+              type: "donut",
+            },
+            donut: {
+              title: "Cant. de Productos",
+            },
+          });
+        }
+        // return fila;
+      }
     },
     error: (jqXHR, textStatus, errorThrown) => {
       Swal.fire(

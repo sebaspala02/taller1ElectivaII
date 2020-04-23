@@ -21,7 +21,7 @@
             <h1 id="tipo" class="text-uppercase text-primary font-weight-bold">a</h1>
             <!-- <hr class="divider my-4"> -->
         </div>
-        <div id="chart3"></div>
+        <div id="chart1"></div>
         <div id="chart2"></div>
     </div>
     <!-- <div id="chart"></div>
