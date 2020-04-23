@@ -128,7 +128,7 @@ END$$
 
 CREATE PROCEDURE listarPlTres()
 BEGIN
-	select m.nombre,l.nombre as laboratorio,m.descrip as descripción,count(*) as cantidad from medicamento m join detalle_venta dv on dv.medicamento_idmedicamento
+	select m.nombre,l.nombre as laboratorio,m.descrip as descripción,sum(dv.cant) as cantidad from medicamento m join detalle_venta dv on dv.medicamento_idmedicamento
 	= m.idmedicamento join laboratorio l on m.laboratorio_idlaboratorio = l.idlaboratorio
 	group by dv.medicamento_idmedicamento order by cantidad desc;
 END$$

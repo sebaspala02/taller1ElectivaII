@@ -81,7 +81,7 @@ function generarR1() {
     },
   });
 }
-
+// a. rose
 function readGrafica() {
   $.ajax({
     url: "controllers/ClientCtrl.php",
