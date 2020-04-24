@@ -23,7 +23,7 @@
                                 <td>
                                     <form name="graficas" method="post" target="_blank" action="masterpage.php?page=C3&1">
                                         <!-- <input type="text" id="txtReporteU" style="display: none" value="Genero()" name="tabla"> -->
-                                        <input class="btn btn-outline-success" type="submit" value="Grafico en C3">
+                                        <input class="btn btn-outline-success" type="submit" value="Ver Grafico en C3">
                                         <!-- <input id="btnCsvG1" class="btn btn-outline-success" type="submit" value="Grafico en C31"> -->
                                         <!-- <a class="btn btn-outline-success" id="btnCsvG1" href="masterpage.php?page=C1">Graficos en C3</a> -->
                                     </form>
@@ -46,7 +46,7 @@
                             <tr>
                                 <td>
                                     <form name="graficas" method="post" target="_blank" action="masterpage.php?page=C3&2">
-                                        <input class="btn btn-outline-success" type="submit" value="Grafico en C3">
+                                        <input class="btn btn-outline-success" type="submit" value="Ver Grafico en C3">
                                     </form>
                                 </td>
                             </tr>
@@ -65,7 +65,7 @@
                             <tr>
                                 <td>
                                     <form name="graficas" method="post" target="_blank" action="masterpage.php?page=C3&3">
-                                        <input class="btn btn-outline-success" type="submit" value="Grafico en C3">
+                                        <input class="btn btn-outline-success" type="submit" value="Ver Grafico en C3">
                                     </form>
                                 </td>
                             </tr>
@@ -87,7 +87,7 @@
                             <tr>
                                 <td>
                                     <form name="graficas" method="post" target="_blank" action="masterpage.php?page=C3&4">
-                                        <input class="btn btn-outline-success" type="submit" value="Grafico en C3">
+                                        <input class="btn btn-outline-success" type="submit" value="Ver Grafico en C3">
                                     </form>
                                 </td>
                             </tr>
@@ -108,7 +108,7 @@
                             <tr>
                                 <td>
                                     <form name="graficas" method="post" target="_blank" action="masterpage.php?page=C3&5">
-                                        <input class="btn btn-outline-success" type="submit" value="Grafico en C3">
+                                        <input class="btn btn-outline-success" type="submit" value="Ver Grafico en C3">
                                     </form>
                                 </td>
                             </tr>
@@ -127,19 +127,8 @@
                         <table>
                             <tr>
                                 <td>
-                                    <form name="formPDF" method="post" target="_blank" action="./controller/ctlExportar.php">
-                                        <input type="text" id="txtReporteU" style="display: none" value="PlCuatro()" name="tabla">
-                                        <input type="text" id="nomTabla" style="display: none" value="Informe Día" name="nomTabla">
-                                        <input type="text" value="," name="coma" id="coma" style="display: none">
-                                        <input class="btn btn-outline-info" type="submit" value="Exportar CSV ,">
-                                    </form>
-                                </td>
-                                <td>
-                                    <form name="formPDF" method="post" target="_blank" action="./controller/ctlExportar.php">
-                                        <input type="text" id="txtReporteU" style="display: none" value="PlCuatro()" name="tabla">
-                                        <input type="text" id="nomTabla" style="display: none" value="Informe Día" name="nomTabla">
-                                        <input type="text" value=";" name="coma" id="coma" style="display: none">
-                                        <input class="btn btn-outline-info" type="submit" value="Exportar CSV ;" id="btnCsvM">
+                                    <form name="graficas" method="post" target="_blank" action="masterpage.php?page=C3&6">
+                                        <input class="btn btn-outline-success" type="submit" value="Ver Grafico en C3">
                                     </form>
                                 </td>
                             </tr>

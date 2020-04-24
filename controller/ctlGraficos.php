@@ -25,4 +25,7 @@ switch ($type) {
         case "list4":
                 $conex->listarG5();
                 break;
+        case "list5":
+                $conex->listarG6();
+                break;
 }

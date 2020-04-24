@@ -134,6 +134,17 @@ END$$
 
 -- call listar5(0);
 
+-- Grafico 5
+
+CREATE PROCEDURE listar6(vid INT)
+BEGIN
+	SET lc_time_names = 'es_ES';
+	select DAYNAME(v.fecha_venta) as dia,count(*) as ventas,sum(v.valor_total) as ingresos from venta v
+	group by dia;
+END$$
+
+-- call listar6(0);
+
 -- PL 1 EXCEL
 
 CREATE PROCEDURE listarPlUno()

@@ -26,6 +26,7 @@
         <div id="chart3"></div>
         <div id="chart4"></div>
         <div id="chart5"></div>
+        <div id="chart6"></div>
     </div>
     <!-- <div id="chart"></div>
     <div id="chart2"></div>

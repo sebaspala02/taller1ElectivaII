@@ -20,7 +20,7 @@
                                             <input type="text" id="txtReporteU" style="display: none" value="PlUno()" name="tabla">
                                             <input type="text" value="," name="coma" id="coma" style="display: none">
                                             <input type="text" id="nomTabla" style="display: none" value="Informe Clientes" name="nomTabla">
-                                            <input class="btn btn-outline-info" type="submit" value="Exportar CSV ,">
+                                            <input class="btn btn-outline-info" type="submit" value="Exportar CSV con ( , )">
                                         </form>
                                     </td>
                                     <td>
@@ -28,7 +28,15 @@
                                             <input type="text" id="txtReporteU" style="display: none" value="PlUno()" name="tabla">
                                             <input type="text" id="nomTabla" style="display: none" value="Informe Clientes" name="nomTabla">
                                             <input type="text" value=";" name="coma" id="coma" style="display: none">
-                                            <input class="btn btn-outline-info" type="submit" value="Exportar CSV ;" id="btnCsvM">
+                                            <input class="btn btn-outline-info" type="submit" value="Exportar CSV con ( ; )" id="btnCsvM">
+                                        </form>
+                                    </td>
+                                    <td>
+                                        <form name="formPDF" method="post" target="_blank" action="./controller/ctlExportar.php">
+                                            <input type="text" id="txtReporteU" style="display: none" value="PlUno()" name="tabla">
+                                            <input type="text" id="nomTabla" style="display: none" value="Informe Clientes" name="nomTabla">
+                                            <input type="text" value=":" name="coma" id="coma" style="display: none">
+                                            <input class="btn btn-outline-info" type="submit" value="Exportar CSV con ( : )" id="btnCsvM">
                                         </form>
                                     </td>
                                 </tr>
@@ -52,7 +60,7 @@
                                             <input type="text" id="txtReporteU" style="display: none" value="PlDos()" name="tabla">
                                             <input type="text" id="nomTabla" style="display: none" value="Informe Empleados" name="nomTabla">
                                             <input type="text" value="," name="coma" id="coma" style="display: none">
-                                            <input class="btn btn-outline-info" type="submit" value="Exportar CSV ,">
+                                            <input class="btn btn-outline-info" type="submit" value="Exportar CSV con ( , )">
                                         </form>
                                     </td>
                                     <td>
@@ -60,7 +68,15 @@
                                             <input type="text" id="txtReporteU" style="display: none" value="PlDos()" name="tabla">
                                             <input type="text" id="nomTabla" style="display: none" value="Informe Empleados" name="nomTabla">
                                             <input type="text" value=";" name="coma" id="coma" style="display: none">
-                                            <input class="btn btn-outline-info" type="submit" value="Exportar CSV ;" id="btnCsvM">
+                                            <input class="btn btn-outline-info" type="submit" value="Exportar CSV con ( ; )" id="btnCsvM">
+                                        </form>
+                                    </td>
+                                    <td>
+                                        <form name="formPDF" method="post" target="_blank" action="./controller/ctlExportar.php">
+                                            <input type="text" id="txtReporteU" style="display: none" value="PlDos()" name="tabla">
+                                            <input type="text" id="nomTabla" style="display: none" value="Informe Empleados" name="nomTabla">
+                                            <input type="text" value=":" name="coma" id="coma" style="display: none">
+                                            <input class="btn btn-outline-info" type="submit" value="Exportar CSV con ( : )" id="btnCsvM">
                                         </form>
                                     </td>
                                 </tr>
@@ -82,7 +98,7 @@
                                             <input type="text" id="txtReporteU" style="display: none" value="PlTres()" name="tabla">
                                             <input type="text" id="nomTabla" style="display: none" value="Informe Productos" name="nomTabla">
                                             <input type="text" value="," name="coma" id="coma" style="display: none">
-                                            <input class="btn btn-outline-info" type="submit" value="Exportar CSV ,">
+                                            <input class="btn btn-outline-info" type="submit" value="Exportar CSV con ( , )">
                                         </form>
                                     </td>
                                     <td>
@@ -90,7 +106,15 @@
                                             <input type="text" id="txtReporteU" style="display: none" value="PlTres()" name="tabla">
                                             <input type="text" id="nomTabla" style="display: none" value="Informe Productos" name="nomTabla">
                                             <input type="text" value=";" name="coma" id="coma" style="display: none">
-                                            <input class="btn btn-outline-info" type="submit" value="Exportar CSV ;" id="btnCsvM">
+                                            <input class="btn btn-outline-info" type="submit" value="Exportar CSV con ( ; )" id="btnCsvM">
+                                        </form>
+                                    </td>
+                                    <td>
+                                        <form name="formPDF" method="post" target="_blank" action="./controller/ctlExportar.php">
+                                            <input type="text" id="txtReporteU" style="display: none" value="PlTres()" name="tabla">
+                                            <input type="text" id="nomTabla" style="display: none" value="Informe Productos" name="nomTabla">
+                                            <input type="text" value=":" name="coma" id="coma" style="display: none">
+                                            <input class="btn btn-outline-info" type="submit" value="Exportar CSV con ( : )" id="btnCsvM">
                                         </form>
                                     </td>
                                 </tr>
@@ -112,7 +136,7 @@
                                             <input type="text" id="txtReporteU" style="display: none" value="PlCuatro()" name="tabla">
                                             <input type="text" id="nomTabla" style="display: none" value="Informe Día" name="nomTabla">
                                             <input type="text" value="," name="coma" id="coma" style="display: none">
-                                            <input class="btn btn-outline-info" type="submit" value="Exportar CSV ,">
+                                            <input class="btn btn-outline-info" type="submit" value="Exportar CSV con ( , )">
                                         </form>
                                     </td>
                                     <td>
@@ -120,7 +144,15 @@
                                             <input type="text" id="txtReporteU" style="display: none" value="PlCuatro()" name="tabla">
                                             <input type="text" id="nomTabla" style="display: none" value="Informe Día" name="nomTabla">
                                             <input type="text" value=";" name="coma" id="coma" style="display: none">
-                                            <input class="btn btn-outline-info" type="submit" value="Exportar CSV ;" id="btnCsvM">
+                                            <input class="btn btn-outline-info" type="submit" value="Exportar CSV con ( ; )" id="btnCsvM">
+                                        </form>
+                                    </td>
+                                    <td>
+                                        <form name="formPDF" method="post" target="_blank" action="./controller/ctlExportar.php">
+                                            <input type="text" id="txtReporteU" style="display: none" value="PlCuatro()" name="tabla">
+                                            <input type="text" id="nomTabla" style="display: none" value="Informe Día" name="nomTabla">
+                                            <input type="text" value=":" name="coma" id="coma" style="display: none">
+                                            <input class="btn btn-outline-info" type="submit" value="Exportar CSV con ( : )" id="btnCsvM">
                                         </form>
                                     </td>
                                 </tr>
