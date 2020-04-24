@@ -106,6 +106,33 @@ END$$
 
 -- call listarProd(0);
 
+-- Grafico 3
+CREATE PROCEDURE listarVentaProd(vid INT)
+BEGIN
+select m.nombre,sum(dv.cant) as cantidad, sum(dv.cant * m.precio) as ganancia from medicamento m join detalle_venta dv on dv.medicamento_idmedicamento
+= m.idmedicamento group by dv.medicamento_idmedicamento order by cantidad desc;
+END$$
+
+-- call listarVentaProd(0);
+
+-- Grafico 4 
+CREATE PROCEDURE listar4(vid INT)
+BEGIN
+	select u.nombre,u.apellido,u.cedula,u.usuario,count(*) as ventas, sum(v.valor_total) as ingresos  from usuario u join venta v on v.usuario_idusuario
+	= u.idusuario group by v.usuario_idusuario order by ventas desc;
+END$$
+
+-- call listar4(0);
+
+-- Grafico 5
+
+CREATE PROCEDURE listar5(vid INT)
+BEGIN
+	select v.fecha_venta,count(*) as cantidad,sum(v.valor_total) as ingresos from venta v
+	group by v.fecha_venta;
+END$$
+
+-- call listar5(0);
 
 -- PL 1 EXCEL
 
@@ -116,7 +143,7 @@ BEGIN
 END$$
 
 
--- PL 2 EXCEL
+-- PL 2 EXCEL = grafico 4
 
 CREATE PROCEDURE listarPlDos()
 BEGIN
@@ -128,13 +155,13 @@ END$$
 
 CREATE PROCEDURE listarPlTres()
 BEGIN
-	select m.nombre,l.nombre as laboratorio,m.descrip as descripción,sum(dv.cant) as cantidad from medicamento m join detalle_venta dv on dv.medicamento_idmedicamento
+	select m.nombre,l.nombre as laboratorio,m.descrip as descripcion,sum(dv.cant) as cantidad from medicamento m join detalle_venta dv on dv.medicamento_idmedicamento
 	= m.idmedicamento join laboratorio l on m.laboratorio_idlaboratorio = l.idlaboratorio
 	group by dv.medicamento_idmedicamento order by cantidad desc;
 END$$
 
 
--- PL 4 EXCEL
+-- PL 4 EXCEL = grafico 5
 
 CREATE PROCEDURE listarPlCuatro()
 BEGIN

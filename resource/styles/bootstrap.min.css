@@ -77,7 +77,7 @@ body {
       rgba(92, 77, 66, 0.8) 100%
     ),
     url(../img/usuario6.jpg);
-  background-repeat: no-repeat;
+  /* background-repeat: no-repeat; */
 }
 [tabindex="-1"]:focus {
   outline: 0 !important;
