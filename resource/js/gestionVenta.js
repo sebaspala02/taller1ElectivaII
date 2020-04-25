@@ -92,7 +92,7 @@ function listarVentas() {
             ')">';
           lista =
             lista + '<td style="display: none">' + info[k].idventa + "</td>";
-          lista = lista + "<td>" + info[k].cliente_idcliente + "</td>";
+          lista = lista + "<td>" + info[k].cliente + "</td>";
           lista = lista + "<td>" + info[k].fecha_venta + "</td>";
           lista = lista + "<td>" + info[k].valor_total + "</td>";
           // if (info[k].piscina === '1') {
