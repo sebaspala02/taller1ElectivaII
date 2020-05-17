@@ -4,15 +4,15 @@ include "../model/clsDetalle.php";
 include '../DAO/ventaDAO.php';
 
 
-$iddetalle_venta = isset($_POST['iddetalle_venta']) ? $_POST['iddetalle_venta'] : "";
-$total = isset($_POST['total']) ? $_POST['total'] : "";
-$fecha = isset($_POST['fecha']) ? $_POST['fecha'] : "";
-$medi = isset($_POST['medi']) ? $_POST['medi'] : "";
-$cant = isset($_POST['cant']) ? $_POST['cant'] : "";
-$cliente = isset($_POST['cliente']) ? $_POST['cliente'] : "";
-$usuario = isset($_POST['usuario']) ? $_POST['usuario'] : "";
-$idventa = isset($_POST['idventa']) ? $_POST['idventa'] : "";
-$type = isset($_POST['type']) ? $_POST['type'] : "";
+$iddetalle_venta = isset($_REQUEST['iddetalle_venta']) ? $_REQUEST['iddetalle_venta'] : "";
+$total = isset($_REQUEST['total']) ? $_REQUEST['total'] : "";
+$fecha = isset($_REQUEST['fecha']) ? $_REQUEST['fecha'] : "";
+$medi = isset($_REQUEST['medi']) ? $_REQUEST['medi'] : "";
+$cant = isset($_REQUEST['cant']) ? $_REQUEST['cant'] : "";
+$cliente = isset($_REQUEST['cliente']) ? $_REQUEST['cliente'] : "";
+$usuario = isset($_REQUEST['usuario']) ? $_REQUEST['usuario'] : "";
+$idventa = isset($_REQUEST['idventa']) ? $_REQUEST['idventa'] : "";
+$type = isset($_REQUEST['type']) ? $_REQUEST['type'] : "";
 //$valor = isset($_POST['valor']) ? $_POST['valor'] : "";
 
 $detalle = new clsDetalle($iddetalle_venta, $total, $fecha, $medi, $cant, $cliente, $usuario, $idventa);

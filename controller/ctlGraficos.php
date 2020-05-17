@@ -6,7 +6,7 @@ include '../DAO/graficosDAO.php';
 
 // $nTabla = isset($_POST['nomTabla']) ? $_POST['nomTabla'] : "";
 // $tabla = isset($_POST['tabla']) ? $_POST['tabla'] : "";
-$type = isset($_POST['type']) ? $_POST['type'] : "";
+$type = isset($_REQUEST['type']) ? $_REQUEST['type'] : "";
 //$valor = isset($_POST['valor']) ? $_POST['valor'] : "";
 $conex = new graficosDAO();
 switch ($type) {

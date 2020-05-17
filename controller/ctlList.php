@@ -2,8 +2,8 @@
 
 include '../DAO/listDAO.php';
 
-$type = isset($_POST['type']) ? $_POST['type'] : "";
-$usuario = isset($_POST['usuario']) ? $_POST['usuario'] : "";
+$type = isset($_REQUEST['type']) ? $_REQUEST['type'] : "";
+$usuario = isset($_REQUEST['usuario']) ? $_REQUEST['usuario'] : "";
 
 $conex = new listDAO();
 

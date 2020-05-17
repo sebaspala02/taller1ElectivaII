@@ -125,7 +125,7 @@
 
                                     </tbody>
                                 </table>
-                                <table>
+                                <!-- <table>
                                     <tr>
                                         <td>
                                             <form name="formPDF" method="post" target="_blank" action="./controller/ctlReporte.php">
@@ -155,7 +155,7 @@
                                             </form>
                                         </td>
                                     </tr>
-                                </table>
+                                </table> -->
                             </td>
                         </tr>
                     </table>

@@ -4,16 +4,16 @@ include "../model/clsMedi.php";
 include '../DAO/mediDAO.php';
 
 
-$idmedicamento = isset($_POST['idmedicamento']) ? $_POST['idmedicamento'] : "";
-$nombre = isset($_POST['nombre']) ? $_POST['nombre'] : "";
-$descrip = isset($_POST['descrip']) ? $_POST['descrip'] : "";
-$fecha_venc = isset($_POST['fecha_venc']) ? $_POST['fecha_venc'] : "";
-$cant = isset($_POST['cant']) ? $_POST['cant'] : "";
-$fecha_creado = isset($_POST['fecha_creado']) ? $_POST['fecha_creado'] : "";
-$precio = isset($_POST['precio']) ? $_POST['precio'] : "";
-$idusuario = isset($_POST['idusuario']) ? $_POST['idusuario'] : "";
-$idlaboratorio = isset($_POST['idlaboratorio']) ? $_POST['idlaboratorio'] : "";
-$type = isset($_POST['type']) ? $_POST['type'] : "";
+$idmedicamento = isset($_REQUEST['idmedicamento']) ? $_REQUEST['idmedicamento'] : "";
+$nombre = isset($_REQUEST['nombre']) ? $_REQUEST['nombre'] : "";
+$descrip = isset($_REQUEST['descrip']) ? $_REQUEST['descrip'] : "";
+$fecha_venc = isset($_REQUEST['fecha_venc']) ? $_REQUEST['fecha_venc'] : "";
+$cant = isset($_REQUEST['cant']) ? $_REQUEST['cant'] : "";
+$fecha_creado = isset($_REQUEST['fecha_creado']) ? $_REQUEST['fecha_creado'] : "";
+$precio = isset($_REQUEST['precio']) ? $_REQUEST['precio'] : "";
+$idusuario = isset($_REQUEST['idusuario']) ? $_REQUEST['idusuario'] : "";
+$idlaboratorio = isset($_REQUEST['idlaboratorio']) ? $_REQUEST['idlaboratorio'] : "";
+$type = isset($_REQUEST['type']) ? $_REQUEST['type'] : "";
 //$valor = isset($_POST['valor']) ? $_POST['valor'] : "";
 $medi = new clsMedi($idmedicamento, $nombre, $descrip, $fecha_venc, $cant, $fecha_creado, $precio, $idusuario, $idlaboratorio);
 $conex = new mediDAO();

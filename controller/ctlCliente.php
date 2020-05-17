@@ -4,13 +4,13 @@ include "../model/clsCliente.php";
 include '../DAO/clienteDAO.php';
 
 
-    $idcliente = isset($_POST['idcliente']) ? $_POST['idcliente'] : "";
-    $nombre = isset($_POST['nombre']) ? $_POST['nombre'] : "";
-    $apellido = isset($_POST['apellido']) ? $_POST['apellido'] : "";
-    $cedula = isset($_POST['cedula']) ? $_POST['cedula'] : "";
-    $genero = isset($_POST['genero']) ? $_POST['genero'] : "";
-    $fecha_naci = isset($_POST['fecha_naci']) ? $_POST['fecha_naci'] : "";
-    $type = isset($_POST['type']) ? $_POST['type'] : "";
+    $idcliente = isset($_REQUEST['idcliente']) ? $_REQUEST['idcliente'] : "";
+    $nombre = isset($_REQUEST['nombre']) ? $_REQUEST['nombre'] : "";
+    $apellido = isset($_REQUEST['apellido']) ? $_REQUEST['apellido'] : "";
+    $cedula = isset($_REQUEST['cedula']) ? $_REQUEST['cedula'] : "";
+    $genero = isset($_REQUEST['genero']) ? $_REQUEST['genero'] : "";
+    $fecha_naci = isset($_REQUEST['fecha_naci']) ? $_REQUEST['fecha_naci'] : "";
+    $type = isset($_REQUEST['type']) ? $_REQUEST['type'] : "";
     //$valor = isset($_POST['valor']) ? $_POST['valor'] : "";
 
     $cliente = new clsCliente($idcliente, $nombre, $apellido, $cedula, $genero, $fecha_naci );
