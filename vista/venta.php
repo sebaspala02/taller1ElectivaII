@@ -118,7 +118,7 @@
                                 lista = lista + "<td>" + info[k].apellido + "</td>";
                                 lista = lista + "<td>" + info[k].cedula + "</td>";
                                 lista = lista + "<td>" + info[k].genero + "</td>";
-                                lista = lista + "<td>" + info[k].fecha_naci + "</td>";
+                                lista = lista + "<td>" + info[k].fecha_nacimiento + "</td>";
                                 // if (info[k].piscina === '1') {
                                 //     lista = lista + '<td>SI</td>';
                                 // } else {
