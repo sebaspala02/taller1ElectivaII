@@ -7,17 +7,19 @@ class clsUsuario
     private $nombreUsuario;
     private $apellidoUsuario;
     private $correo;
+    private $tipoUsuario_idTipoUsuario;
     private $usuario;
     private $password;
 
 
-    public function __construct($idusuario, $cedula, $nombreUsuario, $apellidoUsuario, $correo, $usuario, $password)
+    public function __construct($idusuario, $cedula, $nombreUsuario, $apellidoUsuario, $correo, $tipoUsuario_idTipoUsuario, $usuario, $password)
     {
         $this->idusuario = $idusuario;
         $this->cedula = $cedula;
         $this->nombreUsuario = $nombreUsuario;
         $this->apellidoUsuario = $apellidoUsuario;
-        $this->correo = $correo;        
+        $this->correo = $correo;
+        $this->tipoUsuario_idTipoUsuario = $tipoUsuario_idTipoUsuario;
         $this->usuario = $usuario;
         $this->password = $password;
     }
@@ -41,6 +43,10 @@ class clsUsuario
     public function getCorreo()
     {
         return $this->correo;
+    }
+    public function getTipoUsuario_idTipoUsuario()
+    {
+        return $this->tipoUsuario_idTipoUsuario;
     }
     public function getUsuario()
     {
@@ -72,11 +78,14 @@ class clsUsuario
     {
         $this->correo = $correo;
     }
+    public function setTipoUsuario_idTipoUsuario($tipoUsuario_idTipoUsuario)
+    {
+        $this->tipoUsuario_idTipoUsuario = $tipoUsuario_idTipoUsuario;
+    }
     public function setPassword($password)
     {
         $this->password = $password;
     }
-
     public function setUsuario($usuario)
     {
         $this->usuario = $usuario;

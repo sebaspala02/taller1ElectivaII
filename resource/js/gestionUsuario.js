@@ -14,6 +14,7 @@ function guardarUsuario() {
         nombre: ($("#txtNombre").val()).toLowerCase(),
         apellido: ($("#txtApellido").val()).toLowerCase(),
         correo: ($("#txtCorreo").val()).toLowerCase(),
+        tipoUsuario_idTipoUsuario: ($("#txtTipoUsuario").val()).toLowerCase(),
         usuario: $("#txtUsuario").val().toLowerCase(),
         password: $("#txtPassword").val(),
         type: ""
@@ -92,6 +93,7 @@ function listarUsuarios() {
                     lista = lista + '<td>' + info[k].nombre + '</td>';
                     lista = lista + '<td>' + info[k].apellido + '</td>';
                     lista = lista + '<td>' + info[k].correo + '</td>';
+                    lista = lista + '<td>' + info[k].tipousuario + '</td>';
                     lista = lista + '<td>' + info[k].usuario + '</td>';
                     lista = lista + '<td>' + info[k].password + '</td>';
                     // if (info[k].piscina === '1') {
@@ -141,6 +143,7 @@ function buscarUsuario(codigo) {
                 $("#txtNombre").val(data[0].nombre);
                 $("#txtApellido").val(data[0].apellido);
                 $("#txtCorreo").val(data[0].correo);
+                $("#txtTipoUsuario").val(data[0].tipoUsuario_idTipoUsuario);
                 $("#txtUsuario").val(data[0].usuario);
                 $("#txtPassword").val(data[0].password);
             } else {

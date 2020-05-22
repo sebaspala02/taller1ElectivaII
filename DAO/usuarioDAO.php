@@ -23,7 +23,7 @@ class usuarioDAO
     {
         $this->dao->crearConsulta("guardarUsuario", array(
             $obj->getCedula(),  $obj->getNombreUsuario(),
-            $obj->getApellidoUsuario(), $obj->getCorreo(), $obj->getUsuario(),
+            $obj->getApellidoUsuario(), $obj->getCorreo(), $obj->getTipoUsuario_idTipoUsuario(), $obj->getUsuario(),
             $obj->getPassword()
         ), "funcion");
         // $sql = "select guardarUsuario (" . $obj->getCedula() . ",'" . $obj->getNombreUsuario() . "','"  .
@@ -67,7 +67,7 @@ class usuarioDAO
     {
         $this->dao->crearConsulta("modificarUsuario", array(
             $obj->getIdUsuario(), $obj->getCedula(),  $obj->getNombreUsuario(),
-            $obj->getApellidoUsuario(), $obj->getCorreo(), $obj->getUsuario(),
+            $obj->getApellidoUsuario(), $obj->getCorreo(), $obj->getTipoUsuario_idTipoUsuario(), $obj->getUsuario(),
             $obj->getPassword()
         ), "funcion");
         // $sql = "UPDATE usuario SET cedula=" . $obj->getCedula() . ",nombre='" .
