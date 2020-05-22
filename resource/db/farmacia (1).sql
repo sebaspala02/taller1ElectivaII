@@ -42,7 +42,11 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `buscarMedi` (`vidmedicamento` INT) 
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `buscarUsuario` (`vidusuario` INT)  BEGIN
-	select cedula,nombre,apellido,correo,usuario,password from usuario where idusuario=vidusuario;
+	select cedula,nombre,apellido,correo,tipoUsuario_idTipoUsuario,usuario,password from usuario where idusuario=vidusuario;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `buscarLaboratorio` (`vidlaboratorio` INT)  BEGIN
+	select nombre,descrip from laboratorio where idlaboratorio=vidlaboratorio;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `listarCliente` (`vidcliente` INT)  BEGIN
@@ -54,9 +58,12 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `listarMedi` (`vidmedicamento` INT) 
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `listarUsuario` (`vidusuario` INT)  BEGIN
-	select idusuario,cedula,nombre,apellido,correo,usuario,password from usuario order by idusuario;
+	select u.idusuario,u.cedula,u.nombre,u.apellido,u.correo, tp.nombre as tipousuario,u.usuario,u.password from usuario u join tipousuario tp on u.tipoUsuario_idTipoUsuario = tp.idTipoUsuario order by idusuario;
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `listarLaboratorio` (`vidlaboratorio` INT)  BEGIN
+	select idlaboratorio,nombre,descrip from laboratorio order by idlaboratorio;
+END$$
 
 
 -- detalleVenta
@@ -79,11 +86,11 @@ END$$
 
 -- LISTAR
 
--- DELIMITER//
+-- DELIMITER// select idventa,fecha_venta,valor_total,cliente_idcliente,usuario_idusuario from venta  order by idventa;
 CREATE PROCEDURE listarVenta(vidventa int)
 	COMMENT'listar'
 BEGIN
-	select idventa,fecha_venta,valor_total,cliente_idcliente,usuario_idusuario from venta  order by idventa;
+	select v.idventa,DATE_FORMAT(fecha_venta,'%d/%m/%Y') as fecha_venta, valor_total,c.nombre as cliente, u.usuario as usuario_idusuario from venta v join cliente c on v.cliente_idcliente = c.idcliente join usuario u on v.usuario_idusuario=u.idusuario order by idventa;
 END$$
 
 -- call listarVenta(0);
@@ -241,6 +248,33 @@ IF EXISTS(select idusuario from usuario where idusuario=vidusuario)
 RETURN res;
 END$$
 
+CREATE DEFINER=`root`@`localhost` FUNCTION `eliminarLaboratorio` (`vidlaboratorio` INT) RETURNS INT(1) READS SQL DATA
+    DETERMINISTIC
+    COMMENT 'no se que estoy haciendo'
+BEGIN
+	DECLARE res INT DEFAULT 0;
+IF EXISTS(select idlaboratorio from laboratorio where idlaboratorio=vidlaboratorio)
+	THEN
+		DELETE FROM laboratorio WHERE (`idlaboratorio` = `vidlaboratorio`);
+        set res = 1;
+	END IF;
+RETURN res;
+END$$
+
+CREATE DEFINER=`root`@`localhost` FUNCTION `guardarLaboratorio` (`vnombre` VARCHAR(45), `vdescrip` VARCHAR(45)) RETURNS INT(1) READS SQL DATA
+    DETERMINISTIC
+    COMMENT 'no se que estoy haciendo'
+BEGIN
+	DECLARE res INT DEFAULT 0;
+IF NOT EXISTS(select nombre from laboratorio where nombre=vnombre)
+	THEN
+		insert into laboratorio(nombre,descrip)
+        values(vnombre,vdescrip);
+        set res = 1;
+	END IF;
+RETURN res;
+END$$
+
 CREATE DEFINER=`root`@`localhost` FUNCTION `guardarCliente` (`vnombre` VARCHAR(45), `vapellido` VARCHAR(45), `vcedula` INT, `vgenero` VARCHAR(45), `vfecha_naci` DATE) RETURNS INT(1) READS SQL DATA
     DETERMINISTIC
     COMMENT 'no se que estoy haciendo'
@@ -270,15 +304,15 @@ BEGIN
 RETURN res;
 END$$
 
-CREATE DEFINER=`root`@`localhost` FUNCTION `guardarUsuario` (`vcedula` INT, `vnombre` VARCHAR(45), `vapellido` VARCHAR(45), `vcorreo` VARCHAR(45), `vusuario` VARCHAR(45), `vpassword` INT) RETURNS INT(1) READS SQL DATA
+CREATE DEFINER=`root`@`localhost` FUNCTION `guardarUsuario` (`vcedula` INT, `vnombre` VARCHAR(45), `vapellido` VARCHAR(45), `vcorreo` VARCHAR(45), `vtipoUsuario` INT, `vusuario` VARCHAR(45), `vpassword` INT) RETURNS INT(1) READS SQL DATA
     DETERMINISTIC
     COMMENT 'no se que estoy haciendo'
 BEGIN
 	DECLARE res INT DEFAULT 0;
 IF NOT EXISTS(select cedula from usuario where cedula=vcedula)
 	THEN
-		insert into usuario(cedula,nombre,apellido,correo,usuario,password)
-        values(vcedula,vnombre,vapellido,vcorreo,vusuario,vpassword);
+		insert into usuario(cedula,nombre,apellido,correo,tipoUsuario_idTipoUsuario,usuario,password)
+        values(vcedula,vnombre,vapellido,vcorreo,vtipoUsuario,vusuario,vpassword);
         set res = 1;
 	END IF;
 RETURN res;
@@ -336,7 +370,7 @@ IF NOT EXISTS(select cedula from cliente where cedula=vcedula and idcliente<>vid
 RETURN res;
 END$$
 
-CREATE DEFINER=`root`@`localhost` FUNCTION `modificarUsuario` (`vidusuario` INT, `vcedula` INT, `vnombre` VARCHAR(45), `vapellido` VARCHAR(45), `vcorreo` VARCHAR(45), `vusuario` VARCHAR(45), `vpassword` INT) RETURNS INT(1) READS SQL DATA
+CREATE DEFINER=`root`@`localhost` FUNCTION `modificarUsuario` (`vidusuario` INT, `vcedula` INT, `vnombre` VARCHAR(45), `vapellido` VARCHAR(45), `vcorreo` VARCHAR(45),  `vtipoUsuario` INT, `vusuario` VARCHAR(45), `vpassword` INT) RETURNS INT(1) READS SQL DATA
     DETERMINISTIC
     COMMENT 'no se que estoy haciendo'
 BEGIN
@@ -344,8 +378,24 @@ BEGIN
 IF NOT EXISTS(select cedula from usuario where cedula=vcedula and idusuario<>vidusuario)
 	THEN
 		update usuario
-        set cedula=vcedula, nombre=vnombre, apellido=vapellido, correo=vcorreo, usuario=vusuario, password=vpassword
+        set cedula=vcedula, nombre=vnombre, apellido=vapellido, correo=vcorreo, tipoUsuario_idTipoUsuario=vtipoUsuario, usuario=vusuario, password=vpassword
         where idusuario=vidusuario;
+        
+        set res = 1;
+	END IF;
+RETURN res;
+END$$
+
+CREATE DEFINER=`root`@`localhost` FUNCTION `modificarLaboratorio` (`vidlaboratorio` INT, `vnombre` VARCHAR(45), `vdescrip` VARCHAR(45)) RETURNS INT(1) READS SQL DATA
+    DETERMINISTIC
+    COMMENT 'no se que estoy haciendo'
+BEGIN
+	DECLARE res INT DEFAULT 0;
+IF NOT EXISTS(select idlaboratorio from laboratorio where idlaboratorio=vidlaboratorio and nombre<>vnombre)
+	THEN
+		update laboratorio
+        set nombre=vnombre, descrip=vdescrip
+        where idlaboratorio=vidlaboratorio;
         
         set res = 1;
 	END IF;
@@ -448,9 +498,9 @@ CREATE TABLE `medicamento` (
 --
 
 INSERT INTO `medicamento` (`idmedicamento`, `nombre`, `descrip`, `fecha_venc`, `cant`, `fecha_creado`, `precio`, `usuario_idusuario`, `laboratorio_idlaboratorio`) VALUES
-(1, 'ACETAMINOFEN', 'no sea', '2032-02-02', '0', '2020-02-02', 1, 1, 1),
-(2, 'IBUPRO', 'ajkn', '2019-12-31', '16', '2021-12-02', 55, 1, 1),
-(3, 'ADW', 'jn', '2017-12-31', '0', '2017-12-26', 100, 1, 1);
+(1, 'ACETAMINOFEN', 'no sea', '2032-02-02', '0', '2020-02-02', 1, 13, 1),
+(2, 'IBUPRO', 'ajkn', '2019-12-31', '16', '2021-12-02', 55, 13, 1),
+(3, 'ADW', 'jn', '2017-12-31', '0', '2017-12-26', 100, 13, 1);
 
 -- --------------------------------------------------------
 
@@ -464,6 +514,7 @@ CREATE TABLE `usuario` (
   `nombre` varchar(45) DEFAULT NULL,
   `apellido` varchar(45) DEFAULT NULL,
   `correo` varchar(45) DEFAULT NULL,
+  `tipoUsuario_idTipoUsuario` int(11) NOT NULL,
   `usuario` varchar(45) DEFAULT NULL,
   `password` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -472,10 +523,31 @@ CREATE TABLE `usuario` (
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`idusuario`, `cedula`, `nombre`, `apellido`, `correo`, `usuario`, `password`) VALUES
-(1, 1094, 'sebas', 'palaee', 'sebas@pala.com', 'admin', 123),
-(2, 1, 'fw', 'awd', 'wd', 'yhj', 341),
-(3, 22, 'da', 'dwa', 'daw', 'we', 34);
+INSERT INTO `usuario` (`idusuario`, `cedula`, `nombre`, `apellido`, `correo`, `tipoUsuario_idTipoUsuario`, `usuario`, `password`) VALUES
+(1, 1094, 'sebas', 'pala', 'sebas@pala.com', 1, 'admin', 123),
+(2, 1, 'Brian', 'Lopez', 'empl@asd.com', 2, 'empleado', 341),
+(3, 22, 'da', 'dwa', 'daw@as.com', 3, 'cliente', 34);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tipoUsuario`
+--
+
+CREATE TABLE `tipoUsuario` (
+  `idTipoUsuario` int(11) NOT NULL,
+  `nombre` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`idTipoUsuario`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `tipoUsuario`
+--
+
+INSERT INTO `tipoUsuario` (`idTipoUsuario`, `nombre`) VALUES
+(1, 'Administrador'),
+(2, 'Empleado'),
+(3, 'Cliente');
 
 -- --------------------------------------------------------
 
@@ -496,14 +568,14 @@ CREATE TABLE `venta` (
 --
 
 INSERT INTO `venta` (`idventa`, `fecha_venta`, `valor_total`, `cliente_idcliente`, `usuario_idusuario`) VALUES
-(5, '2020-01-12', 55, 1, 1),
-(6, '2020-02-21', 55, 1, 1),
-(7, '2020-03-27', 101, 1, 1),
-(8, '2020-04-01', 55, 2, 1),
-(9, '2020-09-23', 255, 1, 1),
-(10, '2020-11-12', 55, 2, 1),
-(11, '2020-12-31', 55, 1, 1),
-(12, '0000-00-00 00:00:00', 55, 1, 1);
+(5, '2020-01-12', 55, 1, 13),
+(6, '2020-02-21', 55, 1, 13),
+(7, '2020-03-27', 101, 1, 13),
+(8, '2020-04-01', 55, 2, 13),
+(9, '2020-09-23', 255, 1, 13),
+(10, '2020-11-12', 55, 2, 13),
+(11, '2020-12-31', 55, 1, 13),
+(12, '2017-12-31', 55, 1, 13);
 
 --
 -- Índices para tablas volcadas
@@ -537,11 +609,19 @@ ALTER TABLE `medicamento`
   ADD KEY `usuario_idusuario` (`usuario_idusuario`),
   ADD KEY `laboratorio_idlaboratorio` (`laboratorio_idlaboratorio`);
 
+-- tipoUsuario
+-- Indices de la tabla `tipoUsuario`
+--
+ALTER TABLE `tipoUsuario`
+  ADD PRIMARY KEY (`idTipoUsuario`);
+
 --
 -- Indices de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  ADD PRIMARY KEY (`idusuario`);
+  ADD PRIMARY KEY (`idusuario`),
+  ADD KEY `tipoUsuario_idTipoUsuario` (`tipoUsuario_idTipoUsuario`);
+  
 
 --
 -- Indices de la tabla `venta`
@@ -585,6 +665,12 @@ ALTER TABLE `medicamento`
 ALTER TABLE `usuario`
   MODIFY `idusuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
+-- tipoUsuario
+-- AUTO_INCREMENT de la tabla `tipoUsuario`
+--
+ALTER TABLE `tipoUsuario`
+  MODIFY `idTipoUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- AUTO_INCREMENT de la tabla `venta`
 --
@@ -615,6 +701,13 @@ ALTER TABLE `medicamento`
 ALTER TABLE `venta`
   ADD CONSTRAINT `venta_ibfk_1` FOREIGN KEY (`cliente_idcliente`) REFERENCES `cliente` (`idcliente`),
   ADD CONSTRAINT `venta_ibfk_2` FOREIGN KEY (`usuario_idusuario`) REFERENCES `usuario` (`idusuario`);
+COMMIT;
+
+--
+-- Filtros para la tabla `usuario`
+--
+ALTER TABLE `usuario`
+  ADD CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`tipoUsuario_idTipoUsuario`) REFERENCES `tipoUsuario` (`idTipoUsuario`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -80,6 +80,16 @@
                         </tr>
                         <tr>
                             <td>
+                                <label>TipoUsuario:</label>
+                            </td>
+                            <td colspan="2">
+                                <div class="form-group">
+                                    <select class="form-control" id="validationCustom04" name="tipousuario"></select>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
                                 <label>Usuario:</label>
                             </td>
                             <td colspan="2">
@@ -141,6 +151,7 @@
                                             <th>Nombre</th>
                                             <th>Apellido</th>
                                             <th>Correo</th>
+                                            <th>TipoUsuario</th>
                                             <th>Usuario</th>
                                             <th>Password</th>
                                         </tr>

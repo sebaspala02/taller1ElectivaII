@@ -1,25 +1,34 @@
 <?php
-class listDAO {
+class listDAO
+{
     private $con;
     private $objCon;
 
-    function __construct(){
+    function __construct()
+    {
         require '../infrastructure/clsConexion.php';
         $this->objCon = new clsConexion();
         $this->con = $this->objCon->conectar();
     }
 
-    public function listUsuarios(){
+    public function listUsuarios()
+    {
         $sql = "SELECT * FROM usuario";
         $this->objCon->Execute($sql);
     }
-
-    public function listLabs(){
+    public function listLabs()
+    {
         $sql = "SELECT * FROM laboratorio";
         $this->objCon->Execute($sql);
     }
-    public function listClientes(){
+    public function listClientes()
+    {
         $sql = "SELECT * FROM cliente";
+        $this->objCon->Execute($sql);
+    }
+    public function listTipoUsuarios()
+    {
+        $sql = "SELECT * FROM tipousuario";
         $this->objCon->Execute($sql);
     }
 
