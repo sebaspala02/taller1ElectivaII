@@ -20,53 +20,53 @@ class clsProveedor
         $this->telefono = $telefono;
     }
 
-    public function getidproveedor()
+    public function getIdproveedor()
     {
         return $this->idproveedor;
     }
-    public function getnit()
+    public function getNit()
     {
         return $this->nit;
     }
-    public function getnombre()
+    public function getNombre()
     {
         return $this->nombre;
     }
-    public function getciudad()
+    public function getCiudad()
     {
         return $this->ciudad;
     }
-    public function getdireccion()
+    public function getDireccion()
     {
         return $this->direccion;
     }
-    public function gettelefono()
+    public function getTelefono()
     {
         return $this->telefono;
     }
 
     // Setter
-    public function setidproveedor($idproveedor)
+    public function setIdproveedor($idproveedor)
     {
         $this->idproveedor = $idproveedor;
     }
-    public function setnit($nit)
+    public function setNit($nit)
     {
         $this->nit = $nit;
     }
-    public function setnombre($nombre)
+    public function setNombre($nombre)
     {
         $this->nombre = $nombre;
     }
-    public function setciudad($ciudad)
+    public function setCiudad($ciudad)
     {
         $this->ciudad = $ciudad;
     }
-    public function setdireccion($direccion)
+    public function setDireccion($direccion)
     {
         $this->direccion = $direccion;
     }
-    public function settelefono($telefono)
+    public function setTelefono($telefono)
     {
         $this->telefono = $telefono;
     }

@@ -50,14 +50,14 @@ ALTER TABLE `proveedor`
 COMMIT;
 
 
---PROVEEDOR
+-- PROVEEDORPL
 
 CREATE FUNCTION guardarProveedor (
   `vnit` VARCHAR(45),
   `vnombre` VARCHAR(45),
   `vciudad` VARCHAR(45),
   `vdireccion` VARCHAR(45),
-  `vtelefono` VARCHAR(45),
+  `vtelefono` VARCHAR(45)
   ) RETURNS INT(1)
   
   READS SQL DATA

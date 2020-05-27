@@ -1,6 +1,7 @@
 <?php
 
 include '../DAO/listDAO.php';
+require '../infrastructure/CORS.php';
 
 $type = isset($_REQUEST['type']) ? $_REQUEST['type'] : "";
 $usuario = isset($_REQUEST['usuario']) ? $_REQUEST['usuario'] : "";

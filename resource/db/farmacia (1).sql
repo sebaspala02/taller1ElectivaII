@@ -37,6 +37,12 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `buscarCliente` (`vidcliente` INT)  
 	select nombre,apellido,cedula,genero,fecha_naci from cliente where idcliente=vidcliente;
 END$$
 
+CREATE PROCEDURE  buscarProveedor(vidproveedor int)
+	COMMENT'buscar'
+BEGIN
+	select id,nit,nombre,ciudad,direccion,telefono from proveedor where id=vidproveedor;
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `buscarMedi` (`vidmedicamento` INT)  BEGIN
 	select nombre, descrip, fecha_venc, cant, fecha_creado, precio, usuario_idusuario, laboratorio_idlaboratorio from medicamento where idmedicamento=vidmedicamento;
 END$$
@@ -49,8 +55,18 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `buscarLaboratorio` (`vidlaboratorio
 	select nombre,descrip from laboratorio where idlaboratorio=vidlaboratorio;
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `buscarEstante` (`videstante` INT)  BEGIN
+	select codigo,categoria,descripcion from estante where idestante=videstante;
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `listarCliente` (`vidcliente` INT)  BEGIN
 	select idcliente,nombre,apellido,cedula,genero,fecha_naci from cliente order by idcliente;
+END$$
+
+CREATE PROCEDURE listarProveedor(vidproveedor int)
+	COMMENT'listar'
+BEGIN
+	select id,nit,nombre,ciudad,direccion,telefono from proveedor order by id;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `listarMedi` (`vidmedicamento` INT)  BEGIN
@@ -63,6 +79,10 @@ END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `listarLaboratorio` (`vidlaboratorio` INT)  BEGIN
 	select idlaboratorio,nombre,descrip from laboratorio order by idlaboratorio;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `listarEstante` (`videstante` INT)  BEGIN
+	select idestante,codigo,categoria,descripcion from estante order by idestante;
 END$$
 
 
@@ -220,6 +240,22 @@ IF EXISTS(select idcliente from cliente where idcliente=vidcliente)
 RETURN res;
 END$$
 
+CREATE FUNCTION eliminarProveedor (
+  `vidproveedor` INT
+  ) RETURNS INT(1)
+  
+  READS SQL DATA
+  DETERMINISTIC
+  BEGIN
+	DECLARE res INT DEFAULT 0;
+IF EXISTS(select id from proveedor where id=id)
+	THEN
+		DELETE FROM proveedor WHERE (`id` = `vidproveedor`);
+        set res = 1;
+	END IF;
+RETURN res;
+END$$
+
 CREATE DEFINER=`root`@`localhost` FUNCTION `eliminarMedicamento` (`vidmedicamento` INT) RETURNS INT(1) READS SQL DATA
     DETERMINISTIC
     COMMENT 'no se que estoy haciendo'
@@ -261,6 +297,19 @@ IF EXISTS(select idlaboratorio from laboratorio where idlaboratorio=vidlaborator
 RETURN res;
 END$$
 
+CREATE DEFINER=`root`@`localhost` FUNCTION `eliminarEstante` (`videstante` INT) RETURNS INT(1) READS SQL DATA
+    DETERMINISTIC
+    COMMENT 'no se que estoy haciendo'
+BEGIN
+	DECLARE res INT DEFAULT 0;
+IF EXISTS(select idestante from estante where idestante=videstante)
+	THEN
+		DELETE FROM estante WHERE (`idestante` = `videstante`);
+        set res = 1;
+	END IF;
+RETURN res;
+END$$
+
 CREATE DEFINER=`root`@`localhost` FUNCTION `guardarLaboratorio` (`vnombre` VARCHAR(45), `vdescrip` VARCHAR(45)) RETURNS INT(1) READS SQL DATA
     DETERMINISTIC
     COMMENT 'no se que estoy haciendo'
@@ -270,6 +319,34 @@ IF NOT EXISTS(select nombre from laboratorio where nombre=vnombre)
 	THEN
 		insert into laboratorio(nombre,descrip)
         values(vnombre,vdescrip);
+        set res = 1;
+	END IF;
+RETURN res;
+END$$
+
+CREATE DEFINER=`root`@`localhost` FUNCTION `guardarProveedor` (`vnit` VARCHAR(45),`vnombre` VARCHAR(45),`vciudad` VARCHAR(45),`vdireccion` VARCHAR(45), `vtelefono` VARCHAR(45)) RETURNS INT(1)
+  READS SQL DATA
+  DETERMINISTIC
+  BEGIN
+	DECLARE res INT DEFAULT 0;
+IF NOT EXISTS(select nit from proveedor where nit=vnit)
+	THEN
+		insert into proveedor(nit,nombre,ciudad,direccion,telefono)
+        values(vnit,vnombre,vciudad,vdireccion,vtelefono);
+        set res = 1;
+	END IF;
+RETURN res;
+END$$
+
+CREATE DEFINER=`root`@`localhost` FUNCTION `guardarEstante` (`vcodigo` VARCHAR(45), `vcategoria` VARCHAR(45), `vdescripcion` VARCHAR(45)) RETURNS INT(1) READS SQL DATA
+    DETERMINISTIC
+    COMMENT 'no se que estoy haciendo'
+BEGIN
+	DECLARE res INT DEFAULT 0;
+IF NOT EXISTS(select codigo from estante where codigo=vcodigo)
+	THEN
+		insert into estante(codigo,categoria,descripcion)
+        values(vcodigo,vcategoria,vdescripcion);
         set res = 1;
 	END IF;
 RETURN res;
@@ -370,6 +447,30 @@ IF NOT EXISTS(select cedula from cliente where cedula=vcedula and idcliente<>vid
 RETURN res;
 END$$
 
+CREATE FUNCTION modificarProveedor (
+  `vidproveedor` INT,
+  `vnit` VARCHAR(45),
+  `vnombre` VARCHAR(45),
+  `vciudad` VARCHAR(45),
+  `vdireccion` VARCHAR(45),
+  `vtelefono` VARCHAR(45)
+  ) RETURNS INT(1)
+  
+  READS SQL DATA
+  DETERMINISTIC
+  BEGIN
+	DECLARE res INT DEFAULT 0;
+IF NOT EXISTS(select nit from proveedor where nit=vnit and id<>vidproveedor)
+	THEN
+		update proveedor
+        set nit=vnit, nombre=vnombre, ciudad=vciudad, direccion=vdireccion, telefono=vtelefono
+        where id=vidproveedor;
+        
+        set res = 1;
+	END IF;
+RETURN res;
+END$$
+
 CREATE DEFINER=`root`@`localhost` FUNCTION `modificarUsuario` (`vidusuario` INT, `vcedula` INT, `vnombre` VARCHAR(45), `vapellido` VARCHAR(45), `vcorreo` VARCHAR(45),  `vtipoUsuario` INT, `vusuario` VARCHAR(45), `vpassword` INT) RETURNS INT(1) READS SQL DATA
     DETERMINISTIC
     COMMENT 'no se que estoy haciendo'
@@ -396,6 +497,23 @@ IF NOT EXISTS(select idlaboratorio from laboratorio where idlaboratorio=vidlabor
 		update laboratorio
         set nombre=vnombre, descrip=vdescrip
         where idlaboratorio=vidlaboratorio;
+        
+        set res = 1;
+	END IF;
+RETURN res;
+END$$
+
+CREATE DEFINER=`root`@`localhost` FUNCTION `modificarEstante` (`videstante` INT, `vcodigo` VARCHAR(45), `vcategoria` VARCHAR(45), `vdescripcion` VARCHAR(45)) RETURNS INT(1) READS SQL DATA
+    DETERMINISTIC
+    COMMENT 'no se que estoy haciendo'
+BEGIN
+	DECLARE res INT DEFAULT 0;
+    -- select idestante from estante where idestante=videstante and codigo<>vcodigo
+IF NOT EXISTS(select codigo from estante where codigo=vcodigo and idestante<>videstante)
+	THEN
+		update estante
+        set codigo=vcodigo, categoria=vcategoria, descripcion=vdescripcion
+        where idestante=videstante;
         
         set res = 1;
 	END IF;
@@ -467,6 +585,29 @@ CREATE TABLE `laboratorio` (
   `nombre` varchar(45) DEFAULT NULL,
   `descrip` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `estante`
+--
+
+CREATE TABLE `farmacia`.`estante` (
+  `idestante` INT NOT NULL AUTO_INCREMENT,
+  `codigo` VARCHAR(45) NULL,
+  `categoria` VARCHAR(45) NULL,
+  `descripcion` VARCHAR(45) NULL,
+  PRIMARY KEY (`idestante`),
+  UNIQUE INDEX `codigo_UNIQUE` (`codigo` ASC));
+
+-- CREATE TABLE `farmacia`.`estante` ( `idestante` INT(11) NOT NULL AUTO_INCREMENT , `codigo` VARCHAR(45) CHARACTER SET armscii8 COLLATE armscii8_general_ci NULL DEFAULT NULL , `categoria` VARCHAR(45) CHARACTER SET armscii8 COLLATE armscii8_general_ci NULL DEFAULT NULL , `descripcion` VARCHAR(45) CHARACTER SET armscii8 COLLATE armscii8_general_ci NULL DEFAULT NULL , PRIMARY KEY (`idestante`(11)), UNIQUE `indice_codigo` (`codigo`(45))) ENGINE = InnoDB;
+
+-- CREATE TABLE `estante` (
+--  `idestante` int(11) NOT NULL,
+--  `codigo` varchar(45) DEFAULT NULL,
+--  `categoria` varchar(45) DEFAULT NULL,
+--  `descripcion` varchar(45) DEFAULT NULL
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `laboratorio`
