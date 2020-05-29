@@ -1,5 +1,5 @@
 <?php
-
+require '../infrastructure/CORS.php';
 include "../model/clsCliente.php";
 include '../DAO/clienteDAO.php';
 

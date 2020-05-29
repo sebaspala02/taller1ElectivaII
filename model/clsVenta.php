@@ -9,13 +9,14 @@ class clsVenta
     private $usuario_idusuario;
 
 
-    public function __construct($idventa, $fecha_venta, $valor_total, $cliente_idcliente, $usuario_idusuario)
+    public function __construct($idventa, $fecha_venta, $valor_total, $cliente_idcliente, $usuario_idusuario, $puntos)
     {
         $this->idventa = $idventa;
         $this->fecha_venta = $fecha_venta;
         $this->valor_total = $valor_total;
         $this->cliente_idcliente = $cliente_idcliente;
         $this->usuario_idusuario = $usuario_idusuario;
+        $this->puntos = $puntos;
     }
 
     public function getidventa()

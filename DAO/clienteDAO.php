@@ -54,7 +54,7 @@ class clienteDAO
 
     public function listar()
     {
-        $this->dao->crearConsulta("listarCliente", array(0), "procedimiento");
+        $this->dao->crearConsulta("listarClientes", array(0), "procedimiento");
         // $sql = "SELECT idcliente,nombre,apellido,cedula,genero,fecha_naci from cliente";
         // $this->objCon->Execute($sql);
     }

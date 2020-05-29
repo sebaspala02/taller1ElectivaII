@@ -1,5 +1,5 @@
 <?php
-
+require '../infrastructure/CORS.php';
 include "../model/clsDetalle.php";
 include '../DAO/ventaDAO.php';
 
@@ -12,10 +12,11 @@ $cant = isset($_REQUEST['cant']) ? $_REQUEST['cant'] : "";
 $cliente = isset($_REQUEST['cliente']) ? $_REQUEST['cliente'] : "";
 $usuario = isset($_REQUEST['usuario']) ? $_REQUEST['usuario'] : "";
 $idventa = isset($_REQUEST['idventa']) ? $_REQUEST['idventa'] : "";
+$puntos = isset($_REQUEST['puntos']) ? $_REQUEST['puntos'] : "";
 $type = isset($_REQUEST['type']) ? $_REQUEST['type'] : "";
 //$valor = isset($_POST['valor']) ? $_POST['valor'] : "";
 
-$detalle = new clsDetalle($iddetalle_venta, $total, $fecha, $medi, $cant, $cliente, $usuario, $idventa);
+$detalle = new clsDetalle($iddetalle_venta, $total, $fecha, $medi, $cant, $cliente, $usuario, $idventa,$puntos);
 $conex = new ventaDAO();
 switch ($type) {
     case "save":

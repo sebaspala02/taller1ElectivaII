@@ -18,9 +18,9 @@ class ventaDAO
 
     public function guardar(clsDetalle $obj)
     {
-        $user = $_SESSION['user'];
+        // $user = $_SESSION['user'];
         $this->dao->crearConsulta("guardarVenta", array(
-            $obj->getTotal(), $obj->getMedi(), $obj->getCant(), $obj->getCliente(), $user
+            $obj->getTotal(), $obj->getMedi(), $obj->getCant(), $obj->getCliente(), 14,$obj->getpuntos()
         ), "funcion");
         // $sql = "INSERT INTO venta(fecha_venta,valor_total,cliente_idcliente,usuario_idusuario) " .
         //     "VALUES ('" . $obj->getfecha_venta() . "'," . $obj->getvalor_total() . "," . $obj->getcliente_idcliente() . ",

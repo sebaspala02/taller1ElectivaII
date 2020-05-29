@@ -11,8 +11,9 @@ class clsDetalle
     private $usuario;
     private $idventa;
 
+    private $puntos;
 
-    public function __construct($iddetalle_venta,$total, $fecha, $medi, $cant,$cliente,$usuario, $idventa)
+    public function __construct($iddetalle_venta, $total, $fecha, $medi, $cant, $cliente, $usuario, $idventa,$puntos)
     {
         $this->iddetalle_venta = $iddetalle_venta;
         $this->total = $total;
@@ -22,6 +23,7 @@ class clsDetalle
         $this->cliente = $cliente;
         $this->usuario = $usuario;
         $this->idventa = $idventa;
+        $this->puntos = $puntos;
     }
 
     public function getIddetalle_venta()
@@ -35,6 +37,15 @@ class clsDetalle
     public function getCant()
     {
         return $this->cant;
+    }
+    public function getpuntos()
+    {
+        return $this->puntos;
+    }
+    
+    public function setpuntos($puntos)
+    {
+        $this->puntos = $puntos;
     }
     public function getFecha()
     {

@@ -11,9 +11,10 @@ class clsMedi
     private $precio;
     private $idusuario;
     private $idlaboratorio;
+    private $proveedor_idproveedor;
 
 
-    public function __construct($idmedicamento, $nombre, $descrip, $fecha_venc, $cant, $fecha_creado, $precio, $idusuario, $idlaboratorio)
+    public function __construct($idmedicamento, $nombre, $descrip, $fecha_venc, $cant, $fecha_creado, $precio, $idusuario, $idlaboratorio,$proveedor_idproveedor)
     {
         $this->idmedicamento = $idmedicamento;
         $this->nombre = $nombre;
@@ -24,6 +25,7 @@ class clsMedi
         $this->precio = $precio;
         $this->idusuario = $idusuario;
         $this->idlaboratorio = $idlaboratorio;
+        $this->proveedor_idproveedor=$proveedor_idproveedor;
     }
 
     public function getIdMedicamento()
@@ -66,6 +68,15 @@ class clsMedi
     public function setIdMedicamento($idmedicamento)
     {
         $this->idmedicamento = $idmedicamento;
+    }
+    public function getproveedor_idproveedor()
+    {
+        return $this->proveedor_idproveedor;
+    }
+    // Setter
+    public function setproveedor_idproveedor($proveedor_idproveedor)
+    {
+        $this->proveedor_idproveedor = $proveedor_idproveedor;
     }
     public function setNombre($nombre)
     {

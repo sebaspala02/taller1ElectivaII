@@ -11,7 +11,7 @@ include '../DAO/ventaDAO.php';
     $type = isset($_REQUEST['type']) ? $_REQUEST['type'] : "";
     //$valor = isset($_POST['valor']) ? $_POST['valor'] : "";
 
-    $venta = new clsVenta($idventa, $fecha_venta, $valor_total, $venta_idcliente, $usuario_idusuario);
+    $venta = new clsVenta($idventa, $fecha_venta, $valor_total, $venta_idcliente, $usuario_idusuario,$puntos);
     $conex = new ventaDAO();
 
 switch ($type) {
