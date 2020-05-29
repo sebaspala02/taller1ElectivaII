@@ -10,9 +10,10 @@ class clsUsuario
     private $tipoUsuario_idTipoUsuario;
     private $usuario;
     private $password;
+    private $puntos;
 
 
-    public function __construct($idusuario, $cedula, $nombreUsuario, $apellidoUsuario, $correo, $tipoUsuario_idTipoUsuario, $usuario, $password)
+    public function __construct($idusuario, $cedula, $nombreUsuario, $apellidoUsuario, $correo, $tipoUsuario_idTipoUsuario, $usuario, $password, $puntos)
     {
         $this->idusuario = $idusuario;
         $this->cedula = $cedula;
@@ -22,6 +23,7 @@ class clsUsuario
         $this->tipoUsuario_idTipoUsuario = $tipoUsuario_idTipoUsuario;
         $this->usuario = $usuario;
         $this->password = $password;
+        $this->puntos = $puntos;
     }
 
     public function getIdUsuario()
@@ -56,6 +58,10 @@ class clsUsuario
     {
         return $this->password;
     }
+    public function getPuntos()
+    {
+        return $this->puntos;
+    }
 
     // Setter
     public function setIdUsuario($idusuario)
@@ -89,5 +95,9 @@ class clsUsuario
     public function setUsuario($usuario)
     {
         $this->usuario = $usuario;
+    }
+    public function setPuntos($puntos)
+    {
+        $this->puntos = $puntos;
     }
 }

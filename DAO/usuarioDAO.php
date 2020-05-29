@@ -56,6 +56,14 @@ class usuarioDAO
         // $this->objCon->Execute($sql);
     }
 
+    public function buscarCliente(clsUsuario $obj)
+    {
+        $this->dao->crearConsulta("buscarCustomer", array($obj->getCedula()), "procedimiento");
+        // $sql = "SELECT cedula,nombre,apellido,correo,usuario,password from usuario 
+        // where idusuario = " . $obj->getIdUsuario() . "";
+        // $this->objCon->Execute($sql);
+    }
+
     public function eliminar(clsUsuario $obj)
     {
         $this->dao->crearConsulta("eliminarUsuario", array($obj->getIdUsuario()), "funcion");
@@ -80,6 +88,13 @@ class usuarioDAO
     public function listar()
     {
         $this->dao->crearConsulta("listarUsuario", array(0), "procedimiento");
+        // $sql = "SELECT idmedicamento,nombre,descrip,fecha_venc,cant,fecha_creado,precio,usuario_idusuario,laboratorio_idlaboratorio from medicamento M";
+        // $this->objCon->Execute($sql);
+    }
+
+    public function listarCliente()
+    {
+        $this->dao->crearConsulta("listarCustomer", array(0), "procedimiento");
         // $sql = "SELECT idmedicamento,nombre,descrip,fecha_venc,cant,fecha_creado,precio,usuario_idusuario,laboratorio_idlaboratorio from medicamento M";
         // $this->objCon->Execute($sql);
     }
