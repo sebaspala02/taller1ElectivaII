@@ -16,7 +16,7 @@ $puntos = isset($_REQUEST['puntos']) ? $_REQUEST['puntos'] : "";
 $type = isset($_REQUEST['type']) ? $_REQUEST['type'] : "";
 //$valor = isset($_POST['valor']) ? $_POST['valor'] : "";
 
-$detalle = new clsDetalle($iddetalle_venta, $total, $fecha, $medi, $cant, $cliente, $usuario, $idventa,$puntos);
+$detalle = new clsDetalle($iddetalle_venta, $total, $fecha, $medi, $cant, $cliente, $usuario, $idventa, $puntos);
 $conex = new ventaDAO();
 switch ($type) {
     case "save":
@@ -36,5 +36,12 @@ switch ($type) {
         break;
     case "listD":
         $conex->listarDetalle($idventa);
+        break;
+    // case "listHistoryCustomer":
+    //     $conex->listarHistoryCustomer();
+    //     break;
+
+    case "listHc":
+        $conex->listarHC($detalle);
         break;
 }
