@@ -31,6 +31,16 @@ class listDAO
         $sql = "SELECT * FROM tipousuario";
         $this->objCon->Execute($sql);
     }
+    public function listSuppliers()
+    {
+        $sql = "SELECT * FROM proveedor";
+        $this->objCon->Execute($sql);
+    }
+    public function listShelfs()
+    {
+        $sql = "SELECT * FROM estante";
+        $this->objCon->Execute($sql);
+    }
 
     // public function listMuni($valor){
     //     $sql = "SELECT * from Municipio where Departamento_idDepartamento = " . $valor;

@@ -34,4 +34,13 @@ class loginDAO
             header('location:../index.php?msjlogin=' . $mensaje);
         }
     }
+
+    public function logInNotRedirect(clsLogin $obj)
+    {
+        $sql = "SELECT nombre from usuario where"
+            . " usuario='" . $obj->getUsuario() . "' and "
+            . "password='" . ($obj->getPassword()) . "'";
+
+        $this->objCon->Execute($sql);
+    }
 }

@@ -19,7 +19,8 @@ class mediDAO
         $this->dao->crearConsulta("guardarMedicamento", array(
             $obj->getNombre(), $obj->getDescrip(), $obj->getFecha_venc(),
             $obj->getCant(), $obj->getFecha_creado(),
-            $obj->getPrecio(), $obj->getIdUsuario(), $obj->getIdLaboratorio()
+            $obj->getPrecio(), $obj->getIdUsuario(), $obj->getIdLaboratorio(), $obj->getProveedor_idproveedor(),
+            $obj->getEstante_idestante()
         ), "funcion");
         // $sql = "INSERT INTO medicamento(nombre,descrip,fecha_venc,cant,fecha_creado,precio,usuario_idusuario,laboratorio_idlaboratorio) "
         //     . "VALUES ('" . $obj->getNombre() . "','" .
@@ -51,7 +52,8 @@ class mediDAO
             $obj->getIdMedicamento(), $obj->getNombre(),
             $obj->getDescrip(), $obj->getFecha_venc(),
             $obj->getCant(), $obj->getFecha_creado(),
-            $obj->getPrecio(), $obj->getIdUsuario(), $obj->getIdLaboratorio()
+            $obj->getPrecio(), $obj->getIdUsuario(), $obj->getIdLaboratorio(), $obj->getProveedor_idproveedor(),
+            $obj->getEstante_idestante()
         ), "funcion");
         // $sql = "UPDATE medicamento SET nombre=" . "'" . $obj->getNombre() . "',descrip='" .
         //     $obj->getDescrip() . "',fecha_venc='"  . $obj->getFecha_venc() . "',cant=" .

@@ -15,6 +15,7 @@ class clsConexion
         $this->userbd = "root";
         $this->passworddb = "";
         $this->database = "farmacia";
+        // $this->database = "farmaciaTest";
         $this->host = "localhost";
 
         try {

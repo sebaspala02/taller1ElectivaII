@@ -3,6 +3,8 @@ $(document).ready(function () {
   listLabs();
   listClientes();
   listTipoUsuarios();
+  listShelf();
+  listSuppliers();
 });
 
 function listUsuarios() {
@@ -48,16 +50,12 @@ function listTipoUsuarios() {
     success: function (respuesta) {
       const res = JSON.parse(respuesta);
       const info = JSON.parse(res.data);
-
-      var select = document.getElementById("validationCustom04");
-
       var lista = "<option value='0'>.: Seleccionar :.</option>";
-
       if (info.length > 0) {
         for (k = 0; k < info.length; k++) {
           lista = lista + "<option value='" + info[k].idTipoUsuario + "'>" + info[k].nombre + "</option>";
         }
-        $("#validationCustom04").html(lista);
+        $("#txtIdTipoUsuario").html(lista);
       } else {
       }
     },
@@ -92,6 +90,72 @@ function listLabs() {
             "</option>";
         }
         $("#txtIdLaboratorio").html(lista);
+      } else {
+      }
+    },
+    error: (jqXHR, textStatus, errorThrown) => {
+      Swal.fire(
+        "Error detectado: " + textStatus + "\nException: " + errorThrown
+      );
+      Swal.fire("verifique la ruta de archivo!");
+    },
+  });
+}
+function listSuppliers() {
+  $.ajax({
+    type: "post",
+    url: "controller/ctlList.php",
+    beforeSend: function () {},
+    data: { type: "loadListSuppliers" },
+    success: function (respuesta) {
+      const res = JSON.parse(respuesta);
+      const info = JSON.parse(res.data);
+      var lista = "<option value='0'>.: Seleccionar :. </option>";
+
+      if (info.length > 0) {
+        for (k = 0; k < info.length; k++) {
+          lista =
+            lista +
+            "<option value='" +
+            info[k].idproveedor +
+            "'>" +
+            info[k].nombre +
+            "</option>";
+        }
+        $("#txtIdProveedor").html(lista);
+      } else {
+      }
+    },
+    error: (jqXHR, textStatus, errorThrown) => {
+      Swal.fire(
+        "Error detectado: " + textStatus + "\nException: " + errorThrown
+      );
+      Swal.fire("verifique la ruta de archivo!");
+    },
+  });
+}
+function listShelf() {
+  $.ajax({
+    type: "post",
+    url: "controller/ctlList.php",
+    beforeSend: function () {},
+    data: { type: "loadListShelf" },
+    success: function (respuesta) {
+      const res = JSON.parse(respuesta);
+      const info = JSON.parse(res.data);
+      var lista = "<option value='0'>.: Seleccionar :. </option>";
+
+      if (info.length > 0) {
+        for (k = 0; k < info.length; k++) {
+          lista =
+            lista +
+            "<option value='" +
+            info[k].idestante +
+            "'>" +
+            info[k].categoria +
+            "</option>";
+        }
+        $("#txtIdEstanteria").html(lista);
       } else {
       }
     },

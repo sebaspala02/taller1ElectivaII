@@ -1,9 +1,9 @@
 <?php
-
 require '../infrastructure/CORS.php';
 include "../model/clsUsuario.php";
 include '../DAO/usuarioDAO.php';
-
+require '../util/Helper.php';
+require '../util/Security.php';
 
 $idusuario = isset($_REQUEST['idusuario']) ? $_REQUEST['idusuario'] : "";
 $cedula = isset($_REQUEST['cedula']) ? $_REQUEST['cedula'] : "";
@@ -20,21 +20,34 @@ $type = isset($_REQUEST['type']) ? $_REQUEST['type'] : "";
 $usuario = new clsUsuario($idusuario, $cedula, $nombre, $apellido, $correo, $tipoUsuario_idTipoUsuario, $usuario, $password, $puntos);
 $conex = new usuarioDAO();
 
+$token = getInfo('token');
+$security = new Security();
+
 switch ($type) {
     case "save":
-        $conex->guardar($usuario);
+        if ($security->validarTokenUser($token)) {
+            $conex->guardar($usuario);
+        }
         break;
     case "search":
-        $conex->buscar($usuario);
+        if ($security->validarTokenUser($token)) {
+            $conex->buscar($usuario);
+        }
         break;
     case "searchCliente":
         $conex->buscarCliente($usuario);
         break;
     case "delete":
-        $conex->eliminar($usuario);
+        // print_r($usuario);
+        // echo $usuario;
+        if ($security->validarTokenUser($token)) {
+            $conex->eliminar($usuario);
+        }
         break;
     case "update":
-        $conex->modificar($usuario);
+        if ($security->validarTokenUser($token)) {
+            $conex->modificar($usuario);
+        }
         break;
     case "list":
         $conex->listar();

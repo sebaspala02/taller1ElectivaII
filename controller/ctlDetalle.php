@@ -2,7 +2,8 @@
 require '../infrastructure/CORS.php';
 include "../model/clsDetalle.php";
 include '../DAO/ventaDAO.php';
-
+require '../util/Helper.php';
+require '../util/Security.php';
 
 $iddetalle_venta = isset($_REQUEST['iddetalle_venta']) ? $_REQUEST['iddetalle_venta'] : "";
 $total = isset($_REQUEST['total']) ? $_REQUEST['total'] : "";
@@ -18,18 +19,30 @@ $type = isset($_REQUEST['type']) ? $_REQUEST['type'] : "";
 
 $detalle = new clsDetalle($iddetalle_venta, $total, $fecha, $medi, $cant, $cliente, $usuario, $idventa, $puntos);
 $conex = new ventaDAO();
+
+$token = getInfo('token');
+$security = new Security();
+
 switch ($type) {
     case "save":
-        $conex->guardar($detalle);
+        if ($security->validarTokenUser($token)) {
+            $conex->guardar($detalle);
+        }
         break;
     case "search":
-        $conex->buscar($detalle);
+        if ($security->validarTokenUser($token)) {
+            $conex->buscar($detalle);
+        }
         break;
     case "delete":
-        $conex->eliminar($detalle);
+        if ($security->validarTokenUser($token)) {
+            $conex->eliminar($detalle);
+        }
         break;
     case "update":
-        $conex->modificar($detalle);
+        if ($security->validarTokenUser($token)) {
+            $conex->modificar($detalle);
+        }
         break;
     case "list":
         $conex->listarVenta();
@@ -37,10 +50,6 @@ switch ($type) {
     case "listD":
         $conex->listarDetalle($idventa);
         break;
-    // case "listHistoryCustomer":
-    //     $conex->listarHistoryCustomer();
-    //     break;
-
     case "listHc":
         $conex->listarHC($detalle);
         break;

@@ -122,6 +122,26 @@
                         </tr>
                         <tr>
                             <td>
+                                <label>provvedor:</label>
+                            </td>
+                            <td colspan="2">
+                                <div class="form-group">
+                                    <select class="form-control" id="txtIdProveedor" name="proveedor"></select>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>categoria:</label>
+                            </td>
+                            <td colspan="2">
+                                <div class="form-group">
+                                    <select class="form-control" id="txtIdEstanteria" name="estante"></select>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
                                 <input class="btn btn-success" type="button" value="Guardar" id="btnGuardarM">
                                 <!-- <input type="button" value="Buscar" id="btnBuscar"> -->
                             </td>

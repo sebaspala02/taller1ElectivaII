@@ -12,9 +12,10 @@ class clsMedi
     private $idusuario;
     private $idlaboratorio;
     private $proveedor_idproveedor;
+    private $estante_idestante;
 
 
-    public function __construct($idmedicamento, $nombre, $descrip, $fecha_venc, $cant, $fecha_creado, $precio, $idusuario, $idlaboratorio,$proveedor_idproveedor)
+    public function __construct($idmedicamento, $nombre, $descrip, $fecha_venc, $cant, $fecha_creado, $precio, $idusuario, $idlaboratorio, $proveedor_idproveedor, $estante_idestante)
     {
         $this->idmedicamento = $idmedicamento;
         $this->nombre = $nombre;
@@ -25,9 +26,11 @@ class clsMedi
         $this->precio = $precio;
         $this->idusuario = $idusuario;
         $this->idlaboratorio = $idlaboratorio;
-        $this->proveedor_idproveedor=$proveedor_idproveedor;
+        $this->proveedor_idproveedor = $proveedor_idproveedor;
+        $this->estante_idestante = $estante_idestante;
     }
 
+    //getter
     public function getIdMedicamento()
     {
         return $this->idmedicamento;
@@ -64,19 +67,20 @@ class clsMedi
     {
         return $this->idlaboratorio;
     }
+    public function getProveedor_idproveedor()
+    {
+        return $this->proveedor_idproveedor;
+    }
+    public function getEstante_idestante()
+    {
+        return $this->estante_idestante;
+    }
+
+
     // Setter
     public function setIdMedicamento($idmedicamento)
     {
         $this->idmedicamento = $idmedicamento;
-    }
-    public function getproveedor_idproveedor()
-    {
-        return $this->proveedor_idproveedor;
-    }
-    // Setter
-    public function setproveedor_idproveedor($proveedor_idproveedor)
-    {
-        $this->proveedor_idproveedor = $proveedor_idproveedor;
     }
     public function setNombre($nombre)
     {
@@ -109,5 +113,13 @@ class clsMedi
     public function setIdLaboratorio($idlaboratorio)
     {
         $this->idlaboratorio = $idlaboratorio;
+    }
+    public function setProveedor_idproveedor($proveedor_idproveedor)
+    {
+        $this->proveedor_idproveedor = $proveedor_idproveedor;
+    }
+    public function setEstante_idestante($estante_idestante)
+    {
+        $this->estante_idestante = $estante_idestante;
     }
 }

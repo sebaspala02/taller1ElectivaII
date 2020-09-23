@@ -21,6 +21,12 @@ switch ($type) {
     case "loadListTipoUsuarios":
         $conex->listTipoUsuarios();
         break;
+    case "loadListSuppliers":
+        $conex->listSuppliers();
+        break;
+    case "loadListShelf":
+        $conex->listShelfs();
+        break;
         // case "loadListFinca":
         //     $conex->listFinca();
         //     break;

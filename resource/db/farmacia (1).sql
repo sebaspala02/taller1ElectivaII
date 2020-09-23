@@ -366,16 +366,16 @@ IF NOT EXISTS(select cedula from cliente where cedula=vcedula)
 RETURN res;
 END$$
 
-CREATE DEFINER=`root`@`localhost` FUNCTION `guardarMedicamento` (`vnombre` VARCHAR(45), `vdescrip` VARCHAR(45), `vfecha_venc` DATE, `vcant` INT, `vfecha_creado` DATE, `vprecio` INT, `vusuario_idusuario` INT, `vlaboratorio_idlaboratorio` INT) RETURNS INT(1) READS SQL DATA
+CREATE DEFINER=`root`@`localhost` FUNCTION `guardarMedicamento` (`vnombre` VARCHAR(45), `vdescrip` VARCHAR(45), `vfecha_venc` DATE, `vcant` INT, `vfecha_creado` DATE, `vprecio` INT, `vusuario_idusuario` INT, `vlaboratorio_idlaboratorio` INT, `vproveedor_id` INT, `vestante_idestante` INT) RETURNS INT(1) READS SQL DATA
     DETERMINISTIC
     COMMENT 'no se que estoy haciendo'
 BEGIN
 	DECLARE res INT DEFAULT 0;
 	IF NOT EXISTS(select idmedicamento from medicamento 
-		where nombre=vnombre and laboratorio_idlaboratorio = vlaboratorio_idlaboratorio)
+		where nombre=vnombre and laboratorio_idlaboratorio = vlaboratorio_idlaboratorio and proveedor_id = vproveedor_id and estante_idestante = vestante_idestante)
 	THEN
-		insert into medicamento(nombre, descrip, fecha_venc, cant, fecha_creado, precio, usuario_idusuario, laboratorio_idlaboratorio)
-        values(vnombre,vdescrip,vfecha_venc,vcant,vfecha_creado,vprecio,vusuario_idusuario,vlaboratorio_idlaboratorio);
+		insert into medicamento(nombre, descrip, fecha_venc, cant, fecha_creado, precio, usuario_idusuario, laboratorio_idlaboratorio,proveedor_id,estante_idestante)
+        values(vnombre,vdescrip,vfecha_venc,vcant,vfecha_creado,vprecio,vusuario_idusuario,vlaboratorio_idlaboratorio,vproveedor_id,vestante_idestante);
         set res = 1;
 	END IF;
 RETURN res;
